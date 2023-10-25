@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CarculatorGame extends StatelessWidget {
-  const CarculatorGame({super.key});
+class CarculatorGameScreen extends StatelessWidget {
+  const CarculatorGameScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,9 +13,14 @@ class CarculatorGame extends StatelessWidget {
         foregroundColor: Colors.white,
         title: const Text(
           '깜짝게임 : 가격을 맞춰봐~!',
-          style: TextStyle(fontSize: 50, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
         ),
       ),
+      body: const Column(children: [
+        SizedBox(
+          height: 50,
+        ),
+      ]),
     );
   }
 }
