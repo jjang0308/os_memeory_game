@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:mysql_client/mysql_client.dart';
-import 'package:os_memory_game/features/home/homescreen.dart';
+import 'package:os_memory_game/features/Home/homescreen.dart';
+import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
 
 void main() {
   // dbConnector();
