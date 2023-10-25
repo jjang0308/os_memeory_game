@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/features/Home/homescreen.dart';
-import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+import 'package:os_memory_game/features/ranking/ranking_screen.dart';
 
 void main() {
   // dbConnector();
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      home: Ranking_screen(),
     );
   }
 }
