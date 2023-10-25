@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/Home/homescreen.dart';
+import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomeScreen(),
+      home: ChiGameScreen(),
     );
   }
 }
