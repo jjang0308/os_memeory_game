@@ -1,9 +1,10 @@
+import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/features/ranking/ranking_screen.dart';
+import 'package:os_memory_game/features/home/home_screen.dart';
 
 void main() {
   // dbConnector();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 // Future<void> dbConnector() async {
@@ -26,12 +27,14 @@ void main() {
 // }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  FlexScheme usedScheme = FlexScheme.gold;
+  MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Ranking_screen(),
+    return MaterialApp(
+      home: const HomeScreen(),
+      theme: FlexThemeData.light(scheme: usedScheme),
     );
   }
 }
