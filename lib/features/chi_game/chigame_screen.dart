@@ -5,27 +5,74 @@ class ChiGameScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(300.0), // AppBar의 높이 조절
-        child: AppBar(
-          elevation: 0,
-          backgroundColor: const Color(0xFFF79824),
-          flexibleSpace: Container(
-            padding: const EdgeInsets.only(bottom: 24.0), // 텍스트와 아래 여백 설정
-            alignment: Alignment.bottomCenter, // 텍스트를 아래 정렬
-            child: const Text(
-              "00네\n꼬치꼬치",
-              style: TextStyle(
-                fontFamily: 'Soyo-Maple-BOLD',
-                fontSize: 100, // 폰트 크기 조정
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ),
-      ),
+   return Scaffold(
       backgroundColor: const Color(0xFFF79824),
+      body: Stack(
+        children: [
+          Stack(
+            children: [
+              Positioned(
+                top: 100,
+                left: 660,
+                child: Text(
+                  'OO네',
+                  style: TextStyle(
+                    fontFamily: "Soyo-Maple-Bold",
+                    fontSize: 100,
+                    foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 50
+                      ..color = Colors.white,
+                  ),
+                ),
+              ),
+              const Positioned(
+                top: 100,
+                left: 660,
+                child: Text(
+                  "OO네",
+                  style: TextStyle(
+                    fontSize: 100,
+                    color: Color(0xFFFDCA40),
+                    fontFamily: "Soyo-Maple-Bold",
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Stack(
+            children: [
+              Positioned(
+                top: 280,
+                left: 610,
+                child: Text(
+                  '꼬치꼬치',
+                  style: TextStyle(
+                    fontFamily: "Soyo-Maple-Bold",
+                    fontSize: 100,
+                    foreground: Paint()
+                      ..style = PaintingStyle.stroke
+                      ..strokeWidth = 50
+                      ..color = Colors.white,
+                  ),
+                ),
+              ),
+              const Positioned(
+                top: 280,
+                left: 610,
+                child: Text(
+                  "꼬치꼬치",
+                  style: TextStyle(
+                    fontSize: 100,
+                    color: Color(0xFFFDCA40),
+                    fontFamily: "Soyo-Maple-Bold",
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
