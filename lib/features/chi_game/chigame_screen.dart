@@ -301,7 +301,7 @@ Positioned(
   },
   child: Image.asset(
     'assets/fonts/images/pimang.png',
-    width: 291,
+    width: 391,
     height: 236,
   ),
 )
