@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/features/home/home_screen.dart';
 
 class RankScreen extends StatelessWidget {
   const RankScreen({Key? key}) : super(key: key);
@@ -37,12 +38,14 @@ class RankScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 80),
             child: IconButton(
-              icon: const Icon(
-                Icons.volume_up,
-                size: 110, // 아이콘 크기 고정
-              ),
-              onPressed: () {},
-            ),
+    onPressed: () {
+      
+    },
+    icon: const Icon(
+      Icons.arrow_back_ios, // 이미지 아이콘을 여기에 추가
+      size: 160, // 이미지 아이콘 크기 설정
+    ),
+  ),
           ),
         ],
         bottom: PreferredSize(
