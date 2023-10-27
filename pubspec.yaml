@@ -38,6 +38,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flex_color_scheme: ^7.2.0
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:
@@ -82,6 +83,13 @@ flutter:
       fonts:
         - asset: assets\fonts\SOYO-MAPLE-BOLD.otf
     - family: Soyo-Maple-Rgular
+      fonts:
+        - asset: assets\fonts\SOYO-MAPLE-REGULAR.otf
+
+    - family: Maple-Bold
+      fonts:
+        - asset: assets\fonts\Maplestory Bold.ttf
+    - family: Maple-Rgular
       fonts:
         - asset: assets\fonts\SOYO-MAPLE-REGULAR.otf
         # - asset: assets\fonts\SOYO MAPLE REGULAR.OTF

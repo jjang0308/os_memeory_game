@@ -1,7 +1,6 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-
-import 'package:os_memory_game/features/ranking_game/rank_screen.dart';
+import 'package:os_memory_game/features/home/home_screen.dart';
 
 void main() {
   // dbConnector();
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const RankScreen(),
+      home: const HomeScreen(),
       theme: FlexThemeData.light(scheme: usedScheme),
     );
   }
