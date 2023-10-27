@@ -6,11 +6,314 @@ class ChiGameScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    return Scaffold(
-      backgroundColor: const Color(0xFFF79824),
+
+      backgroundColor:const Color(0xFFF2C18C), 
       body: Stack(
         children: [
+          
           Stack(
             children: [
+                
+             Positioned(
+  top: 600,
+  left: 20,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 900,
+  left: 20,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 1200,
+  left: 20,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 1500,
+  left: 20,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 1800,
+  left: 20,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 1800,
+  left: 1280,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 1500,
+  left: 1280,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 1200,
+  left: 1280,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 900,
+  left: 1280,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
+Positioned(
+  top: 600,
+  left: 1280,
+  child: Container(
+    width: 300, // 정사각형의 가로 길이
+    height: 300, // 정사각형의 세로 길이
+    color: const Color(0xFFF2C18C), // 버튼의 배경색
+    child: Center(
+      child: ElevatedButton.icon( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        style: ElevatedButton.styleFrom(
+          backgroundColor: const Color(0xFFF2C18C), // 버튼 배경색
+        ),
+        icon: const Icon(
+          Icons.image, // 이미지 아이콘을 여기에 추가
+          size: 260, // 이미지 아이콘 크기 설정
+        ),
+        label: const Text(
+          '버튼 텍스트', // 버튼 텍스트
+          style: TextStyle(
+            color: Colors.white, // 텍스트 색상
+            fontSize: 16.0, // 텍스트 크기
+          ),
+        ),
+      ),
+    ),
+  ),
+),
               Positioned(
                 top: 100,
                 left: 660,
@@ -69,10 +372,50 @@ class ChiGameScreen extends StatelessWidget {
                   ),
                 ),
               ),
+       Positioned(
+  top: 100,
+  left: 100,
+  child:
+       IconButton( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        icon: const Icon(
+          
+          Icons.arrow_back_ios, // 이미지 아이콘을 여기에 추가
+          size: 150, // 이미지 아이콘 크기 설정
+        ),
+        
+      ),
+   
+),
+     Positioned(
+  top: 100,
+  left: 1350,
+  child:
+       IconButton( // 이미지 버튼을 만듭니다.
+        onPressed: () {
+          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+        },
+        icon: const Icon(
+          
+          Icons.volume_up, // 이미지 아이콘을 여기에 추가
+          size: 150, // 이미지 아이콘 크기 설정
+        ),
+        
+      ),
+   
+),
+       
             ],
           ),
         ],
+      
+      
       ),
+    
+    
+    
     );
   }
 }
