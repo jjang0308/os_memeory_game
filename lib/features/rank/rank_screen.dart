@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'package:os_memory_game/model/game_model.dart';
 
 class RankScreen extends StatefulWidget {
-  const RankScreen({Key? key}) : super(key: key);
+  const RankScreen({Key? key, required this.db}) : super(key: key);
+  final GameModel db;
 
   @override
   State<RankScreen> createState() => _RankScreenState();
@@ -79,7 +82,7 @@ class _RankScreenState extends State<RankScreen> {
           children: [
             const SizedBox(height: 300), // 원하는 여백을 설정
             Text(
-              '★ RANK 1. 김태우 1560점',
+              '★ RANK 1. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
               style: TextStyle(
                 fontSize: 60,
                 foreground: Paint()
@@ -90,7 +93,7 @@ class _RankScreenState extends State<RankScreen> {
             ),
             const SizedBox(height: 80), // 원하는 여백을 설정
             Text(
-              '★ RANK 2. 이태우 1460점',
+              '★ RANK 2. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
               style: TextStyle(
                 fontSize: 60,
                 foreground: Paint()
@@ -101,7 +104,7 @@ class _RankScreenState extends State<RankScreen> {
             ),
             const SizedBox(height: 80), // 원하는 여백을 설정
             Text(
-              '★ RANK 3. 박태우 1360점',
+              '★ RANK 3. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
               style: TextStyle(
                 fontSize: 60,
                 foreground: Paint()
@@ -112,7 +115,7 @@ class _RankScreenState extends State<RankScreen> {
             ),
             const SizedBox(height: 80), // 원하는 여백을 설정
             Text(
-              '★ RANK 4. 최태우 1260점',
+              '★ RANK 4. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
               style: TextStyle(
                 fontSize: 60,
                 foreground: Paint()
@@ -123,7 +126,7 @@ class _RankScreenState extends State<RankScreen> {
             ),
             const SizedBox(height: 80), // 원하는 여백을 설정
             Text(
-              '★ RANK 5. 노태우 1160점',
+              '★ RANK 5. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
               style: TextStyle(
                 fontSize: 60,
                 foreground: Paint()
