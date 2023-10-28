@@ -73,7 +73,7 @@ class _RankScreenState extends State<RankScreen> {
               ),
               onPressed: () {
                 setState(() {
-                  isSoundOn = !isSoundOn; // 소리 상태를 토글
+                  isSoundOn = !isSoundOn; // 소리 상태를 토글gdgd
                   // 여기에 소리 켜기/끄기 로직을 추가할 수 있습니다.
                 });
               },
