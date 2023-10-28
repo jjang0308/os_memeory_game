@@ -3,7 +3,6 @@ import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/database/sample.dart';
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 import 'package:os_memory_game/features/orders/order_screen.dart';
-import 'package:os_memory_game/features/rank/rank_screen.dart';
 
 import '../../database/game_db_service.dart';
 
@@ -37,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const RankScreen(),
+          builder: (context) => const HomeScreen(),
         ),
       );
     }
