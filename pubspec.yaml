@@ -65,8 +65,7 @@ flutter:
   assets:
     - assets\fonts\images\pimang.png
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - assets/images/pimang.png
+  
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -91,8 +90,8 @@ flutter:
       fonts:
         - asset: assets\fonts\Maplestory Bold.ttf
     - family: Maple-Rgular
-      
-        # - asset: assets\fonts\SOYO MAPLE REGULAR.OTF
+      fonts:
+        - asset: assets\fonts\SOYO-MAPLEREGULAR.OTF
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

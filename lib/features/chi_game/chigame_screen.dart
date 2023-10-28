@@ -36,52 +36,63 @@ List<Map<String, dynamic>> leftButtonImages = [
   @override
   Widget build(BuildContext context) {
    return Scaffold(
+      
       backgroundColor:const Color(0xFFF2C18C), 
       body: 
       Stack(
+        
         children: [         
           Stack(
             children: [
-             ListView(
-  children: <Widget>[
-    const SizedBox(
-      height: 600,
-    ),
-    Row(mainAxisAlignment: MainAxisAlignment.end,
-      children: <Widget>[
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              for (int i = 0; i < 5; i++)
-                ChiGameButton(
-                  imageName: leftButtonImages[i]['imageName'],
-                ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.end,
-            children: <Widget>[
-              for (int i = 0; i < 5; i++)
-                ChiGameButton(
-                  imageName: rightButtonImages[i]['imageName'],
-                ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  ],
-),
+
+             Positioned(
+              top: 100,
+               child: SizedBox(
+                height: 200,
+                 child: ListView.builder(
+                 itemCount: 5,
+                 itemBuilder: (context, index) {
+                   
+                   return Row(
+                     
+                     children: [
+                       
+                       Expanded(
+                         child: Column(
+                           
+                           crossAxisAlignment: CrossAxisAlignment.start,
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                  ChiGameButton(
+                    imageName: leftButtonImages[index]['imageName'],
+                  ),
+                           ],
+                         ),
+                       ),
+                       Expanded(
+                         child: Column(
+                           crossAxisAlignment: CrossAxisAlignment.end,
+                           children: [
+                  ChiGameButton(
+                    imageName: rightButtonImages[index]['imageName'],
+                  ),
+                           ],
+                         ),
+                       ),
+                     ],
+                   );
+                 },
+               ),
+               ),
+             ),
               Positioned(
-                top: 100,
-                left: 660,
+                top: 80,
+                left: 440,
                 child: Text(
                   'OO네',
                   style: TextStyle(
                     fontFamily: "Soyo-Maple-Bold",
-                    fontSize: 100,
+                    fontSize: 70,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 50
@@ -90,12 +101,12 @@ List<Map<String, dynamic>> leftButtonImages = [
                 ),
               ),
               const Positioned(
-                top: 100,
-                left: 660,
+                top: 80,
+                left: 440,
                 child: Text(
                   "OO네",
                   style: TextStyle(
-                    fontSize: 100,
+                    fontSize: 70,
                     color: Color(0xFFFDCA40),
                     fontFamily: "Soyo-Maple-Bold",
                   ),
@@ -106,13 +117,13 @@ List<Map<String, dynamic>> leftButtonImages = [
           Stack(
             children: [
               Positioned(
-                top: 280,
-                left: 610,
+                top: 210,
+                left: 420,
                 child: Text(
                   '꼬치꼬치',
                   style: TextStyle(
                     fontFamily: "Soyo-Maple-Bold",
-                    fontSize: 100,
+                    fontSize: 60,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 50
@@ -121,12 +132,12 @@ List<Map<String, dynamic>> leftButtonImages = [
                 ),
               ),
               const Positioned(
-                top: 280,
-                left: 610,
+                top: 210,
+                left: 420,
                 child: Text(
                   "꼬치꼬치",
                   style: TextStyle(
-                    fontSize: 100,
+                    fontSize: 60,
                     color: Color(0xFFFDCA40),
                     fontFamily: "Soyo-Maple-Bold",
                   ),
@@ -134,8 +145,9 @@ List<Map<String, dynamic>> leftButtonImages = [
               ),
        Positioned( //홈으로 가기
   top: 0,
-  left: 20,
+  left: 0,
   child: IconButton(
+    
     onPressed: () {
       print("dasdasdaSD");
       // 버튼을 눌렀을 때 HomeScreen으로 이동
@@ -147,40 +159,40 @@ List<Map<String, dynamic>> leftButtonImages = [
     },
     icon: const Icon(
       Icons.arrow_back_ios, // 이미지 아이콘을 여기에 추가
-      size: 150, // 이미지 아이콘 크기 설정
+      size: 100, // 이미지 아이콘 크기 설정
     ),
     padding: const EdgeInsets.all(100.0), // 모든 방향으로 16.0 포인트 패딩 추가
   ),
 ),
      Positioned(// 볼륨버튼
   top: 100,
-  left: 1350,
+  left: 900,
   child:
        IconButton( // 이미지 버튼을 만듭니다.
         onPressed: () {},
         icon: const Icon(
           Icons.volume_up, // 이미지 아이콘을 여기에 추가
-          size: 150, // 이미지 아이콘 크기 설정
+          size: 100, // 이미지 아이콘 크기 설정
         ),
         
       ),
 ),
       Positioned(
-  top: 800, // 막대기의 세로 위치 조정 (조절 필요)
-  left: 780, // 막대기의 가로 위치 조정 (조절 필요)
+  top: 550, // 막대기의 세로 위치 조정 (조절 필요)
+  left: 530, // 막대기의 가로 위치 조정 (조절 필요)
   child: Container(
     width: 20, // 막대기의 가로 길이
-    height: 1200, // 막대기의 세로 길이
+    height: 900, // 막대기의 세로 길이
     color: Colors.brown, // 막대기의 색상 (갈색)
   ),
 ), 
 const Positioned(
-        top:550, // 텍스트의 세로 위치 조정 (조절 필요)
-        left: 370, // 텍스트의 가로 위치 조정 (조절 필요)
+        top: 350, // 텍스트의 세로 위치 조정 (조절 필요)
+        left: 270, // 텍스트의 가로 위치 조정 (조절 필요)
         child: Text(
           '주문서의 순서의 맞게 야채를 끼워주세요.',
           style: TextStyle(
-            fontSize: 50, // 텍스트 크기
+            fontSize: 35, // 텍스트 크기
             color: Colors.black, // 텍스트 색상
           ),
         ),
