@@ -21,6 +21,7 @@ class GameDBQuery {
       //테이블 생성
       await db.execute(
           "CREATE TABLE GameInfo(name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
+      print("DB 생성 완료!!");
     }, onUpgrade: (db, oldVersion, newVersion) {});
   }
 
@@ -29,16 +30,17 @@ class GameDBQuery {
     final db = await database;
 
     await db!.insert(
-      'Item',
+      'GameInfo',
       gameInfo.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
+    print("삽입끝");
   }
 
 // 모델을 리스트로 바꿔주고 거기에 DB값을 저장
   static Future<List<GameModel>> getModelListDB() async {
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db!.query('Item');
+    final List<Map<String, dynamic>> maps = await db!.query('GameInfo');
 
     return List.generate(maps.length, (index) {
       return GameModel(
