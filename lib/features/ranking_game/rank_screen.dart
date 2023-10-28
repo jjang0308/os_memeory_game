@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'package:os_memory_game/features/home/widgets/rank_widget.dart';
 
 class RankScreen extends StatefulWidget {
   const RankScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _RankScreenState extends State<RankScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 150,
-        backgroundColor: const Color(0xFFF79824),
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
         title: Text(
           'RANKING',
           style: TextStyle(
@@ -86,30 +87,14 @@ class _RankScreenState extends State<RankScreen> {
           ),
         ),
       ),
-      backgroundColor: const Color(0xFFF2C18C),
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 25.0), // 왼쪽 패딩 추가
         child: ListView.builder(
           itemCount: ranks.length,
           itemBuilder: (context, index) {
             final rank = ranks[index];
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start, // 텍스트 왼쪽 정렬
-              children: [
-                const SizedBox(height: 300), // 원하는 여백을 설정
-                Text(
-                  '${rank.text} ${rank.score}',
-                  style: TextStyle(
-                    fontSize: 60,
-                    foreground: Paint()
-                      ..style = PaintingStyle.stroke
-                      ..strokeWidth = 5
-                      ..color = Colors.black,
-                  ),
-                ),
-                const SizedBox(height: 80), // 원하는 여백을 설정
-              ],
-            );
+            return RankWidget(rank.text, rank.score);
           },
         ),
       ),
