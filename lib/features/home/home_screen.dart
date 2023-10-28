@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 import 'package:os_memory_game/features/orders/order_screen.dart';
-import 'package:os_memory_game/features/rank/rank_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const RankScreen(),
+          builder: (context) => const HomeScreen(),
         ),
       );
     }
