@@ -8,5 +8,7 @@ class GameInfoDBService {
     return GameDBQuery.getModelListDB();
   }
 
-  static int(getModelListDB) {}
+  static void insertGameInfo(GameModel gameModel) {
+    GameDBQuery.insertModelListDB(gameModel);
+  }
 }
