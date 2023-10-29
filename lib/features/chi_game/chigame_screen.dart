@@ -14,6 +14,7 @@ class ChiGameScreen extends StatefulWidget {
 class _ChiGameScreenState extends State<ChiGameScreen> {
 
 
+
   String name='태우';
 
 
@@ -34,19 +35,25 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     {'imageName': 'pimang.png', 'text': 'Left Button 5'},
   ];
 
-  int numberOfImagesDropped = 0;
+      int numberOfImagesDropped = 0;
+      // bool isButtonPressed = false;
+      void onButtonPressed(){
+        print("asdasd");
+        // isButtonPressed = true; // 버튼을 눌렀을 때 플래그를 설정
+        // setState(() { });
+         }
 
   @override
   Widget build(BuildContext context) {
 
-       final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+
+
    return Scaffold(
-      
       backgroundColor:const Color(0xFFF2C18C), 
       body: 
       Stack(
-        
         children: [         
           Padding(
             padding: EdgeInsets.only(top: screenHeight*0.25),
@@ -65,6 +72,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                ChiGameButton(
+                 onPressed:onButtonPressed,
                  imageName: leftButtonImages[index]['imageName'],
                  
                ),
@@ -76,6 +84,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                ChiGameButton(
+                onPressed: onButtonPressed,
                  imageName: rightButtonImages[index]['imageName'],
                ),
                         ],
@@ -87,6 +96,15 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             ),
             ),
           ),
+//           AnimatedPositioned(
+//   duration: const Duration(milliseconds: 300), // 애니메이션 지속 시간
+//   top: isButtonPressed ? screenHeight * 0.25 : screenHeight * 0.5, // 버튼 누를 때 막대기로 이동
+//   left: isButtonPressed ? screenWidth * 0.5 - 30 : screenWidth * 0.5 - 30, // 가운데 위치
+//   child: ChiGameButton(
+//     imageName: leftButtonImages[0]['imageName'],
+//     onPressed: () { },
+//   ),
+// ),
            Positioned(
              top: 80,
              left: 440,
@@ -171,9 +189,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 left: 880,
                 child: IconButton(
                   // 이미지 버튼을 만듭니다.
-                  onPressed: () {
-                    // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
-                  },
+                  onPressed:onButtonPressed,
                   icon: const Icon(
                     Icons.volume_up, // 이미지 아이콘을 여기에 추가
                     size: 100, // 이미지 아이콘 크기 설정
@@ -206,6 +222,7 @@ Positioned(
         ),
       ),
     ),
+    
             ],
           ),
         ],
