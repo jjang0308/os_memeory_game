@@ -9,7 +9,7 @@ import '../chi_game/chigame_screen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
-  static Sample sample = Sample();
+  // static Sample sample = Sample();
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
