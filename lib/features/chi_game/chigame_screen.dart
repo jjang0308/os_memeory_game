@@ -38,6 +38,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
 
   @override
   Widget build(BuildContext context) {
+
        final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
    return Scaffold(
@@ -113,6 +114,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                ),
              ),
            ),
+
           Stack(
             children: [
               Positioned(
