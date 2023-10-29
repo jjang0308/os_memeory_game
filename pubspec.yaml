@@ -89,8 +89,8 @@ flutter:
       fonts:
         - asset: assets\fonts\Maplestory Bold.ttf
     - family: Maple-Rgular
-      
-        # - asset: assets\fonts\SOYO MAPLE REGULAR.OTF
+      fonts:
+        - asset: assets\fonts\SOYO-MAPLEREGULAR.OTF
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
