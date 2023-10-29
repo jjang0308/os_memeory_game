@@ -20,8 +20,7 @@ class GameDBQuery {
     return await openDatabase(path, version: 1, onCreate: (db, version) async {
       //테이블 생성
       await db.execute(
-          "CREATE TABLE GameInfo(name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
-      print("DB 생성 완료!!");
+          "CREATE TABLE GameInfo( name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
     }, onUpgrade: (db, oldVersion, newVersion) {});
   }
 
@@ -34,7 +33,6 @@ class GameDBQuery {
       gameInfo.toMap(),
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print("삽입끝");
   }
 
 // 모델을 리스트로 바꿔주고 거기에 DB값을 저장

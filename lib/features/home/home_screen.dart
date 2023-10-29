@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/database/sample.dart';
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 import 'package:os_memory_game/features/orders/order_screen.dart';
-
-import '../../database/game_db_service.dart';
+import 'package:sqflite/sqflite.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,8 +18,10 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    print(getDatabasesPath());
+    print(Sample().gameModelList);
 
-    print(GameDBQuery.getModelListDB().toString());
+    // print(GameDBQuery.getModelListDB());
 
     void onStartPressed() {
       Navigator.pushReplacement(
