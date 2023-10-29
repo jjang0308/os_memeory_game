@@ -40,10 +40,11 @@ class Sample {
       ),
     );
     for (int i = 0; i < gameModelList.length; i++) {
-      print("성공!!");
       GameInfoDBService.insertGameInfo(gameModelList[i]);
     }
-
+    // print("성공!!");
+    // print(Sample().makeSample());
+    // print(GameDBQuery.getModelListDB().toString());
     return GameInfoDBService.getGameInfo();
   }
 }
