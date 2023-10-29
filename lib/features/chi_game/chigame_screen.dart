@@ -35,6 +35,8 @@ List<Map<String, dynamic>> leftButtonImages = [
 
   @override
   Widget build(BuildContext context) {
+       final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
    return Scaffold(
       
       backgroundColor:const Color(0xFFF2C18C), 
@@ -42,78 +44,71 @@ List<Map<String, dynamic>> leftButtonImages = [
       Stack(
         
         children: [         
-          Stack(
-            children: [
-
-             Positioned(
-              top: 100,
-               child: SizedBox(
-                height: 200,
-                 child: ListView.builder(
-                 itemCount: 5,
-                 itemBuilder: (context, index) {
-                   
-                   return Row(
-                     
-                     children: [
-                       
-                       Expanded(
-                         child: Column(
-                           
-                           crossAxisAlignment: CrossAxisAlignment.start,
-                           mainAxisAlignment: MainAxisAlignment.center,
-                           children: [
-                  ChiGameButton(
-                    imageName: leftButtonImages[index]['imageName'],
-                  ),
-                           ],
-                         ),
-                       ),
-                       Expanded(
-                         child: Column(
-                           crossAxisAlignment: CrossAxisAlignment.end,
-                           children: [
-                  ChiGameButton(
-                    imageName: rightButtonImages[index]['imageName'],
-                  ),
-                           ],
-                         ),
-                       ),
-                     ],
-                   );
-                 },
+          Padding(
+            padding: EdgeInsets.only(top: screenHeight*0.25),
+            child: SizedBox(
+             height: screenHeight 
+             *0.9,
+              child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, index) {
+                return Row(
+                  children: [                    
+                    Expanded(
+                      child: Column(
+                        
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+               ChiGameButton(
+                 imageName: leftButtonImages[index]['imageName'],
                ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+               ChiGameButton(
+                 imageName: rightButtonImages[index]['imageName'],
+               ),
+                        ],
+                      ),
+                    ),
+                  ],
+                );
+              },
+            ),
+            ),
+          ),
+           Positioned(
+             top: 80,
+             left: 440,
+             child: Text(
+               'OO네',
+               style: TextStyle(
+                 fontFamily: "Soyo-Maple-Bold",
+                 fontSize: 70,
+                 foreground: Paint()
+                   ..style = PaintingStyle.stroke
+                   ..strokeWidth = 50
+                   ..color = Colors.white,
                ),
              ),
-              Positioned(
-                top: 80,
-                left: 440,
-                child: Text(
-                  'OO네',
-                  style: TextStyle(
-                    fontFamily: "Soyo-Maple-Bold",
-                    fontSize: 70,
-                    foreground: Paint()
-                      ..style = PaintingStyle.stroke
-                      ..strokeWidth = 50
-                      ..color = Colors.white,
-                  ),
-                ),
-              ),
-              const Positioned(
-                top: 80,
-                left: 440,
-                child: Text(
-                  "OO네",
-                  style: TextStyle(
-                    fontSize: 70,
-                    color: Color(0xFFFDCA40),
-                    fontFamily: "Soyo-Maple-Bold",
-                  ),
-                ),
-              ),
-            ],
-          ),
+           ),
+           const Positioned(
+             top: 80,
+             left: 440,
+             child: Text(
+               "OO네",
+               style: TextStyle(
+                 fontSize: 70,
+                 color: Color(0xFFFDCA40),
+                 fontFamily: "Soyo-Maple-Bold",
+               ),
+             ),
+           ),
           Stack(
             children: [
               Positioned(
