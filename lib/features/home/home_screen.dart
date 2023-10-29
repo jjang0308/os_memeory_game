@@ -1,8 +1,9 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/database/sample.dart';
+import 'package:os_memory_game/features/home/add_user_screen.dart';
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
-import 'package:os_memory_game/features/orders/order_screen.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:os_memory_game/features/rank/rank_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -18,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    print(getDatabasesPath());
-    print(Sample().gameModelList);
+    // print(getDatabasesPath());
+    // print(Sample().gameModelList);
 
     // print(GameDBQuery.getModelListDB());
 
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const OrderScreen(),
+          builder: (context) => const AddUserScreen(),
         ),
       );
     }
@@ -36,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const HomeScreen(),
+          builder: (context) => const RankScreen(),
         ),
       );
     }
@@ -55,8 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Positioned(
                 top: 100,
                 left: 180,
-                child: Text(
-                  'OO네',
+                child: DefaultTextStyle(
                   style: TextStyle(
                     fontFamily: "Maple-Bold",
                     fontSize: 280,
@@ -72,13 +72,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      WavyAnimatedText(
+                        speed: const Duration(seconds: 0),
+                        'OO네',
+                      )
+                    ],
+                    isRepeatingAnimation: true,
+                  ),
                 ),
               ),
               Positioned(
                 top: 100,
                 left: 180,
-                child: Text(
-                  "OO네",
+                child: DefaultTextStyle(
                   style: TextStyle(
                     fontSize: 280,
                     color: Theme.of(context).colorScheme.tertiaryContainer,
@@ -91,6 +99,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.grey,
                       ),
                     ],
+                  ),
+                  child: AnimatedTextKit(
+                    animatedTexts: [
+                      WavyAnimatedText(
+                        speed: const Duration(seconds: 0),
+                        'OO네',
+                      )
+                    ],
+                    isRepeatingAnimation: true,
                   ),
                 ),
               ),
