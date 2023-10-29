@@ -1,9 +1,34 @@
 import 'package:flutter/material.dart';
+
 import 'package:os_memory_game/features/home/home_screen.dart';
 
 //스크린 폴더 생성
-class ChiGameScreen extends StatelessWidget {
+class ChiGameScreen extends StatefulWidget {
   const ChiGameScreen({super.key});
+
+  @override
+  _ChiGameScreenState createState() => _ChiGameScreenState();
+}
+
+class _ChiGameScreenState extends State<ChiGameScreen> {
+  List<Map<String, dynamic>> rightButtonImages = [
+    {'imageName': 'pimang.png', 'text': 'Button 1'},
+    {'imageName': 'pimang.png', 'text': 'Button 2'},
+    {'imageName': 'pimang.png', 'text': 'Button 3'},
+    {'imageName': 'pimang.png', 'text': 'Button 4'},
+    {'imageName': 'pimang.png', 'text': 'Button 5'},
+  ];
+
+// 왼쪽 버튼 속성 리스트
+  List<Map<String, dynamic>> leftButtonImages = [
+    {'imageName': 'pimang.png', 'text': 'Left Button 1'},
+    {'imageName': 'pimang.png', 'text': 'Left Button 2'},
+    {'imageName': 'pimang.png', 'text': 'Left Button 3'},
+    {'imageName': 'pimang.png', 'text': 'Left Button 4'},
+    {'imageName': 'pimang.png', 'text': 'Left Button 5'},
+  ];
+
+  int numberOfImagesDropped = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -314,13 +339,13 @@ class ChiGameScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 100,
-                left: 660,
+                top: 80,
+                left: 440,
                 child: Text(
                   'OO네',
                   style: TextStyle(
                     fontFamily: "Soyo-Maple-Bold",
-                    fontSize: 100,
+                    fontSize: 70,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 50
@@ -329,12 +354,12 @@ class ChiGameScreen extends StatelessWidget {
                 ),
               ),
               const Positioned(
-                top: 100,
-                left: 660,
+                top: 80,
+                left: 440,
                 child: Text(
                   "OO네",
                   style: TextStyle(
-                    fontSize: 100,
+                    fontSize: 70,
                     color: Color(0xFFFDCA40),
                     fontFamily: "Soyo-Maple-Bold",
                   ),
@@ -345,13 +370,13 @@ class ChiGameScreen extends StatelessWidget {
           Stack(
             children: [
               Positioned(
-                top: 280,
-                left: 610,
+                top: 210,
+                left: 420,
                 child: Text(
                   '꼬치꼬치',
                   style: TextStyle(
                     fontFamily: "Soyo-Maple-Bold",
-                    fontSize: 100,
+                    fontSize: 60,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
                       ..strokeWidth = 50
@@ -360,12 +385,12 @@ class ChiGameScreen extends StatelessWidget {
                 ),
               ),
               const Positioned(
-                top: 280,
-                left: 610,
+                top: 210,
+                left: 420,
                 child: Text(
                   "꼬치꼬치",
                   style: TextStyle(
-                    fontSize: 100,
+                    fontSize: 60,
                     color: Color(0xFFFDCA40),
                     fontFamily: "Soyo-Maple-Bold",
                   ),

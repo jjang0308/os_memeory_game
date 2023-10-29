@@ -1,15 +1,29 @@
+
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
-import 'package:os_memory_game/model/game_model.dart';
+import 'package:os_memory_game/features/home/widgets/rank_widget.dart';
 
 class RankScreen extends StatefulWidget {
-  const RankScreen({Key? key, required this.db}) : super(key: key);
-  final GameModel db;
+  const RankScreen({Key? key}) : super(key: key);
 
   @override
   State<RankScreen> createState() => _RankScreenState();
 }
+
+class Rank {
+  final String text;
+  final String score;
+
+  Rank(this.text, this.score);
+}
+
+final List<Rank> ranks = [
+  Rank('★ RANK 1. 김태우', '1560점'),
+  Rank('★ RANK 2. 이태우', '1460점'),
+  Rank('★ RANK 3. 박태우', '1360점'),
+  Rank('★ RANK 4. 최태우', '1260점'),
+  Rank('★ RANK 5. 노태우', '1160점'),
+];
 
 class _RankScreenState extends State<RankScreen> {
   bool isSoundOn = true; // 소리 상태 (켜짐: true, 꺼짐: false)
@@ -19,7 +33,7 @@ class _RankScreenState extends State<RankScreen> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 150,
-        backgroundColor: const Color(0xFFF79824),
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
         title: Text(
           'RANKING',
           style: TextStyle(
@@ -74,68 +88,15 @@ class _RankScreenState extends State<RankScreen> {
           ),
         ),
       ),
-      backgroundColor: const Color(0xFFF2C18C),
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Padding(
         padding: const EdgeInsets.only(left: 25.0), // 왼쪽 패딩 추가
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // 텍스트 왼쪽 정렬
-          children: [
-            const SizedBox(height: 300), // 원하는 여백을 설정
-            Text(
-              '★ RANK 1. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
-              style: TextStyle(
-                fontSize: 60,
-                foreground: Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 5
-                  ..color = Colors.black,
-              ),
-            ),
-            const SizedBox(height: 80), // 원하는 여백을 설정
-            Text(
-              '★ RANK 2. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
-              style: TextStyle(
-                fontSize: 60,
-                foreground: Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 5
-                  ..color = Colors.black,
-              ),
-            ),
-            const SizedBox(height: 80), // 원하는 여백을 설정
-            Text(
-              '★ RANK 3. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
-              style: TextStyle(
-                fontSize: 60,
-                foreground: Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 5
-                  ..color = Colors.black,
-              ),
-            ),
-            const SizedBox(height: 80), // 원하는 여백을 설정
-            Text(
-              '★ RANK 4. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
-              style: TextStyle(
-                fontSize: 60,
-                foreground: Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 5
-                  ..color = Colors.black,
-              ),
-            ),
-            const SizedBox(height: 80), // 원하는 여백을 설정
-            Text(
-              '★ RANK 5. ${widget.db.name} ${widget.db.gochiScore} ${widget.db.calScore}',
-              style: TextStyle(
-                fontSize: 60,
-                foreground: Paint()
-                  ..style = PaintingStyle.stroke
-                  ..strokeWidth = 5
-                  ..color = Colors.black,
-              ),
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: ranks.length,
+          itemBuilder: (context, index) {
+            final rank = ranks[index];
+            return RankWidget(rank.text, rank.score);
+          },
         ),
       ),
     );
