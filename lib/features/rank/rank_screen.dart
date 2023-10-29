@@ -1,7 +1,16 @@
-
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/features/home/widgets/rank_widget.dart';
+import 'package:os_memory_game/model/game_model.dart';
+
+List<GameModel> ranks = [
+  GameModel(name: '김태우', gochiScore: 1560, calScore: 1300),
+  GameModel(name: '이태우', gochiScore: 1460, calScore: 100),
+  GameModel(name: '박태우', gochiScore: 1360, calScore: 400),
+  GameModel(name: '최태우', gochiScore: 1260, calScore: 1700),
+  GameModel(name: '노태우', gochiScore: 1160, calScore: 1090),
+];
 
 class RankScreen extends StatefulWidget {
   const RankScreen({Key? key}) : super(key: key);
@@ -11,22 +20,39 @@ class RankScreen extends StatefulWidget {
 }
 
 class Rank {
-  final String text;
-  final String score;
-
-  Rank(this.text, this.score);
+  final String name;
+  final int gochiScore;
+  final int calScore;
+  Rank(this.name, this.gochiScore, this.calScore);
 }
-
-final List<Rank> ranks = [
-  Rank('★ RANK 1. 김태우', '1560점'),
-  Rank('★ RANK 2. 이태우', '1460점'),
-  Rank('★ RANK 3. 박태우', '1360점'),
-  Rank('★ RANK 4. 최태우', '1260점'),
-  Rank('★ RANK 5. 노태우', '1160점'),
-];
 
 class _RankScreenState extends State<RankScreen> {
   bool isSoundOn = true; // 소리 상태 (켜짐: true, 꺼짐: false)
+
+  @override
+  void initState() {
+    super.initState();
+    // 데이터베이스에서 랭킹 데이터를 불러오는 부분
+    insertData();
+    loadRankData();
+  }
+
+  // 데이터베이스에서 랭킹 데이터를 불러오는 함수
+  void insertData() async {
+    for (GameModel rank in ranks) {
+      GameDBQuery.insertModelListDB(rank);
+    }
+    setState(() {});
+  }
+
+  // 데이터베이스에서 랭킹 데이터를 불러오는 함수
+  void loadRankData() async {
+    List<GameModel> rankData =
+        await GameDBQuery.getModelListDB(); //테스트 해봐야함 정렬 되는지
+    setState(() {
+      ranks = rankData;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +90,7 @@ class _RankScreenState extends State<RankScreen> {
             },
           ),
         ),
+
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 80),
@@ -90,12 +117,22 @@ class _RankScreenState extends State<RankScreen> {
       ),
       backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Padding(
-        padding: const EdgeInsets.only(left: 25.0), // 왼쪽 패딩 추가
+        padding: const EdgeInsets.symmetric(
+            horizontal: 100, vertical: 8.0), // 왼쪽 패딩 추가
+
         child: ListView.builder(
           itemCount: ranks.length,
           itemBuilder: (context, index) {
-            final rank = ranks[index];
-            return RankWidget(rank.text, rank.score);
+            final gameModel = ranks[index]; // 랭킹 데이터에 해당하는 GameModel 객체 가져오기
+            final Rank = index + 1; // 랭킹 순서
+            return Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: Text(
+                'Rank$Rank Name: ${gameModel.name}, gochiScore: ${gameModel.gochiScore}, calScore: ${gameModel.calScore}',
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+              ),
+            );
           },
         ),
       ),

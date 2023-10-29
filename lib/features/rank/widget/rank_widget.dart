@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class RankWidget extends StatelessWidget {
   final String text;
-  final String score;
+  final int gochiScore;
+  final int calScore;
 
-  const RankWidget(this.text, this.score, {super.key});
+  const RankWidget(this.text, this.gochiScore, this.calScore, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class RankWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 300),
         Text(
-          '$text $score',
+          '$text $gochiScore $calScore',
           style: TextStyle(
             fontSize: 60,
             foreground: Paint()
