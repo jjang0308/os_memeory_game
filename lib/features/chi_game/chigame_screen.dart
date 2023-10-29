@@ -1,22 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
 import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 
 import 'package:os_memory_game/features/home/home_screen.dart';
-
-//스크린 폴더 생성
-class ChiGameScreen extends StatefulWidget {
-  const ChiGameScreen({super.key});
-
-  @override
-  _ChiGameScreenState createState() => _ChiGameScreenState();
-}
-
-class _ChiGameScreenState extends State<ChiGameScreen> {
-
-
-
-  String name='태우';
-
 
   List<Map<String, dynamic>> rightButtonImages = [
     {'imageName': 'pimang.png', 'text': 'Button 1'},
@@ -35,26 +21,58 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     {'imageName': 'pimang.png', 'text': 'Left Button 5'},
   ];
 
-      int numberOfImagesDropped = 0;
-      // bool isButtonPressed = false;
-      void onButtonPressed(){
-        print("asdasd");
-        // isButtonPressed = true; // 버튼을 눌렀을 때 플래그를 설정
-        // setState(() { });
-         }
+  
+  String name='태우';
+
+//스크린 폴더 생성
+class ChiGameScreen extends StatefulWidget {
+  const ChiGameScreen({super.key});
+
+  @override
+  State<ChiGameScreen> createState() => _ChiGameScreenState();
+}
+
+class _ChiGameScreenState extends State<ChiGameScreen> {
+  int numberOfImagesDropped = 0;
+
+  bool isButtonPressed = false;
+
+
 
   @override
   Widget build(BuildContext context) {
-
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
 
+
+void onFoodSelected(){
+  isButtonPressed = true;
+  print(isButtonPressed);
+  setState(() {});
+}
    return Scaffold(
+      
       backgroundColor:const Color(0xFFF2C18C), 
       body: 
       Stack(
+        
         children: [         
+          Positioned(
+  top: 150,
+  left: 550,
+  child:   Container(
+  
+    width: 10, // 막대기의 너비
+  
+    height: screenHeight * 0.5, // 막대기의 높이
+  
+    color: Colors.brown, // 나무 색상
+  
+    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
+  
+  ),
+),
           Padding(
             padding: EdgeInsets.only(top: screenHeight*0.25),
             child: SizedBox(
@@ -67,13 +85,11 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   children: [                    
                     Expanded(
                       child: Column(
-                        
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                ChiGameButton(
-                 onPressed:onButtonPressed,
-                 imageName: leftButtonImages[index]['imageName'],
+                 imageName: leftButtonImages[index]['imageName'], onFoodSelected: onFoodSelected,
                  
                ),
                         ],
@@ -84,8 +100,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                ChiGameButton(
-                onPressed: onButtonPressed,
-                 imageName: rightButtonImages[index]['imageName'],
+                 imageName: rightButtonImages[index]['imageName'], onFoodSelected: onFoodSelected,
                ),
                         ],
                       ),
@@ -96,13 +111,18 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             ),
             ),
           ),
+
 //           AnimatedPositioned(
 //   duration: const Duration(milliseconds: 300), // 애니메이션 지속 시간
 //   top: isButtonPressed ? screenHeight * 0.25 : screenHeight * 0.5, // 버튼 누를 때 막대기로 이동
 //   left: isButtonPressed ? screenWidth * 0.5 - 30 : screenWidth * 0.5 - 30, // 가운데 위치
 //   child: ChiGameButton(
 //     imageName: leftButtonImages[0]['imageName'],
-//     onPressed: () { },
+//     // onPressed: () {
+//     //   setState(() {
+//     //     isButtonPressed = true; // 버튼을 눌렀을 때 플래그를 설정
+//     //   });
+//     // },
 //   ),
 // ),
            Positioned(
@@ -189,28 +209,16 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 left: 880,
                 child: IconButton(
                   // 이미지 버튼을 만듭니다.
-                  onPressed:onButtonPressed,
+                  onPressed: () {
+                    // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
+                  },
                   icon: const Icon(
                     Icons.volume_up, // 이미지 아이콘을 여기에 추가
                     size: 100, // 이미지 아이콘 크기 설정
                   ),
                 ),
               ),
-Positioned(
-  top: 150,
-  left: 550,
-  child:   Container(
-  
-    width: 10, // 막대기의 너비
-  
-    height: screenHeight * 0.5, // 막대기의 높이
-  
-    color: Colors.brown, // 나무 색상
-  
-    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
-  
-  ),
-),
+
 Positioned(
       top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
       left: screenWidth * 0.5 -290, // 텍스트의 좌측 위치 조절
@@ -222,8 +230,10 @@ Positioned(
         ),
       ),
     ),
-    
-            ],
+    if(isButtonPressed)
+              const ChiGameMotion(isSelected: true, positionLeft: 455, positionTop: 1000,),
+              
+  ],
           ),
         ],
       ),

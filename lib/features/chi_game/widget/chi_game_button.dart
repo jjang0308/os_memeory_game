@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class ChiGameButton extends StatefulWidget {
   final String imageName;
-  final Function onPressed;
+  final Function onFoodSelected;
 
-  const ChiGameButton({Key? key, required this.imageName, required this.onPressed}) : super(key: key);
+  const ChiGameButton({ super.key ,required this.imageName, required this.onFoodSelected});
 
   @override
   State<ChiGameButton> createState() => _ChiGameButtonState();
@@ -14,7 +14,7 @@ class _ChiGameButtonState extends State<ChiGameButton> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: widget.onPressed(),
+      onTap: () => widget.onFoodSelected(),
       child: Container(
         width: 200, // 정사각형의 가로 길이
         height: 200, // 정사각형의 세로 길이
