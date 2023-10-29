@@ -8,22 +8,25 @@ class RankWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 300),
-        Text(
-          '$text $score',
-          style: TextStyle(
-            fontSize: 60,
-            foreground: Paint()
-              ..style = PaintingStyle.stroke
-              ..strokeWidth = 5
-              ..color = Colors.black,
-          ),
-        ),
-        const SizedBox(height: 80),
-      ],
-    );
+    return StreamBuilder<Object>(
+        stream: null,
+        builder: (context, snapshot) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 300),
+              Text(
+                '$text $score',
+                style: TextStyle(
+                  fontSize: 60,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 5
+                    ..color = Colors.black,
+                ),
+              ),
+            ],
+          );
+        });
   }
 }

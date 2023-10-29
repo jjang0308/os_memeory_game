@@ -12,8 +12,8 @@ class ChiGameButton extends StatelessWidget {
         print("asd");
       },
       child: Container(
-        width: 300, // 정사각형의 가로 길이
-        height: 300, // 정사각형의 세로 길이
+        width: 200, // 정사각형의 가로 길이
+        height: 200, // 정사각형의 세로 길이
         color: const Color(0xFFF2C18C), // 버튼의 배경색
         child: Row(
           children: [
