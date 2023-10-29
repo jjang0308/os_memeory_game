@@ -1,9 +1,10 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/database/sample.dart';
-import 'package:os_memory_game/features/home/add_user_screen.dart';
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 import 'package:os_memory_game/features/rank/rank_screen.dart';
+
+import '../chi_game/chigame_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const AddUserScreen(),
+          builder: (context) => const ChiGameScreen(),
         ),
       );
     }
