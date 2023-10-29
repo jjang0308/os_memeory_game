@@ -20,7 +20,7 @@ class GameDBQuery {
     return await openDatabase(path, version: 1, onCreate: (db, version) async {
       //테이블 생성
       await db.execute(
-          "CREATE TABLE GameInfo( name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
+          "CREATE TABLE GameInfo( Rank INT , name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
     }, onUpgrade: (db, oldVersion, newVersion) {});
   }
 

@@ -5,11 +5,11 @@ import 'package:os_memory_game/features/home/widgets/rank_widget.dart';
 import 'package:os_memory_game/model/game_model.dart';
 
 List<GameModel> ranks = [
-  GameModel(name: '김태우', gochiScore: 1560, calScore: 1000),
-  GameModel(name: '이태우', gochiScore: 1460, calScore: 1000),
-  GameModel(name: '박태우', gochiScore: 1360, calScore: 1000),
-  GameModel(name: '최태우', gochiScore: 1260, calScore: 1000),
-  GameModel(name: '노태우', gochiScore: 1160, calScore: 1000),
+  GameModel(name: '김태우', gochiScore: 1560, calScore: 1300),
+  GameModel(name: '이태우', gochiScore: 1460, calScore: 100),
+  GameModel(name: '박태우', gochiScore: 1360, calScore: 400),
+  GameModel(name: '최태우', gochiScore: 1260, calScore: 1700),
+  GameModel(name: '노태우', gochiScore: 1160, calScore: 1090),
 ];
 
 class RankScreen extends StatefulWidget {
@@ -117,13 +117,22 @@ class _RankScreenState extends State<RankScreen> {
       ),
       backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Padding(
-        padding: const EdgeInsets.only(left: 25.0), // 왼쪽 패딩 추가
+        padding: const EdgeInsets.symmetric(
+            horizontal: 100, vertical: 8.0), // 왼쪽 패딩 추가
+
         child: ListView.builder(
           itemCount: ranks.length,
           itemBuilder: (context, index) {
             final gameModel = ranks[index]; // 랭킹 데이터에 해당하는 GameModel 객체 가져오기
-            return RankWidget(gameModel.name, gameModel.gochiScore,
-                gameModel.calScore); // RankWidget에 데이터 전달
+            final Rank = index + 1; // 랭킹 순서
+            return Padding(
+              padding: const EdgeInsets.only(top: 100),
+              child: Text(
+                'Rank$Rank Name: ${gameModel.name}, gochiScore: ${gameModel.gochiScore}, calScore: ${gameModel.calScore}',
+                style:
+                    const TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
+              ),
+            );
           },
         ),
       ),
