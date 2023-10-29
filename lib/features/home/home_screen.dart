@@ -29,10 +29,11 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context) => const ChiGameScreen(),
         ),
       );
+      print("눌ㄹㅆ음");
     }
 
     void onRankPressed() {
-      Navigator.of(context).push(
+      Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const RankScreen(),
         ),
