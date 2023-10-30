@@ -5,24 +5,24 @@ import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
 
   List<Map<String, dynamic>> rightButtonImages = [
-    {'imageName': 'pimang.png', 'text': 'Button 1'},
-    {'imageName': 'steak.png', 'text': 'Button 2'},
-    {'imageName': 'pimang.png', 'text': 'Button 3'},
-    {'imageName': 'pimang.png', 'text': 'Button 4'},
-    {'imageName': 'pimang.png', 'text': 'Button 5'},
-  ];
+  {'index': 0, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
+  {'index': 1, 'imageName': 'steak.png', 'text': 'Left Button 2'},
+  {'index': 2, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
+  {'index': 3, 'imageName': 'pimang.png', 'text': 'Left Button 4'},
+  {'index': 4, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
+];
 
 // 왼쪽 버튼 속성 리스트
-  List<Map<String, dynamic>> leftButtonImages = [
-    {'imageName': 'pimang.png', 'text': 'Left Button 1'},
-    {'imageName': 'steak.png', 'text': 'Left Button 2'},
-    {'imageName': 'pimang.png', 'text': 'Left Button 3'},
-    {'imageName': 'pimang.png', 'text': 'Left Button 4'},
-    {'imageName': 'pimang.png', 'text': 'Left Button 5'},
-  ];
+ List<Map<String, dynamic>> leftButtonImages = [
+  {'index': 0, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
+  {'index': 1, 'imageName': 'steak.png', 'text': 'Left Button 2'},
+  {'index': 2, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
+  {'index': 3, 'imageName': 'pimang.png', 'text': 'Left Button 4'},
+  {'index': 4, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
+];
 
-  
-  String name='태우';
+  List<Widget> imageWidgets = [];
+  String selectedImageName = '';
 
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
@@ -33,9 +33,11 @@ class ChiGameScreen extends StatefulWidget {
 }
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
-  int numberOfImagesDropped = 0;
+ 
 
   bool isButtonPressed = false;
+  
+  
 
 
 
@@ -46,11 +48,12 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
 
 
 
-void onFoodSelected(){
-  isButtonPressed = true;
-  print(isButtonPressed);
-  setState(() {});
-}
+void onFoodSelected(String imageName) {
+    setState(() {
+      isButtonPressed = true;
+    });
+  }
+
    return Scaffold(
       
       backgroundColor:const Color(0xFFF2C18C), 
@@ -78,37 +81,43 @@ void onFoodSelected(){
   child: SizedBox(
     height: screenHeight * 0.9,
     child: ListView.builder(
-      itemCount: 5,
-      itemBuilder: (context, index) {
-        return Row(
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ChiGameButton(
-                    imageName: leftButtonImages[index]['imageName'],
-                    onFoodSelected: onFoodSelected,
-                  ),
-                ],
+  itemCount: 5,
+  itemBuilder: (context, index) {
+    return Row(
+      children: [
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ChiGameButton(
+                imageName: leftButtonImages[index]['imageName'], // 이미지 이름 전달
+                onFoodSelected: (imageName) { // 'imageName' 인자를 받는 함수로 변경
+                  onFoodSelected(leftButtonImages[index]['imageName']);
+                   selectedImageName = imageName;
+                },
               ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  ChiGameButton(
-                    imageName: rightButtonImages[index]['imageName'],
-                    onFoodSelected: onFoodSelected,
-                  ),
-                ],
+            ],
+          ),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              ChiGameButton(
+                imageName: rightButtonImages[index]['imageName'],
+                onFoodSelected: (imageName) { // 'imageName' 인자를 받는 함수로 변경
+                  onFoodSelected(rightButtonImages[index]['imageName']);
+                  selectedImageName = imageName; // 이미지 이름을 인자로 전달
+                },
               ),
-            ),
-          ],
-        );
-      },
-    ),
+            ],
+          ),
+        ),
+      ],
+    );
+  },
+),
   ),
 ),
 //           AnimatedPositioned(
@@ -229,8 +238,9 @@ Positioned(
         ),
       ),
     ),
+    
     if(isButtonPressed)
-              const ChiGameMotion(isSelected: true, positionLeft: 455, positionTop: 1000,),
+                ChiGameMotion(isSelected: true, positionLeft: 500, positionTop: 1000, imageName: selectedImageName),
               
   ],
           ),
