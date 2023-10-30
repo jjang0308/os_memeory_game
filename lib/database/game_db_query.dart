@@ -20,7 +20,7 @@ class GameDBQuery {
     return await openDatabase(path, version: 1, onCreate: (db, version) async {
       //테이블 생성
       await db.execute(
-          "CREATE TABLE GameInfo( Rank INT , name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
+          "CREATE TABLE GameInfo( name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
     }, onUpgrade: (db, oldVersion, newVersion) {});
   }
 
@@ -45,23 +45,6 @@ class GameDBQuery {
         name: maps[index]["name"],
         gochiScore: maps[index]["gochiScore"],
         calScore: maps[index]["calScore"],
-      );
-    });
-  }
-
-  static Future<List<GameModel>> selectInfo() async {
-    final Database db = _database;
-
-    List<Map<String, dynamic>> data = await db.query(
-      "GameInfo", //테이블 명
-      orderBy: "score ASC", //오름차순으로 정렬
-    );
-
-    return List.generate(data.length, (index) {
-      return GameModel(
-        name: data[index]["name"],
-        gochiScore: data[index]["gochiScore"],
-        calScore: data[index]["calScore"],
       );
     });
   }

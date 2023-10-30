@@ -1,6 +1,7 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/features/home/home_screen.dart';
+
+import 'features/argument_screen.dart';
 
 void main() {
   // // 네이티브 코드를 사용하는 경우, 플랫폼간의 통신을 함->비동기적이벤트를 사용하는 경우 사용
@@ -16,12 +17,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const HomeScreen(),
+      home: const ArgumentScreen(),
       theme: FlexThemeData.light(
         scheme: usedScheme,
         textTheme: const TextTheme(
-            titleLarge: TextStyle(fontFamily: "Maple-Bold"),
-            titleSmall: TextStyle(fontFamily: "Maple-Regular")),
+          titleLarge: TextStyle(fontFamily: "Maple-Bold"),
+          titleSmall: TextStyle(fontFamily: "Maple-Regular"),
+        ),
       ),
     );
   }
