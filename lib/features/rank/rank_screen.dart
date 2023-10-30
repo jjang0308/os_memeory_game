@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
-import 'package:os_memory_game/features/home/widgets/rank_widget.dart';
 import 'package:os_memory_game/model/game_model.dart';
 
 List<GameModel> ranks = [
