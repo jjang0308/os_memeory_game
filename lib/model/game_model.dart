@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 class GameModel {
   final String name;
   final int gochiScore;
