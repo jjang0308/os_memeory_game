@@ -4,7 +4,7 @@ class RankWidget extends StatelessWidget {
   final String text;
   final int gochiScore;
   final int calScore;
-
+//update
   const RankWidget(this.text, this.gochiScore, this.calScore, {super.key});
 
   @override
