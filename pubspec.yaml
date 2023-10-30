@@ -65,6 +65,8 @@ flutter:
 
   assets:
     - assets\fonts\images\pimang.png
+    - assets\fonts\images\ehwkd.png
+    - assets\fonts\images\RHcl.png
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_ham.jpeg
 
