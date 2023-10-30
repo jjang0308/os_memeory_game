@@ -73,45 +73,44 @@ void onFoodSelected(){
   
   ),
 ),
-          Padding(
-            padding: EdgeInsets.only(top: screenHeight*0.25),
-            child: SizedBox(
-             height: screenHeight 
-             *0.9,
-              child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return Row(
-                  children: [                    
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-               ChiGameButton(
-                 imageName: leftButtonImages[index]['imageName'], onFoodSelected: onFoodSelected,
-                 
-               ),
-                        ],
-                      ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-               ChiGameButton(
-                 imageName: rightButtonImages[index]['imageName'], onFoodSelected: onFoodSelected,
-               ),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              },
+         Padding(
+  padding: EdgeInsets.only(top: screenHeight * 0.25),
+  child: SizedBox(
+    height: screenHeight * 0.9,
+    child: ListView.builder(
+      itemCount: 5,
+      itemBuilder: (context, index) {
+        return Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ChiGameButton(
+                    imageName: leftButtonImages[index]['imageName'],
+                    onFoodSelected: onFoodSelected,
+                  ),
+                ],
+              ),
             ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  ChiGameButton(
+                    imageName: rightButtonImages[index]['imageName'],
+                    onFoodSelected: onFoodSelected,
+                  ),
+                ],
+              ),
             ),
-          ),
-
+          ],
+        );
+      },
+    ),
+  ),
+),
 //           AnimatedPositioned(
 //   duration: const Duration(milliseconds: 300), // 애니메이션 지속 시간
 //   top: isButtonPressed ? screenHeight * 0.25 : screenHeight * 0.5, // 버튼 누를 때 막대기로 이동

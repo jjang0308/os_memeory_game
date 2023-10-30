@@ -19,7 +19,8 @@ class _ChiGameMotionState extends State<ChiGameMotion> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-       top: widget.positionTop,
+       top: widget.positionTop
+ ,
             left: widget.positionLeft,
       child: FadeInDown(from: 100, child: SizedBox(
         height : 200, width: 200, 
