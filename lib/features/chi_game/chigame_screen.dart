@@ -6,7 +6,7 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 
   List<Map<String, dynamic>> rightButtonImages = [
     {'imageName': 'pimang.png', 'text': 'Button 1'},
-    {'imageName': 'pimang.png', 'text': 'Button 2'},
+    {'imageName': 'steak.png', 'text': 'Button 2'},
     {'imageName': 'pimang.png', 'text': 'Button 3'},
     {'imageName': 'pimang.png', 'text': 'Button 4'},
     {'imageName': 'pimang.png', 'text': 'Button 5'},
@@ -15,7 +15,7 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 // 왼쪽 버튼 속성 리스트
   List<Map<String, dynamic>> leftButtonImages = [
     {'imageName': 'pimang.png', 'text': 'Left Button 1'},
-    {'imageName': 'pimang.png', 'text': 'Left Button 2'},
+    {'imageName': 'steak.png', 'text': 'Left Button 2'},
     {'imageName': 'pimang.png', 'text': 'Left Button 3'},
     {'imageName': 'pimang.png', 'text': 'Left Button 4'},
     {'imageName': 'pimang.png', 'text': 'Left Button 5'},
