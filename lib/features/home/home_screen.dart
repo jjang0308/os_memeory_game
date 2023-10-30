@@ -29,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context) => const ChiGameScreen(),
         ),
       );
-      print("눌ㄹㅆ음");
+
     }
 
     void onRankPressed() {
