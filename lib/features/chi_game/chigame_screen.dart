@@ -20,7 +20,7 @@ import 'package:os_memory_game/features/home/home_screen.dart';
   {'index': 8, 'imageName': 'pimang.png', 'text': 'Left Button 4'},
   {'index': 9, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
 ];
-
+//변경
   List<Widget> imageWidgets = [];
   String selectedImageName = '';
 List<String> selectedImageNames = List.filled(5, '');
