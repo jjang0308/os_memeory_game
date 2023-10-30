@@ -4,7 +4,7 @@ import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 
 import 'package:os_memory_game/features/home/home_screen.dart';
 
-  List<Map<String, dynamic>> rightButtonImages = [
+List<Map<String, dynamic>> rightButtonImages = [
   {'index': 0, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
   {'index': 1, 'imageName': 'steak.png', 'text': 'Left Button 2'},
   {'index': 2, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
@@ -13,7 +13,7 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 ];
 
 // 왼쪽 버튼 속성 리스트
- List<Map<String, dynamic>> leftButtonImages = [
+List<Map<String, dynamic>> leftButtonImages = [
   {'index': 0, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
   {'index': 1, 'imageName': 'steak.png', 'text': 'Left Button 2'},
   {'index': 2, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
@@ -21,8 +21,8 @@ import 'package:os_memory_game/features/home/home_screen.dart';
   {'index': 4, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
 ];
 
-  List<Widget> imageWidgets = [];
-  String selectedImageName = '';
+List<Widget> imageWidgets = [];
+String selectedImageName = '';
 
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
@@ -33,93 +33,86 @@ class ChiGameScreen extends StatefulWidget {
 }
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
- 
-
   bool isButtonPressed = false;
-  
-  
-
-
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
+    void onFoodSelected(String imageName) {
+      setState(() {
+        isButtonPressed = true;
+      });
+    }
 
-
-void onFoodSelected(String imageName) {
-    setState(() {
-      isButtonPressed = true;
-    });
-  }
-
-   return Scaffold(
-      
-      backgroundColor:const Color(0xFFF2C18C), 
-      body: 
-      Stack(
-        
-        children: [         
+    return Scaffold(
+      backgroundColor: const Color(0xFFF2C18C),
+      body: Stack(
+        children: [
           Positioned(
-  top: 150,
-  left: 550,
-  child:   Container(
-  
-    width: 10, // 막대기의 너비
-  
-    height: screenHeight * 0.5, // 막대기의 높이
-  
-    color: Colors.brown, // 나무 색상
-  
-    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
-  
-  ),
-),
-         Padding(
-  padding: EdgeInsets.only(top: screenHeight * 0.25),
-  child: SizedBox(
-    height: screenHeight * 0.9,
-    child: ListView.builder(
-  itemCount: 5,
-  itemBuilder: (context, index) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ChiGameButton(
-                imageName: leftButtonImages[index]['imageName'], // 이미지 이름 전달
-                onFoodSelected: (imageName) { // 'imageName' 인자를 받는 함수로 변경
-                  onFoodSelected(leftButtonImages[index]['imageName']);
-                   selectedImageName = imageName;
+            top: 150,
+            left: 550,
+            child: Container(
+              width: 10, // 막대기의 너비
+
+              height: screenHeight * 0.5, // 막대기의 높이
+
+              color: Colors.brown, // 나무 색상
+
+              margin: EdgeInsets.symmetric(
+                  vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: screenHeight * 0.25),
+            child: SizedBox(
+              height: screenHeight * 0.9,
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ChiGameButton(
+                              imageName: leftButtonImages[index]
+                                  ['imageName'], // 이미지 이름 전달
+                              onFoodSelected: (imageName) {
+                                // 'imageName' 인자를 받는 함수로 변경
+                                onFoodSelected(
+                                    leftButtonImages[index]['imageName']);
+                                selectedImageName = imageName;
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ChiGameButton(
+                              imageName: rightButtonImages[index]['imageName'],
+                              onFoodSelected: (imageName) {
+                                // 'imageName' 인자를 받는 함수로 변경
+                                onFoodSelected(
+                                    rightButtonImages[index]['imageName']);
+                                selectedImageName = imageName; // 이미지 이름을 인자로 전달
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
                 },
               ),
-            ],
+            ),
           ),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              ChiGameButton(
-                imageName: rightButtonImages[index]['imageName'],
-                onFoodSelected: (imageName) { // 'imageName' 인자를 받는 함수로 변경
-                  onFoodSelected(rightButtonImages[index]['imageName']);
-                  selectedImageName = imageName; // 이미지 이름을 인자로 전달
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  },
-),
-  ),
-),
 //           AnimatedPositioned(
 //   duration: const Duration(milliseconds: 300), // 애니메이션 지속 시간
 //   top: isButtonPressed ? screenHeight * 0.25 : screenHeight * 0.5, // 버튼 누를 때 막대기로 이동
@@ -133,33 +126,33 @@ void onFoodSelected(String imageName) {
 //     // },
 //   ),
 // ),
-           Positioned(
-             top: 80,
-             left: 440,
-             child: Text(
-               '00네',
-               style: TextStyle(
-                 fontFamily: "Soyo-Maple-Bold",
-                 fontSize: 70,
-                 foreground: Paint()
-                   ..style = PaintingStyle.stroke
-                   ..strokeWidth = 50
-                   ..color = Colors.white,
-               ),
-             ),
-           ),
-            const Positioned(
-             top: 80,
-             left: 440,
-             child: Text(
-               '00네',
-               style: TextStyle(
-                 fontSize: 70,
-                 color: Color(0xFFFDCA40),
-                 fontFamily: "Soyo-Maple-Bold",
-               ),
-             ),
-           ),
+          Positioned(
+            top: 80,
+            left: 440,
+            child: Text(
+              '00네',
+              style: TextStyle(
+                fontFamily: "Soyo-Maple-Bold",
+                fontSize: 70,
+                foreground: Paint()
+                  ..style = PaintingStyle.stroke
+                  ..strokeWidth = 50
+                  ..color = Colors.white,
+              ),
+            ),
+          ),
+          const Positioned(
+            top: 80,
+            left: 440,
+            child: Text(
+              '00네',
+              style: TextStyle(
+                fontSize: 70,
+                color: Color(0xFFFDCA40),
+                fontFamily: "Soyo-Maple-Bold",
+              ),
+            ),
+          ),
 
           Stack(
             children: [
@@ -226,23 +219,24 @@ void onFoodSelected(String imageName) {
                   ),
                 ),
               ),
-
-Positioned(
-      top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
-      left: screenWidth * 0.5 -290, // 텍스트의 좌측 위치 조절
-      child: const Text(
-        '주문서의 순서의 맞게 야채를 끼워 주세요.',
-        style: TextStyle(
-          fontSize: 35, // 텍스트 크기
-          color: Colors.black, // 텍스트 색상
-        ),
-      ),
-    ),
-    
-    if(isButtonPressed)
-                ChiGameMotion(isSelected: true, positionLeft: 500, positionTop: 1000, imageName: selectedImageName),
-              
-  ],
+              Positioned(
+                top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
+                left: screenWidth * 0.5 - 290, // 텍스트의 좌측 위치 조절
+                child: const Text(
+                  '주문서의 순서의 맞게 야채를 끼워 주세요.',
+                  style: TextStyle(
+                    fontSize: 35, // 텍스트 크기
+                    color: Colors.black, // 텍스트 색상
+                  ),
+                ),
+              ),
+              if (isButtonPressed)
+                ChiGameMotion(
+                    isSelected: true,
+                    positionLeft: 500,
+                    positionTop: 1000,
+                    imageName: selectedImageName),
+            ],
           ),
         ],
       ),
