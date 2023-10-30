@@ -14,11 +14,11 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 
 // 왼쪽 버튼 속성 리스트
  List<Map<String, dynamic>> leftButtonImages = [
-  {'index': 0, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
-  {'index': 1, 'imageName': 'steak.png', 'text': 'Left Button 2'},
-  {'index': 2, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
-  {'index': 3, 'imageName': 'pimang.png', 'text': 'Left Button 4'},
-  {'index': 4, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
+  {'index': 5, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
+  {'index': 6, 'imageName': 'steak.png', 'text': 'Left Button 2'},
+  {'index': 7, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
+  {'index': 8, 'imageName': 'pimang.png', 'text': 'Left Button 4'},
+  {'index': 9, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
 ];
 
   List<Widget> imageWidgets = [];
