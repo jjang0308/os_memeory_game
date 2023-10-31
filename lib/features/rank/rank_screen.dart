@@ -23,7 +23,12 @@ class Rank {
   final String name;
   final int gochiScore;
   final int calScore;
-  Rank(this.name, this.gochiScore, this.calScore);
+
+  Rank({
+    required this.name,
+    required this.gochiScore,
+    required this.calScore,
+  });
 }
 
 class _RankScreenState extends State<RankScreen> {
@@ -40,9 +45,9 @@ class _RankScreenState extends State<RankScreen> {
       for (final doc in querySnapshot.docs) {
         final data = doc.data() as Map<String, dynamic>;
         final rank = Rank(
-          data['name'],
-          data['gochiScore'],
-          data['calScore'],
+          name: data['name'],
+          gochiScore: data['gochiScore'],
+          calScore: data['calScore'],
         );
         for (GameModel rank in ranks) {
           GameDBQuery.insertModelListDB(rank); //로컬 데이터에 저장
@@ -74,10 +79,10 @@ class _RankScreenState extends State<RankScreen> {
         ranks.clear(); // 현재 목록 지우기
         for (var doc in querySnapshot.docs) {
           var data = doc.data() as Map<String, dynamic>;
-          var rank = Rank(
-            data['name'],
-            data['gochiScore'],
-            data['calScore'],
+          final rank = Rank(
+            name: data['name'],
+            gochiScore: data['gochiScore'],
+            calScore: data['calScore'],
           );
           for (GameModel rank in ranks) {
             ranks.add(rank);
