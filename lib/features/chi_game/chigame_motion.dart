@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 
-// void main() => runApp(const ChiGameMotion());
+// // void main() => runApp(const ChiGameMotion());
 
 class ChiGameMotion extends StatefulWidget {
   final bool isSelected;
