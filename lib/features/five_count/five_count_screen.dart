@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+import 'package:os_memory_game/random/random_order_screen.dart';
 
 class FiveCountScreen extends StatefulWidget {
   const FiveCountScreen({Key? key}) : super(key: key);
@@ -28,7 +28,8 @@ class _FiveCountScreenState extends State<FiveCountScreen> {
         // 카운트 다운이 끝나면 원하는 작업을 수행할 수 있습니다.
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const ChiGameScreen(), // HomeScreen 위젯으로 이동
+            builder: (context) =>
+                const RandomOrderScreen(), // HomeScreen 위젯으로 이동
           ),
         );
       }
