@@ -5,31 +5,32 @@ import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
 
 List<Map<String, dynamic>> rightButtonImages = [
-  {'index': 0, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
-  {'index': 1, 'imageName': 'steak.png', 'text': 'Left Button 2'},
-  {'index': 2, 'imageName': 'pa.png', 'text': 'Left Button 3'},
-  {'index': 3, 'imageName': 'shrimp.png', 'text': 'Left Button 4'},
-  {'index': 4, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
+  {'index': 0, 'imageName': 'bacon.png', 'text': 'Left Button 1'},
+  {'index': 1, 'imageName': 'broccoli.png', 'text': 'Left Button 2'},
+  {'index': 2, 'imageName': 'carrot.png', 'text': 'Left Button 3'},
+  {'index': 3, 'imageName': 'cheese.png', 'text': 'Left Button 4'},
+  {'index': 4, 'imageName': 'corn.png', 'text': 'Left Button 5'},
 ];
 
 // 왼쪽 버튼 속성 리스트
- List<Map<String, dynamic>> leftButtonImages = [
-  {'index': 5, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
-  {'index': 6, 'imageName': 'steak.png', 'text': 'Left Button 2'},
-  {'index': 7, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
-  {'index': 8, 'imageName': 'pimang.png', 'text': 'Left Button 4'},
-  {'index': 9, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
+List<Map<String, dynamic>> leftButtonImages = [
+  {'index': 5, 'imageName': 'eggplant.png', 'text': 'Left Button 1'},
+  {'index': 6, 'imageName': 'meat.png', 'text': 'Left Button 2'},
+  {'index': 7, 'imageName': 'tomato.png', 'text': 'Left Button 3'},
+  {'index': 8, 'imageName': 'potato.png', 'text': 'Left Button 4'},
+  {'index': 9, 'imageName': 'shrimp.png', 'text': 'Left Button 5'},
 ];
 //변경
-  List<Widget> imageWidgets = [];
-  String selectedImageName = '';
+List<Widget> imageWidgets = [];
+String selectedImageName = '';
 List<String> selectedImageNames = List.filled(5, '');
+
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
   const ChiGameScreen({super.key});
 
   @override
-  State<ChiGameScreen> createState() => _ChiGameScreenState(); //장혁 바보 
+  State<ChiGameScreen> createState() => _ChiGameScreenState(); //장혁 바보
 }
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
@@ -40,95 +41,87 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    void onFoodSelected(String imageName) {
+    void onFoodSelected(int index, String imageName) {
       setState(() {
-        isButtonPressed = true;
+        if (selectedImageNames.contains(imageName)) {
+          // 이미 선택된 이미지일 경우, 선택을 취소합니다.
+          selectedImageNames[index] = ''; // 이미지 이름 초기화
+        } else {
+          // 선택되지 않은 이미지일 경우, 선택합니다.
+          int emptyIndex = selectedImageNames.indexOf(''); // 빈 인덱스를 찾습니다.
+          if (emptyIndex != -1) {
+            selectedImageNames[emptyIndex] = imageName; // 빈 인덱스에 이미지 이름을 저장합니다.
+          }
+        }
       });
     }
 
-
-void onFoodSelected(int index, String imageName) {
-    setState(() {
-      if (selectedImageNames.contains(imageName)) {
-        // 이미 선택된 이미지일 경우, 선택을 취소합니다.
-        selectedImageNames[index] = ''; // 이미지 이름 초기화
-      } else {
-        // 선택되지 않은 이미지일 경우, 선택합니다.
-        int emptyIndex = selectedImageNames.indexOf(''); // 빈 인덱스를 찾습니다.
-        if (emptyIndex != -1) {
-          selectedImageNames[emptyIndex] = imageName; // 빈 인덱스에 이미지 이름을 저장합니다.
-        }
-      }
-    });
-  }
-
-   return Scaffold(
-      
-      backgroundColor:const Color(0xFFF2C18C), 
-      body: 
-      Stack(
-        
-        children: [         
+    return Scaffold(
+      backgroundColor: const Color(0xFFF2C18C),
+      body: Stack(
+        children: [
           Positioned(
-  top: 150,
-  left: 550,
-  child:   Container(
-  
-    width: 10, // 막대기의 너비
-  
-    height: screenHeight * 0.5, // 막대기의 높이
-  
-    color: Colors.brown, // 나무 색상
-  
-    margin: EdgeInsets.symmetric(vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
-  
-  ),
-),
-         Padding(
-  padding: EdgeInsets.only(top: screenHeight * 0.25),
-  child: SizedBox(
-    height: screenHeight * 0.7,
-    child: ListView.builder(
-  itemCount: 5,
-  itemBuilder: (context, index) {
-    bool isSelected = selectedImageNames.contains(leftButtonImages[index]['imageName']);
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ChiGameButton(
-                imageName: leftButtonImages[index]['imageName'],
+            top: 150,
+            left: 550,
+            child: Container(
+              width: 10, // 막대기의 너비
+
+              height: screenHeight * 0.5, // 막대기의 높이
+
+              color: Colors.brown, // 나무 색상
+
+              margin: EdgeInsets.symmetric(
+                  vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: screenHeight * 0.25),
+            child: SizedBox(
+              height: screenHeight * 0.7,
+              child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  bool isSelected = selectedImageNames
+                      .contains(leftButtonImages[index]['imageName']);
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ChiGameButton(
+                              imageName: leftButtonImages[index]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
-                                onFoodSelected(index, leftButtonImages[index]['imageName']);
+                                onFoodSelected(index,
+                                    leftButtonImages[index]['imageName']);
                               },
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            ChiGameButton(
+                              imageName: rightButtonImages[index]['imageName'],
+                              isSelected: isSelected,
+                              onFoodSelected: (selectedImageNames) {
+                                onFoodSelected(index,
+                                    rightButtonImages[index]['imageName']);
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              ChiGameButton(
-                imageName: rightButtonImages[index]['imageName'],
-                              isSelected: isSelected,
-                              onFoodSelected: (selectedImageNames) {
-                                onFoodSelected(index, rightButtonImages[index]['imageName']);
-                              },
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  },
-),
-  ),
-),
 //           AnimatedPositioned(
 //   duration: const Duration(milliseconds: 300), // 애니메이션 지속 시간
 //   top: isButtonPressed ? screenHeight * 0.25 : screenHeight * 0.5, // 버튼 누를 때 막대기로 이동
@@ -143,9 +136,9 @@ void onFoodSelected(int index, String imageName) {
 //   ),
 // ),
           Positioned(
-            top = 80,
-            left = 440,
-            child = Text(
+            top: 80,
+            left: 440,
+            child: Text(
               '00네',
               style: TextStyle(
                 fontFamily: "Soyo-Maple-Bold",
@@ -158,9 +151,9 @@ void onFoodSelected(int index, String imageName) {
             ),
           ),
           const Positioned(
-            top = 80,
-            left = 440,
-            child = const Text(
+            top: 80,
+            left: 440,
+            child: Text(
               '00네',
               style: TextStyle(
                 fontSize: 70,
@@ -171,7 +164,7 @@ void onFoodSelected(int index, String imageName) {
           ),
 
           Stack(
-            children = [
+            children: [
               Positioned(
                 top: 210,
                 left: 420,
@@ -236,28 +229,26 @@ void onFoodSelected(int index, String imageName) {
                   ),
                 ),
               ),
-
-Positioned(
-      top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
-      left: screenWidth * 0.5 -290, // 텍스트의 좌측 위치 조절
-      child: const Text(
-        '주문서의 순서의 맞게 야채를 끼워 주세요.',
-        style: TextStyle(
-          fontSize: 35, // 텍스트 크기
-          color: Colors.black, // 텍스트 색상
-        ),
-      ),
-    ),
-    for (int i = 0; i < selectedImageNames.length; i++)
-            if (selectedImageNames[i].isNotEmpty)
-              ChiGameMotion(
-                isSelected: true,
-                positionLeft: 470 , // 꼬치에 꽂힌 이미지 간격 조절
-                positionTop: 1000-(i * 150),
-                imageName: selectedImageNames[i],
-              ),     
-    
-  ],
+              Positioned(
+                top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
+                left: screenWidth * 0.5 - 290, // 텍스트의 좌측 위치 조절
+                child: const Text(
+                  '주문서의 순서의 맞게 야채를 끼워 주세요.',
+                  style: TextStyle(
+                    fontSize: 35, // 텍스트 크기
+                    color: Colors.black, // 텍스트 색상
+                  ),
+                ),
+              ),
+              for (int i = 0; i < selectedImageNames.length; i++)
+                if (selectedImageNames[i].isNotEmpty)
+                  ChiGameMotion(
+                    isSelected: true,
+                    positionLeft: 470, // 꼬치에 꽂힌 이미지 간격 조절
+                    positionTop: 1000 - (i * 150),
+                    imageName: selectedImageNames[i],
+                  ),
+            ],
           ),
         ],
       ),
