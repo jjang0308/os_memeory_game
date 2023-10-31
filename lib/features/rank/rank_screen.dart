@@ -5,11 +5,11 @@ import 'package:os_memory_game/model/game_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<GameModel> ranks = [
-  GameModel(name: '김태우', gochiScore: 1560, calScore: 1300),
-  GameModel(name: '이태우', gochiScore: 1460, calScore: 100),
-  GameModel(name: '박태우', gochiScore: 1360, calScore: 400),
-  GameModel(name: '최태우', gochiScore: 1260, calScore: 1700),
-  GameModel(name: '노태우', gochiScore: 1160, calScore: 1090),
+  // GameModel(name: '김태우', gochiScore: 1560, calScore: 1300),
+  // GameModel(name: '이태우', gochiScore: 1460, calScore: 100),
+  // GameModel(name: '박태우', gochiScore: 1360, calScore: 400),
+  // GameModel(name: '최태우', gochiScore: 1260, calScore: 1700),
+  // GameModel(name: '노태우', gochiScore: 1160, calScore: 1090),
 ];
 
 class RankScreen extends StatefulWidget {
