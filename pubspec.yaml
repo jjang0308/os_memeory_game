@@ -71,13 +71,14 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/pimang.png
-    - assets/images/steak.png
-    - assets/images/ehwkd.png
-    - assets/images/RHcl.png
-    - assets/images/pa.png
-    - assets/images/sausage.png
-    - assets/images/foods/
+   - assets/images/foods/bacon.png
+   - assets/images/pimang.png
+   - assets/images/steak.png
+   - assets/images/ehwkd.png
+   - assets/images/RHcl.png
+   - assets/images/pa.png
+   - assets/images/sausage.png
+   - assets/images/foods
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_ham.jpeg
 
