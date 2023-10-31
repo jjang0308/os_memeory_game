@@ -131,23 +131,6 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
               ),
             ),
           ),
-          // AnimatedPositioned(
-          //   duration: const Duration(milliseconds: 300), // 애니메이션 지속 시간
-          //   top: isButtonPressed
-          //       ? screenHeight * 0.25
-          //       : screenHeight * 0.5, // 버튼 누를 때 막대기로 이동
-          //   left: isButtonPressed
-          //       ? screenWidth * 0.5 - 30
-          //       : screenWidth * 0.5 - 30, // 가운데 위치
-          //   child: ChiGameButton(
-          //     imageName: leftButtonImages[0]['imageName'],
-          //     // onPressed: () {
-          //     //   setState(() {
-          //     //     isButtonPressed = true; // 버튼을 눌렀을 때 플래그를 설정
-          //     //   });
-          //     // },
-          //   ),
-          // ),
           Positioned(
             top: 80,
             left: 440,

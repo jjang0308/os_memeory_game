@@ -71,22 +71,13 @@ flutter:
   uses-material-design: true
 
   assets:
-   
-   - assets/images/pimang.png
-   - assets/images/ehwkd.png
-   - assets/images/RHcl.png
-   - assets\images\foods\bacon.png
-   - assets\images\foods\broccoli.png
-   - assets\images\foods\carrot.png
-   - assets\images\foods\cheese.png
-   - assets\images\foods\corn.png
-   - assets\images\foods\eggplant.png
-   - assets\images\foods\meat.png
-   - assets\images\foods\mushroom.png
-   - assets\images\foods\potato.png
-   - assets\images\foods\shrimp.png
-   - assets\images\foods\sweetpotato.png
-   - assets\images\foods\tomato.png
+    - assets/images/pimang.png
+    - assets/images/steak.png
+    - assets/images/ehwkd.png
+    - assets/images/RHcl.png
+    - assets/images/pa.png
+    - assets/images/sausage.png
+    - assets/images/foods/
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_ham.jpeg
 
