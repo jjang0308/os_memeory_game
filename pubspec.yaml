@@ -43,7 +43,7 @@ dependencies:
   flex_color_scheme: ^7.2.0
   animate_do: ^2.1.0
   animated_text_kit: ^4.2.2
-  animate_do: ^2.1.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +72,9 @@ flutter:
     - assets\fonts\images\steak.png
     - assets\fonts\images\ehwkd.png
     - assets\fonts\images\RHcl.png
+    - assets\fonts\images\pa.png
+    - assets\fonts\images\sausage.png
+    - assets\fonts\images\shrimp.png
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_ham.jpeg
 
