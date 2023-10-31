@@ -29,7 +29,7 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
                   MainAxisAlignment.center, // 텍스트와 이미지를 수평 중앙에 배치
               children: [
                 Image.asset(
-                  'assets/fonts/images/RHcl.png',
+                  'assets/images/RHcl.png',
                   width: 100,
                   height: 50,
                 ),
@@ -41,7 +41,7 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
                   ),
                 ),
                 Image.asset(
-                  'assets/fonts/images/RHcl.png',
+                  'assets/images/RHcl.png',
                   width: 100,
                   height: 50,
                 ),
@@ -120,7 +120,7 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
                 children: [
                   const Spacer(), // 텍스트와 이미지 사이 공간을 확보
                   Image.asset(
-                    'assets/fonts/images/ehwkd.png',
+                    'assets/images/ehwkd.png',
                     width: 470,
                     height: 400,
                     fit: BoxFit.fill,
