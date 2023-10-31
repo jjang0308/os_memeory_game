@@ -52,21 +52,18 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
       appBar: AppBar(
         title: const Text('랜덤 주문 화면'),
       ),
-      body: ListView.builder(
-        itemCount: selectedImages.length,
-        itemBuilder: (context, index) {
-          // 각 이미지를 표시하는 ListTile 반환
-          return ListTile(
-            title: Image.asset(
-              selectedImages[index],
-              fit: BoxFit.contain, // 이미지를 화면에 맞게 조절
+      body: Row(
+        children: selectedImages.map((image) {
+          return Container(
+            padding: const EdgeInsets.all(8.0), // 이미지 사이의 간격을 조절
+            child: Image.asset(
+              image,
+              width: 100, // 이미지의 가로 크기
+              height: 100, // 이미지의 세로 크기
+              fit: BoxFit.cover, // 이미지를 Container에 맞게 확장
             ),
-            // ListTile을 누를 때 수행할 동작을 추가할 수 있습니다.
-            onTap: () {
-              // 이미지를 눌렀을 때 수행할 동작을 여기에 추가
-            },
           );
-        },
+        }).toList(),
       ),
     );
   }

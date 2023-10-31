@@ -1,6 +1,5 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-// import 'package:os_memory_game/argument/argument_screen.dart';
 import 'package:os_memory_game/random/random_order_screen.dart';
 
 void main() {
