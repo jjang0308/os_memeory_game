@@ -3,6 +3,7 @@ import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
 import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'package:os_memory_game/main.dart';
 
 List<Map<String, dynamic>> rightButtonImages = [
   {'index': 0, 'imageName': 'bacon.png', 'text': 'Left Button 1'},
@@ -25,8 +26,14 @@ List<Widget> imageWidgets = [];
 String selectedImageName = '';
 List<String> selectedImageNames = List.filled(5, '');
 
+String name = '';
+
+
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
+
+
+
   const ChiGameScreen({super.key});
 
   @override
@@ -35,6 +42,8 @@ class ChiGameScreen extends StatefulWidget {
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
   bool isButtonPressed = false;
+ 
+   String name = '';
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +152,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             top: 80,
             left: 440,
             child: Text(
-              '00네',
+              '$globalName네',
               style: TextStyle(
                 fontFamily: "Soyo-Maple-Bold",
                 fontSize: 70,
@@ -154,12 +163,12 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
               ),
             ),
           ),
-          const Positioned(
+           Positioned(
             top: 80,
             left: 440,
             child: Text(
-              '00네',
-              style: TextStyle(
+              '$globalName네',
+              style: const TextStyle(
                 fontSize: 70,
                 color: Color(0xFFFDCA40),
                 fontFamily: "Soyo-Maple-Bold",

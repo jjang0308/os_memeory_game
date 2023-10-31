@@ -100,7 +100,7 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ChiGameScreen(),
+                    builder: (context) =>  ChiGameScreen(),
                   ),
                 );
               },

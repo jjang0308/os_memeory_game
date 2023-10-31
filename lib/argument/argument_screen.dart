@@ -3,6 +3,11 @@ import 'package:os_memory_game/argument/widget/Animated_widget.dart';
 import 'package:os_memory_game/argument/gradation/gradation_widget.dart';
 import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
 
+import '../main.dart';
+ 
+ 
+ 
+
 class ArgumentScreen extends StatefulWidget {
   const ArgumentScreen({Key? key}) : super(key: key);
 
@@ -11,7 +16,7 @@ class ArgumentScreen extends StatefulWidget {
 }
 
 class _ArgumentScreenState extends State<ArgumentScreen> {
-  String name = ''; // 사용자 입력을 저장할 변수
+  // 사용자 입력을 저장할 변수
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +115,13 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
             ),
             InkWell(
               onTap: () {
+                 globalName = name;
                 // 이미지를 눌렀을 때 수행할 동작을 여기에 작성
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                      builder: (context) => const ChiGameScreen()),
+                    
+                      builder: (context) =>  const ChiGameScreen()),
+                      
                 );
               },
               child: Row(
