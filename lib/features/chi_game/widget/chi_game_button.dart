@@ -3,11 +3,12 @@ import 'package:flutter/material.dart';
 class ChiGameButton extends StatefulWidget {
   final String imageName;
   final Function(String) onFoodSelected;
-final bool isSelected;
+  final bool isSelected;
   const ChiGameButton({
     Key? key,
     required this.imageName,
-    required this.onFoodSelected, required this.isSelected,
+    required this.onFoodSelected,
+    required this.isSelected,
   }) : super(key: key);
 
   @override
@@ -25,9 +26,8 @@ class _ChiGameButtonState extends State<ChiGameButton> {
         color: const Color(0xFFF2C18C),
         child: Row(
           children: [
-            Image.asset('assets/fonts/images/${widget.imageName}'),
+            Image.asset('assets/images/foods/${widget.imageName}'),
             const SizedBox(width: 20), // 이미지와 텍스트 사이 간격 조정
-            
           ],
         ),
       ),

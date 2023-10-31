@@ -5,20 +5,20 @@ import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
 
 List<Map<String, dynamic>> rightButtonImages = [
-  {'index': 0, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
-  {'index': 1, 'imageName': 'steak.png', 'text': 'Left Button 2'},
-  {'index': 2, 'imageName': 'pa.png', 'text': 'Left Button 3'},
-  {'index': 3, 'imageName': 'shrimp.png', 'text': 'Left Button 4'},
-  {'index': 4, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
+  {'index': 0, 'imageName': 'bacon.png', 'text': 'Left Button 1'},
+  {'index': 1, 'imageName': 'broccoli.png', 'text': 'Left Button 2'},
+  {'index': 2, 'imageName': 'carrot.png', 'text': 'Left Button 3'},
+  {'index': 3, 'imageName': 'cheese.png', 'text': 'Left Button 4'},
+  {'index': 4, 'imageName': 'corn.png', 'text': 'Left Button 5'},
 ];
 
 // 왼쪽 버튼 속성 리스트
 List<Map<String, dynamic>> leftButtonImages = [
-  {'index': 5, 'imageName': 'pimang.png', 'text': 'Left Button 1'},
-  {'index': 6, 'imageName': 'steak.png', 'text': 'Left Button 2'},
-  {'index': 7, 'imageName': 'pimang.png', 'text': 'Left Button 3'},
-  {'index': 8, 'imageName': 'pimang.png', 'text': 'Left Button 4'},
-  {'index': 9, 'imageName': 'pimang.png', 'text': 'Left Button 5'},
+  {'index': 5, 'imageName': 'eggplant.png', 'text': 'Left Button 1'},
+  {'index': 6, 'imageName': 'meat.png', 'text': 'Left Button 2'},
+  {'index': 7, 'imageName': 'tomato.png', 'text': 'Left Button 3'},
+  {'index': 8, 'imageName': 'potato.png', 'text': 'Left Button 4'},
+  {'index': 9, 'imageName': 'shrimp.png', 'text': 'Left Button 5'},
 ];
 //변경
 List<Widget> imageWidgets = [];
@@ -30,7 +30,7 @@ class ChiGameScreen extends StatefulWidget {
   const ChiGameScreen({super.key});
 
   @override
-  State<ChiGameScreen> createState() => _ChiGameScreenState();
+  State<ChiGameScreen> createState() => _ChiGameScreenState(); //장혁 바보
 }
 
 class _ChiGameScreenState extends State<ChiGameScreen> {

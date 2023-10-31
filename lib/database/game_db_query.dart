@@ -20,7 +20,7 @@ class GameDBQuery {
     return await openDatabase(path, version: 1, onCreate: (db, version) async {
       //테이블 생성
       await db.execute(
-          "CREATE TABLE GameInfo( Rank INT , name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
+          "CREATE TABLE GameInfo( name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
     }, onUpgrade: (db, oldVersion, newVersion) {});
   }
 
@@ -64,5 +64,11 @@ class GameDBQuery {
         calScore: data[index]["calScore"],
       );
     });
+  }
+
+  static Future<void> clearData() async {
+    final db = await database;
+    await db!
+        .delete('GameInfo'); // 'GameInfo'를 해당 데이터를 지우려는 테이블의 실제 이름으로 바꿔주세요.
   }
 }

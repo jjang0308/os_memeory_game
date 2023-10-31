@@ -31,15 +31,9 @@ class _ChiGameMotionState extends State<ChiGameMotion> {
         child: SizedBox(
           height: 200,
           width: 200,
-          child: Image.asset('assets/fonts/images/${widget.imageName}'),
+          child: Image.asset('assets/fonts/images/foods/${widget.imageName}'),
         ),
       ),
     );
   }
-}
-
-@override
-State<StatefulWidget> createState() {
-  // TODO: implement createState
-  throw UnimplementedError();
 }
