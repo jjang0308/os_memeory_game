@@ -29,7 +29,7 @@ class ChiGameScreen extends StatefulWidget {
   const ChiGameScreen({super.key});
 
   @override
-  State<ChiGameScreen> createState() => _ChiGameScreenState();
+  State<ChiGameScreen> createState() => _ChiGameScreenState(); //장혁 바보 
 }
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
