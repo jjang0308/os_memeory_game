@@ -1,12 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
-import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'package:flutter/material.dart';
 
 void main() {
+  runApp(const MyApp());
   // // 네이티브 코드를 사용하는 경우, 플랫폼간의 통신을 함->비동기적이벤트를 사용하는 경우 사용
   WidgetsFlutterBinding.ensureInitialized;
-
-  runApp(const MyApp());
+  Firebase.initializeApp(); // Firebase 초기화 굳이 초기화 시켜줘야 할 까 ?
+  print("하이하이");
 }
 
 class MyApp extends StatelessWidget {

@@ -3,6 +3,7 @@ import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/features/home/widgets/rank_widget.dart';
 import 'package:os_memory_game/model/game_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 List<GameModel> ranks = [
   GameModel(name: '김태우', gochiScore: 1560, calScore: 1300),
@@ -28,13 +29,75 @@ class Rank {
 
 class _RankScreenState extends State<RankScreen> {
   bool isSoundOn = true; // 소리 상태 (켜짐: true, 꺼짐: false)
+  // Firestore 변수로 가져오기
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  // Firebase Firestore 데이터를 로컬 데이터베이스에 동기화
+  Future<void> syncDataFromFirestoreToLocal() async {
+    final QuerySnapshot querySnapshot =
+        await firestore.collection('gochiGame').get(); //테이블 명
+
+    if (querySnapshot.docs.isNotEmpty) {
+      await GameDBQuery.clearData();
+      for (final doc in querySnapshot.docs) {
+        final data = doc.data() as Map<String, dynamic>;
+        final rank = Rank(
+          data['name'],
+          data['gochiScore'],
+          data['calScore'],
+        );
+        for (GameModel rank in ranks) {
+          GameDBQuery.insertModelListDB(rank); //로컬 데이터에 저장
+        }
+      }
+    }
+  }
+
+  // 데이터 추가
+  Future<void> addData(Rank rank) async {
+    try {
+      await firestore.collection('gochiGame').add({
+        'name': rank.name,
+        'gochiScore': rank.gochiScore,
+        'calScore': rank.calScore,
+      });
+    } catch (e) {
+      print('오류 발생: $e');
+    }
+  }
+
+// 원격데이터에서 로컬 데이터로 가져오기
+  void getFirebaseData() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await firestore.collection('gochiGame').get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        ranks.clear(); // 현재 목록 지우기
+        for (var doc in querySnapshot.docs) {
+          var data = doc.data() as Map<String, dynamic>;
+          var rank = Rank(
+            data['name'],
+            data['gochiScore'],
+            data['calScore'],
+          );
+          for (GameModel rank in ranks) {
+            ranks.add(rank);
+          }
+          setState(() {});
+          // 가져온 데이터를 ranks 목록에 추가
+        }
+      }
+    } catch (e) {
+      print('데이터 가져오기 중 오류 발생: $e');
+    }
+  }
 
   @override
   void initState() {
     super.initState();
     // 데이터베이스에서 랭킹 데이터를 불러오는 부분
-    insertData();
-    loadRankData();
+    loadRankData(); //로컬 데이터를 원격 데이터에 저장
+    syncDataFromFirestoreToLocal(); // 원격 데이터를 로컬데이터로 가져오기
   }
 
   // 데이터베이스에서 랭킹 데이터를 불러오는 함수
@@ -45,13 +108,30 @@ class _RankScreenState extends State<RankScreen> {
     setState(() {});
   }
 
-  // 데이터베이스에서 랭킹 데이터를 불러오는 함수
-  void loadRankData() async {
-    List<GameModel> rankData =
-        await GameDBQuery.getModelListDB(); //테스트 해봐야함 정렬 되는지
-    setState(() {
-      ranks = rankData;
-    });
+//로컬 데이터를 원격 데이터에 저장
+  Future<void> loadRankData() async {
+    final localData = await GameDBQuery.getModelListDB();
+
+    if (localData.isNotEmpty) {
+      setState(() {
+        ranks = localData;
+      });
+    } else {
+      final querySnapshot = await firestore.collection('gochiGame').get();
+      if (querySnapshot.docs.isNotEmpty) {
+        ranks.clear();
+        for (final doc in querySnapshot.docs) {
+          final data = doc.data();
+          final rank = GameModel(
+            name: data['name'],
+            gochiScore: data['gochiScore'],
+            calScore: data['calScore'],
+          );
+          ranks.add(rank);
+        }
+        setState(() {});
+      }
+    }
   }
 
   @override

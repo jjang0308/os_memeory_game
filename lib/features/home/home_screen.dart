@@ -1,9 +1,8 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/database/sample.dart';
+
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 import 'package:os_memory_game/features/rank/rank_screen.dart';
-import 'package:sqflite/sqflite.dart';
 
 import '../chi_game/chigame_screen.dart';
 
@@ -29,7 +28,6 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (context) => const ChiGameScreen(),
         ),
       );
-
     }
 
     void onRankPressed() {

@@ -65,4 +65,10 @@ class GameDBQuery {
       );
     });
   }
+
+  static Future<void> clearData() async {
+    final db = await database;
+    await db!
+        .delete('GameInfo'); // 'GameInfo'를 해당 데이터를 지우려는 테이블의 실제 이름으로 바꿔주세요.
+  }
 }

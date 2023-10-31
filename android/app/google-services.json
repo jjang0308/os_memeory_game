@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "321838707006",
+    "project_id": "gochigame",
+    "storage_bucket": "gochigame.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321838707006:android:5b12b4c19e215d27803c6f",
+        "android_client_info": {
+          "package_name": "com.example.os_memory_game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4arbCg-2hi4xzpaRvSVuIbr2YQPTCE1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
