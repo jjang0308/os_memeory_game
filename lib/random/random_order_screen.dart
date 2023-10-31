@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+
 class RandomOrderScreen extends StatefulWidget {
   const RandomOrderScreen({Key? key}) : super(key: key);
 
@@ -26,7 +28,7 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
 
   void selectRandomImages() {
     final random = Random();
-    selectedImages.clear(); // 이미 선택된 이미지 목록 초기화
+    selectedImages.clear();
 
     while (selectedImages.length < 4) {
       final randomIndex = random.nextInt(allImageUrls.length);
@@ -36,7 +38,6 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
       }
     }
 
-    // 화면을 다시 그리도록 setState 호출
     setState(() {});
   }
 
@@ -48,22 +49,65 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('랜덤 주문 화면'),
+      backgroundColor: const Color(0xFFF0E1D0),
+      appBar: PreferredSize(
+        preferredSize:
+            const Size.fromHeight(100.0), // Adjust the height as needed
+        child: AppBar(
+          backgroundColor: Colors.white,
+          title: const Text(
+            '랜덤 주문 화면',
+            style: TextStyle(fontSize: 50, color: Color(0xFF090909)),
+          ),
+        ),
       ),
-      body: Row(
-        children: selectedImages.map((image) {
-          return Container(
-            padding: const EdgeInsets.all(8.0), // 이미지 사이의 간격을 조절
-            child: Image.asset(
-              image,
-              width: 100, // 이미지의 가로 크기
-              height: 100, // 이미지의 세로 크기
-              fit: BoxFit.cover, // 이미지를 Container에 맞게 확장
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: selectedImages.map((image) {
+                return Container(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset(
+                    image,
+                    width: 250,
+                    height: 250,
+                    fit: BoxFit.cover,
+                  ),
+                );
+              }).toList(),
             ),
-          );
-        }).toList(),
+          ),
+          Positioned(
+            top: -300,
+            right: 530,
+            child: Container(
+              width: 10,
+              height: screenHeight * 0.8,
+              color: Colors.brown,
+              margin: EdgeInsets.symmetric(vertical: screenHeight * 0.25),
+            ),
+          ),
+          Positioned(
+            bottom: 40,
+            right: 40,
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ChiGameScreen(),
+                  ),
+                );
+              },
+              child: const Icon(Icons.arrow_forward),
+            ),
+          ),
+        ],
       ),
     );
   }
