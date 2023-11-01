@@ -69,7 +69,7 @@ class RandomNext extends StatelessWidget {
                     // 두 번째 버튼이 클릭되었을 때 수행할 동작
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => ChiGameScreen(),
+                        builder: (context) => const ChiGameScreen(),
                       ),
                     );
                   },
