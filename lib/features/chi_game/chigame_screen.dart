@@ -76,7 +76,7 @@ List<Map<String, dynamic>> buttonImages = [
 
 int getRandomPrice() {
   var rand = Random();
-  return rand.nextInt(10000) +
+  return rand.nextInt(10000)+
       8000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
 }
 

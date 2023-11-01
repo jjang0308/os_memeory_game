@@ -12,8 +12,8 @@ class RandomOrderScreen extends StatefulWidget {
 
 class _RandomOrderScreenState extends State<RandomOrderScreen> {
   final List<String> allImageUrls = [
-    'assets/images/foods/ehwkd.png',
-    'assets/images/foods/pimang.png',
+  
+    'assets/images/pimang.png',
     'assets/images/RHcl.png',
     'assets/images/foods/bacon.png',
     'assets/images/ehwkd.png',
