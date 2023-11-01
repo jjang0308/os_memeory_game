@@ -83,7 +83,8 @@ int getRandomPrice() {
 //변경
 List<Widget> imageWidgets = [];
 String selectedImageName = '';
-List<String> selectedImageNames = List.filled(5, '');
+
+List<String> selectedImageNames = ['', '', '', '', ''];
 
 String name = '';
 int price = getRandomPrice();
@@ -105,11 +106,11 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
+//List<String> selectedImageNames = ['', '', '', '', ''];
     void onFoodSelected(int index, String imageName) {
       setState(() {
-        {
-          // 선택되지 않은 이미지일 경우, 선택합니다.
+        if (!selectedImageNames.contains(imageName)) {
+          // 이미 선택된 이미지가 아닐 경우에만 추가
           int emptyIndex = selectedImageNames.indexOf(''); // 빈 인덱스를 찾습니다.
           if (emptyIndex != -1) {
             selectedImageNames[emptyIndex] = imageName; // 빈 인덱스에 이미지 이름을 저장합니다.
@@ -119,13 +120,9 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     }
 
     void deleteButton() {
-      if (selectedImageNames.isNotEmpty) {
-        int lastIndex = selectedImageNames.lastIndexOf(''); // 마지막 빈 인덱스를 찾습니다.
-        if (lastIndex != -1) {
-          selectedImageNames[lastIndex] = ''; // 마지막 빈 인덱스를 지웁니다.
-          setState(() {});
-        }
-      }
+      setState(() {
+        selectedImageNames = ['', '', '', '', '']; // selectedImageNames 초기화
+      });
     }
 
     return Scaffold(
@@ -197,10 +194,14 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             ),
           ),
           Positioned(
-            top: 1500, // 원하는 상단 위치 (상단 여백)
-            left: 500, // 원하는 우측 위치 (우측 여백)
+            top: 1400,
+            left: 480,
             child: ElevatedButton(
-              onPressed: deleteButton, // "수정" 버튼을 눌렀을 때 deleteButton 함수 실행
+              onPressed: deleteButton,
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Theme.of(context).secondaryHeaderColor, // 배경색 바꿔줘요 ㅠㅠ
+              ),
               child: Text(
                 "수정",
                 style: TextStyle(
@@ -283,7 +284,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 child: IconButton(
                   onPressed: () {
                     selectedImageNames = List.filled(5, '');
-                    // print(selectedImageNames.size);
+
                     // 버튼을 눌렀을 때 HomeScreen으로 이동
                     Navigator.of(context).push(
                       MaterialPageRoute(
