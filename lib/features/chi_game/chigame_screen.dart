@@ -103,21 +103,25 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     void onFoodSelected(int index, String imageName) {
-      setState(
-        () {
-          if (selectedImageNames.contains(imageName)) {
-            // 이미 선택된 이미지일 경우, 선택을 취소합니다.
-            selectedImageNames[index] = ''; // 이미지 이름 초기화
-          } else {
-            // 선택되지 않은 이미지일 경우, 선택합니다.
-            int emptyIndex = selectedImageNames.indexOf(''); // 빈 인덱스를 찾습니다.
-            if (emptyIndex != -1) {
-              selectedImageNames[emptyIndex] =
-                  imageName; // 빈 인덱스에 이미지 이름을 저장합니다.
-            }
+      setState(() {
+        {
+          // 선택되지 않은 이미지일 경우, 선택합니다.
+          int emptyIndex = selectedImageNames.indexOf(''); // 빈 인덱스를 찾습니다.
+          if (emptyIndex != -1) {
+            selectedImageNames[emptyIndex] = imageName; // 빈 인덱스에 이미지 이름을 저장합니다.
           }
-        },
-      );
+        }
+      });
+    }
+
+    void deleteButton() {
+      if (selectedImageNames.isNotEmpty) {
+        int lastIndex = selectedImageNames.lastIndexOf(''); // 마지막 빈 인덱스를 찾습니다.
+        if (lastIndex != -1) {
+          selectedImageNames[lastIndex] = ''; // 마지막 빈 인덱스를 지웁니다.
+          setState(() {});
+        }
+      }
     }
 
     return Scaffold(
@@ -182,6 +186,31 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                     ],
                   );
                 },
+              ),
+            ),
+          ),
+          Positioned(
+            top: 1500, // 원하는 상단 위치 (상단 여백)
+            left: 500, // 원하는 우측 위치 (우측 여백)
+            child: ElevatedButton(
+              onPressed: deleteButton, // "수정" 버튼을 눌렀을 때 deleteButton 함수 실행
+              child: Text(
+                "수정",
+                style: TextStyle(
+                  fontFamily: "Maple-Bold",
+                  fontSize: 60,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 5
+                    ..color = Colors.white,
+                  shadows: const <Shadow>[
+                    Shadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 10,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
