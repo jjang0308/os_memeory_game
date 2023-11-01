@@ -33,11 +33,11 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
     buttons.shuffle(Random());
   }
 
-  Widget createButton(String label) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 300),
-      child: ElevatedButton(
-        onPressed: () {
+ Widget createButton(String label) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 300, vertical: 20), // 각 버튼 사이에 수직 간격 추가
+    child: ElevatedButton(
+      onPressed: () {
         // 라벨 텍스트와 globalPrice를 비교
         if (label == '$globalPrice원') {
           // 일치하는 경우 HomeScreen으로 이동
@@ -55,24 +55,24 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
           );
         }
       },
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.deepOrange,
-          minimumSize: const Size(600, 200),
-          padding: const EdgeInsets.symmetric(vertical:  80 ,) ,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-        ),
-        child: Text(
-          label,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 70,
-          ),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.deepOrange,
+        minimumSize: const Size(600, 200),
+        padding: const EdgeInsets.symmetric(vertical: 80),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
         ),
       ),
-    );
-  }
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 70,
+        ),
+      ),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {

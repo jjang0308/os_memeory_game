@@ -2,9 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'dart:math';
 
 String globalName = '';
-int globalPrice = 0;
+int globalPrice = getRandomPrice();
+
+int getRandomPrice() {
+  var rand = Random();
+  return rand.nextInt(6000)+
+      3000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
+}
 
 void main() {
   runApp(const MyApp());
