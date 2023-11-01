@@ -6,18 +6,18 @@ import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 
 import 'package:os_memory_game/features/rank/rank_screen.dart';
 
-List<Map<String, dynamic>> buttonImages = [
-  {'imageName': 'eggplant.png', 'boxColor': const Color(0xFF60305F)},
-  {'imageName': 'meat.png', 'boxColor': const Color(0xFFCB4144)},
-  {'imageName': 'tomato.png', 'boxColor': const Color(0xFFEC4A4A)},
-  {'imageName': 'potato.png', 'boxColor': const Color(0xffC49C4A)},
-  {'imageName': 'shrimp.png', 'boxColor': const Color(0xffFC5428)},
-  {'imageName': 'bacon.png', 'boxColor': const Color(0xffD85849)},
-  {'imageName': 'broccoli.png', 'boxColor': const Color(0xff8BA442)},
-  {'imageName': 'carrot.png', 'boxColor': const Color(0xffEE771B)},
-  {'imageName': 'cheese.png', 'boxColor': const Color(0xffF7BA00)},
-  {'imageName': 'corn.png', 'boxColor': const Color(0xffFEDF49)},
-];
+// List<Map<String, dynamic>> buttonImages = [
+//   {'imageName': 'eggplant.png', 'boxColor': const Color(0xFF60305F)},
+//   {'imageName': 'meat.png', 'boxColor': const Color(0xFFCB4144)},
+//   {'imageName': 'tomato.png', 'boxColor': const Color(0xFFEC4A4A)},
+//   {'imageName': 'potato.png', 'boxColor': const Color(0xffC49C4A)},
+//   {'imageName': 'shrimp.png', 'boxColor': const Color(0xffFC5428)},
+//   {'imageName': 'bacon.png', 'boxColor': const Color(0xffD85849)},
+//   {'imageName': 'broccoli.png', 'boxColor': const Color(0xff8BA442)},
+//   {'imageName': 'carrot.png', 'boxColor': const Color(0xffEE771B)},
+//   {'imageName': 'cheese.png', 'boxColor': const Color(0xffF7BA00)},
+//   {'imageName': 'corn.png', 'boxColor': const Color(0xffFEDF49)},
+// ];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -64,14 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               Positioned(
                 top: 100,
-                left: 180,
+                left: 100,
                 child: DefaultTextStyle(
                   style: TextStyle(
                     fontFamily: "Maple-Bold",
-                    fontSize: 280,
+                    fontSize: screenWidth * 0.28,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
-                      ..strokeWidth = 50
+                      ..strokeWidth = 40
                       ..color = Colors.white,
                     shadows: const <Shadow>[
                       Shadow(
@@ -94,10 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Positioned(
                 top: 100,
-                left: 180,
+                left: 100,
                 child: DefaultTextStyle(
                   style: TextStyle(
-                    fontSize: 280,
+                    fontSize: screenWidth * 0.28,
                     color: Theme.of(context).colorScheme.tertiaryContainer,
                     fontFamily: "Maple-Bold",
                     fontWeight: FontWeight.w800,
@@ -125,16 +125,16 @@ class _HomeScreenState extends State<HomeScreen> {
           Stack(
             children: [
               Positioned(
-                top: 430,
-                left: 50,
+                top: 350,
+                left: 30,
                 child: Text(
                   '꼬치꼬치',
                   style: TextStyle(
                     fontFamily: "Maple-Bold",
-                    fontSize: 280,
+                    fontSize: screenWidth * 0.27,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
-                      ..strokeWidth = 50
+                      ..strokeWidth = 40
                       ..color = Colors.white,
                     shadows: const <Shadow>[
                       Shadow(
@@ -147,12 +147,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Positioned(
-                top: 430,
-                left: 50,
+                top: 350,
+                left: 30,
                 child: Text(
                   "꼬치꼬치",
                   style: TextStyle(
-                    fontSize: 280,
+                    fontSize: screenWidth * 0.27,
                     color: Theme.of(context).colorScheme.tertiary,
                     fontFamily: "Maple-Bold",
                     shadows: const <Shadow>[
@@ -168,12 +168,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
           Positioned(
-              bottom: screenHeight * 0.22,
-              left: screenWidth * 0.1,
-              child: HomeButtonWidget(
-                onPressed: onStartPressed,
-                buttonName: '게임시작',
-              )),
+            bottom: screenHeight * 0.22,
+            left: screenWidth * 0.1,
+            child: HomeButtonWidget(
+              onPressed: onStartPressed,
+              buttonName: '게임시작',
+            ),
+          ),
           Positioned(
             bottom: screenHeight * 0.05,
             left: screenWidth * 0.1,

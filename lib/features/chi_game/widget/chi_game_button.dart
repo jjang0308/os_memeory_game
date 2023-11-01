@@ -28,8 +28,8 @@ class _ChiGameButtonState extends State<ChiGameButton> {
         child: GestureDetector(
           onTap: () => widget.onFoodSelected(widget.imageName),
           child: Container(
-            width: 220,
-            height: 200,
+            width: 150,
+            height: 150,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: widget.boxColor,
@@ -43,9 +43,13 @@ class _ChiGameButtonState extends State<ChiGameButton> {
                 ),
               ],
             ),
+            padding: const EdgeInsets.only(left: 10),
             child: Row(
               children: [
-                Image.asset('assets/images/foods/${widget.imageName}'),
+                Image.asset(
+                  'assets/images/foods/${widget.imageName}',
+                  width: 110,
+                ),
                 const SizedBox(width: 20), // 이미지와 텍스트 사이 간격 조정
               ],
             ),

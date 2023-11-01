@@ -81,27 +81,6 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
 
   List<String> selectedImages = [];
 
-  // void selectRandomImages() {
-  //   final random = Random();
-  //   selectedImages.clear();
-
-  //   while (selectedImages.length < 4) {
-  //     final randomIndex = random.nextInt(allImageUrls.length);
-  //     final selectedImage = allImageUrls[randomIndex];
-  //     if (!selectedImages.contains(selectedImage)) {
-  //       selectedImages.add(selectedImage);
-  //     }
-  //   }
-
-  //   setState(() {});
-  // }
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   selectRandomImages();
-  // }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -116,17 +95,6 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
 
     return Scaffold(
       backgroundColor: Theme.of(context).secondaryHeaderColor,
-      // appBar: PreferredSize(
-      //   preferredSize:
-      //       const Size.fromHeight(100.0), // Adjust the height as needed
-      //   child: AppBar(
-      //     backgroundColor: Colors.white,
-      //     title: const Text(
-      //       '랜덤 주문 화면',
-      //       style: TextStyle(fontSize: 50, color: Color(0xFF090909)),
-      //     ),
-      //   ),
-      // ),
       body: Stack(
         children: [
           Positioned(
@@ -178,8 +146,7 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
             ),
           ),
           Positioned(
-            // top: ,
-            right: 530,
+            left: screenWidth * 0.49,
             child: Container(
               width: 10,
               height: screenHeight * 0.7,
@@ -189,7 +156,7 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
           ),
           Positioned(
             bottom: 40,
-            right: 40,
+            left: screenWidth * 0.49,
             child: FloatingActionButton(
               onPressed: () {
                 Navigator.pushReplacement(
@@ -207,8 +174,8 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
           for (int i = 0; i < chiNum; i++)
             ChiGameMotion(
               isSelected: true,
-              positionLeft: 470, // 꼬치에 꽂힌 이미지 간격 조절
-              positionTop: 1050 - (i * 150),
+              positionLeft: screenWidth * 0.35, // 꼬치에 꽂힌 이미지 간격 조절
+              positionTop: 730 - (i * 130),
               imageName: buttonImages[chiList[i]]['imageName'],
             ),
         ],

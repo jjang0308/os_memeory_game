@@ -4,7 +4,6 @@ import 'package:os_memory_game/features/calculator_game/calculator_game_screen.d
 import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
 import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 import 'dart:math';
-import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/main.dart';
 
 //전체 버튼 정보
@@ -103,7 +102,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-//List<String> selectedImageNames = ['', '', '', '', ''];
+
     void onFoodSelected(int index, String imageName) {
       setState(() {
         if (!selectedImageNames.contains(imageName)) {
@@ -122,27 +121,26 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
       });
     }
 
-    print(widget.chiIndex);
-    print(selectedChi);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Stack(
         children: [
           Positioned(
-            top: 150,
-            left: 550,
+            top: 100,
+            left: screenWidth * 0.5,
             child: Container(
               width: 10, // 막대기의 너비
-              height: screenHeight * 0.5, // 막대기의 높이
+              height: screenHeight * 0.6, // 막대기의 높이
               color: Colors.brown, // 나무 색상
               margin: EdgeInsets.symmetric(
                   vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(top: screenHeight * 0.25),
+            padding: EdgeInsets.only(top: screenHeight * 0.22),
             child: SizedBox(
-              height: screenHeight * 0.7,
+              height: screenHeight * 0.8,
               child: ListView.builder(
                 itemCount: 5,
                 itemBuilder: (context, index) {
@@ -223,84 +221,84 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             ),
           ),
           Positioned(
-            top: 80,
-            left: 440,
+            top: 40,
+            left: screenWidth * 0.36,
             child: Text(
               '$globalName네',
               style: TextStyle(
-                fontFamily: "Soyo-Maple-Bold",
-                fontSize: 70,
+                fontFamily: "Maple-Bold",
+                fontSize: 80,
                 foreground: Paint()
                   ..style = PaintingStyle.stroke
-                  ..strokeWidth = 50
+                  ..strokeWidth = 20
                   ..color = Colors.white,
               ),
             ),
           ),
           Positioned(
-            top: 80,
-            left: 440,
+            top: 40,
+            left: screenWidth * 0.36,
             child: Text(
               '$globalName네',
-              style: const TextStyle(
-                fontSize: 70,
-                color: Color(0xFFFDCA40),
-                fontFamily: "Soyo-Maple-Bold",
+              style: TextStyle(
+                fontSize: 80,
+                color: Theme.of(context).primaryColorDark.withOpacity(0.9),
+                fontFamily: "Maple-Bold",
               ),
             ),
           ),
           Stack(
             children: [
               Positioned(
-                top: 210,
-                left: 420,
+                top: 115,
+                left: screenWidth * 0.33,
                 child: Text(
                   '꼬치꼬치',
                   style: TextStyle(
-                    fontFamily: "Soyo-Maple-Bold",
-                    fontSize: 60,
+                    fontFamily: "Maple-Bold",
+                    fontSize: 80,
                     foreground: Paint()
                       ..style = PaintingStyle.stroke
-                      ..strokeWidth = 50
+                      ..strokeWidth = 20
                       ..color = Colors.white,
                   ),
                 ),
               ),
-              const Positioned(
-                top: 210,
-                left: 420,
+              Positioned(
+                top: 115,
+                left: screenWidth * 0.33,
                 child: Text(
                   "꼬치꼬치",
                   style: TextStyle(
-                    fontSize: 60,
-                    color: Color(0xFFFDCA40),
-                    fontFamily: "Soyo-Maple-Bold",
+                    fontSize: 80,
+                    color: Theme.of(context).primaryColorDark.withOpacity(0.9),
+                    fontFamily: "Maple-Bold",
                   ),
                 ),
               ),
-              Positioned(
-                top: 0,
-                left: 0,
-                child: IconButton(
-                  onPressed: () {
-                    selectedImageNames = List.filled(5, '');
+              // Positioned(
+              //   top: 0,
+              //   left: 0,
+              //   child: IconButton(
+              //     onPressed: () {
+              //       selectedImageNames = List.filled(5, '');
 
-                    // 버튼을 눌렀을 때 HomeScreen으로 이동
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const HomeScreen(), // HomeScreen 위젯으로 이동
-                      ),
-                    );
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back_ios, // 이미지 아이콘을 여기에 추가
-                    size: 100, // 이미지 아이콘 크기 설정
-                  ),
-                  padding:
-                      const EdgeInsets.all(100.0), // 모든 방향으로 16.0 포인트 패딩 추가
-                ),
-              ),
+              //       // 버튼을 눌렀을 때 HomeScreen으로 이동
+              //       Navigator.of(context).pushReplacement(
+              //         MaterialPageRoute(
+              //           builder: (context) =>
+              //               const HomeScreen(), // HomeScreen 위젯으로 이동
+              //         ),
+              //       );
+              //     },
+              //     icon: const Icon(
+              //       Icons.arrow_back_ios, // 이미지 아이콘을 여기에 추가
+              //       size: 60, // 이미지 아이콘 크기 설정
+              //     ),
+              //     padding:
+              //         const EdgeInsets.all(100.0), // 모든 방향으로 16.0 포인트 패딩 추가
+              //   ),
+              // ),
               Positioned(
                 top: 100,
                 left: 880,
@@ -336,23 +334,20 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 ),
               ),
               Positioned(
-                top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
-                left: screenWidth * 0.5 - 290, // 텍스트의 좌측 위치 조절
-                child: const Text(
-                  '주문서의 순서의 맞게 야채를 끼워 주세요.',
-                  style: TextStyle(
-                    fontSize: 35, // 텍스트 크기
-                    color: Colors.black, // 텍스트 색상
-                  ),
-                ),
+                top: screenHeight * 0.19, // 텍스트의 상단 위치 조절
+                left: screenWidth * 0.14, // 텍스트의 좌측 위치 조절
+                child: Text('주문서의 순서의 맞게 야채를 끼워 주세요.',
+                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                        fontSize: 35,
+                        color: const Color.fromARGB(255, 84, 84, 84))),
               ),
               for (int i = 0; i < selectedImageNames.length; i++)
                 if (selectedImageNames[i].isNotEmpty)
                   ChiGameMotion(
                     isSelected: true,
-                    positionLeft: 470, // 꼬치에 꽂힌 이미지 간격 조절
-                    positionTop: 1050 - (i * 150),
-                    imageName: selectedImageNames[i],
+                    positionLeft: 310, // 꼬치에 꽂힌 이미지 간격 조절
+                    positionTop: 800 - (i * 120),
+                    imageName: selectedImageNames[i], boxColor: Colors.white,
                   ),
               if (selectedChi.length == widget.chiIndex.length)
                 Positioned(

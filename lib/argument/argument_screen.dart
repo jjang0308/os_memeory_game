@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/argument/widget/Animated_widget.dart';
-import 'package:os_memory_game/argument/gradation/gradation_widget.dart';
 import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/features/orders/five_count_screen.dart';
 import 'package:os_memory_game/model/game_model.dart';
@@ -36,103 +34,115 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const GradientText(
-              text: '00네',
-              fontSize: 80,
-            ),
-            Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.center, // 텍스트와 이미지를 수평 중앙에 배치
-              children: [
-                Image.asset(
-                  'assets/images/RHcl.png',
-                  width: 100,
-                  height: 50,
-                ),
-                const Text(
-                  '꼬치꼬치',
-                  style: TextStyle(
-                    fontSize: 80,
-                    fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(top: 30),
+              child: Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // 텍스트와 이미지를 수평 중앙에 배치
+                children: [
+                  Image.asset(
+                    'assets/images/RHcl.png',
+                    width: 100,
+                    height: 100,
                   ),
-                ),
-                Image.asset(
-                  'assets/images/RHcl.png',
-                  width: 100,
-                  height: 50,
-                ),
-              ],
+                  Text(
+                    ' 가게인수증',
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge!
+                        .copyWith(fontSize: 80),
+                    // style: TextStyle(
+                    //   fontSize: 80,
+                    //   fontWeight: FontWeight.bold,
+                    // ),
+                  ),
+                  Image.asset(
+                    'assets/images/RHcl.png',
+                    width: 100,
+                    height: 100,
+                  ),
+                ],
+              ),
             ),
-            const Divider(
-              color: Colors.black,
+            Divider(
+              color: Theme.of(context).primaryColorDark,
               thickness: 2.0,
             ),
-            const Padding(
-              padding: EdgeInsets.all(20.0), // 패딩 적용
-              child: Text(
-                '가게 인수증',
-                style: TextStyle(
-                  fontSize: 70,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
             const SizedBox(height: 80),
-            AnimatedTextWidget(
-              // AnimatedTextWidget를 사용
-              text: '$name 님을(를) 꼬치꼬치 사장님으로 임명합니다.',
-              fontSize: 40,
-              color: Colors.black,
+            Text(
+              '$name 님을(를) 꼬치꼬치 사장님으로 임명합니다.',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    fontSize: 40,
+                    color: Colors.black,
+                  ),
             ),
             const SizedBox(height: 20),
-            TextField(
-              onChanged: (value) {
-                setState(() {
-                  name = value; // 사용자 입력을 변수에 저장
-                });
-              },
-              decoration: const InputDecoration(
-                hintText: '이름을 입력하세요',
-                contentPadding: EdgeInsets.symmetric(
-                  vertical: 20.0,
-                  horizontal: 20.0,
+            SizedBox(
+              width: 400,
+              child: TextField(
+                onChanged: (value) {
+                  setState(
+                    () {
+                      name = value; // 사용자 입력을 변수에 저장
+                    },
+                  );
+                },
+                decoration: const InputDecoration(
+                  hintText: '서명',
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 20.0,
+                    horizontal: 20.0,
+                  ),
                 ),
+                style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                      fontSize: 30,
+                      color: Colors.black,
+                    ),
               ),
-              style: const TextStyle(fontSize: 30),
             ),
             const SizedBox(height: 20),
-            const AnimatedTextWidget(
-              text: '1. 쟤료들을 선택해 알맞게 꽂으세요',
-              fontSize: 40,
-              color: Colors.black,
+            Text(
+              '1. 쟤료들을 선택해 알맞게 꽂으세요',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    fontSize: 40,
+                    color: Colors.black,
+                  ),
             ),
-            const SizedBox(height: 80),
-            const AnimatedTextWidget(
-              text: '2. 중간중간에 꼬치 가격을 물어볼거에요',
-              fontSize: 40,
-              color: Colors.black,
+            const SizedBox(height: 40),
+            Text(
+              '2. 중간중간에 꼬치 가격을 물어볼거에요',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    fontSize: 40,
+                    color: Colors.black,
+                  ),
             ),
-            const SizedBox(height: 80),
-            const AnimatedTextWidget(
-              text: '3.  게임이 끝나면 점수가 나옵니다!!',
-              fontSize: 40,
-              color: Colors.black,
+            const SizedBox(height: 40),
+            Text(
+              '3.  게임이 끝나면 점수가 나옵니다!!',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    fontSize: 40,
+                    color: Colors.black,
+                  ),
             ),
-            const SizedBox(height: 200),
-            const AnimatedTextWidget(
-              text: '=> 앞으로도 좋은 매출을 위해 맛있는 꼬치를 만들어 주세요!!',
-              fontSize: 40,
-              color: Color(0x99000000),
+            const SizedBox(height: 100),
+            Text(
+              '앞으로도 맛있는 꼬치를 만들어 주세요!!',
+              style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                    fontSize: 40,
+                    color: const Color.fromARGB(255, 63, 63, 63),
+                  ),
             ),
-            InkWell(
+            GestureDetector(
               onTap: () {
                 if (name.isNotEmpty) {
                   // 데이터를 파이어베이스에 저장
-                  fireDBQuery.addData(GameModel(
-                    name: name,
-                    gochiScore: 0,
-                    calScore: 0,
-                  ));
+                  fireDBQuery.addData(
+                    GameModel(
+                      name: name,
+                      gochiScore: 0,
+                      calScore: 0,
+                    ),
+                  );
                   globalName = name;
                   fireDBQuery.getFirebaseData(ranks);
                   // 이미지를 눌렀을 때 수행할 동작을 여기에 작성
@@ -142,16 +152,14 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
                   );
                 }
               },
-              child: Row(
-                children: [
-                  const Spacer(), // 텍스트와 이미지 사이 공간을 확보
-                  Image.asset(
-                    'assets/images/ehwkd.png',
-                    width: 470,
-                    height: 400,
-                    fit: BoxFit.fill,
-                  ),
-                ],
+              child: Padding(
+                padding: const EdgeInsets.only(left: 400),
+                child: Image.asset(
+                  'assets/images/ehwkd.png',
+                  width: 550,
+                  height: 380,
+                  fit: BoxFit.fill,
+                ),
               ),
             )
           ],

@@ -8,12 +8,14 @@ class ChiGameMotion extends StatefulWidget {
   final double positionLeft;
   final double positionTop;
   final String imageName;
-  const ChiGameMotion(
-      {super.key,
-      required this.isSelected,
-      required this.positionLeft,
-      required this.positionTop,
-      required this.imageName});
+
+  const ChiGameMotion({
+    super.key,
+    required this.isSelected,
+    required this.positionLeft,
+    required this.positionTop,
+    required this.imageName,
+  });
 
   @override
   State<ChiGameMotion> createState() => _ChiGameMotionState();
@@ -28,18 +30,22 @@ class _ChiGameMotionState extends State<ChiGameMotion> {
       child: FadeInDown(
         duration: const Duration(milliseconds: 800),
         animate: true,
-        child: SizedBox(
-          height: 200,
-          width: 200,
-          // decoration: const BoxDecoration(
-          //   boxShadow: <BoxShadow>[
-          //     BoxShadow(
-          //       offset: Offset(0, 5),
-          //       blurRadius: 10,
-          //       color: Colors.grey,
-          //     ),
-          //   ],
-          // ),
+        child: Container(
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            color: Colors.white,
+            // border: Border.all(
+            //     color: const Color.fromARGB(255, 246, 236, 225), width: 10),
+            // boxShadow: const <BoxShadow>[
+            //   BoxShadow(
+            //     offset: Offset(0, 5),
+            //     blurRadius: 10,
+            //     color: Colors.grey,
+            //   ),
+            // ],
+          ),
           child: Image.asset('assets/images/foods/${widget.imageName}'),
         ),
       ),

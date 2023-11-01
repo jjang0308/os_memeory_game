@@ -9,7 +9,7 @@ class FiveCountScreen extends StatefulWidget {
 }
 
 class _FiveCountScreenState extends State<FiveCountScreen> {
-  int countdown = 4;
+  int countdown = 2;
 
   @override
   void initState() {
@@ -39,14 +39,14 @@ class _FiveCountScreenState extends State<FiveCountScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Center(
         child: Text(
-          '카운트 다운: $countdown 초',
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 100,
-          ),
+          '가게로 이동 중...',
+          style: Theme.of(context).textTheme.titleSmall!.copyWith(
+                fontSize: 40,
+                color: const Color.fromARGB(255, 63, 63, 63),
+              ),
         ),
       ),
     );

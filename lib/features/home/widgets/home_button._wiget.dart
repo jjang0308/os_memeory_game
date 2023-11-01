@@ -41,7 +41,7 @@ class _HomeButtonWidgetState extends State<HomeButtonWidget> {
           widget.buttonName,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 150,
+            fontSize: screenWidth * 0.15,
             color: Theme.of(context).colorScheme.tertiaryContainer,
             fontFamily: "Maple-Bold",
             shadows: const <Shadow>[
