@@ -106,13 +106,13 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
+    //랜덤 만들어주는 곳
     List<int> chiList = [];
     int chiNum = Random().nextInt(5) + 1;
     for (int i = 0; i < chiNum; i++) {
       int chiIndex = Random().nextInt(10);
       chiList.add(chiIndex);
     }
-    print(chiList);
 
     return Scaffold(
       backgroundColor: Theme.of(context).secondaryHeaderColor,
@@ -195,7 +195,9 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ChiGameScreen(),
+                    builder: (context) => ChiGameScreen(
+                      chiIndex: chiList,
+                    ),
                   ),
                 );
               },
