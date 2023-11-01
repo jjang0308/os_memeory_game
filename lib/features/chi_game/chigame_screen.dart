@@ -6,8 +6,6 @@ import 'package:os_memory_game/features/chi_game/last_screen.dart';
 import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 import 'package:os_memory_game/main.dart';
 
-import '../../random/random_order_screen.dart';
-
 List<Map<String, dynamic>> buttonImages = [
   {
     'index': 0,
@@ -71,24 +69,9 @@ List<Map<String, dynamic>> buttonImages = [
   },
 ];
 
-// // 왼쪽 버튼 속성 리스트
-// List<Map<String, dynamic>> leftButtonImages = [
-
-// ];
-
-// int getRandomPrice() {
-//   var rand = Random();
-//   return rand.nextInt(6000)+
-//       3000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
-// }
-
-//변경
-
-// int price = getRandomPrice();
-
-//스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
   final List chiIndex;
+
   const ChiGameScreen({super.key, required this.chiIndex});
 
   @override
@@ -105,7 +88,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-
+    int score = widget.score;
     void onFoodSelected(int index, String imageName) {
       setState(() {
         {
@@ -132,29 +115,32 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
 
     if (selectedChi.length == widget.chiIndex.length) {
       bool isCorrect = listEquals(selectedChi, widget.chiIndex);
-      Future.delayed(const Duration(seconds: 1), () {
-        // 이미지 선택 상태 초기화
-        selectedImageNames = List.filled(5, '');
-        selectedChi.clear();
+      Future.delayed(
+        const Duration(seconds: 1),
+        () {
+          // 이미지 선택 상태 초기화
+          selectedImageNames = List.filled(5, '');
+          selectedChi.clear();
 
-        if (isCorrect) {
-          globalPrice = getRandomPrice();
-          // globalScore += 10;
-          // 일치하는 경우 RandomOrderScreen으로 이동
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const RandomOrderScreen(),
-            ),
-          );
-        } else {
-          // 일치하지 않는 경우 LastScreen으로 이동
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const LastScreen(),
-            ),
-          );
-        }
-      });
+          if (isCorrect) {
+            globalPrice = getRandomPrice();
+            score++;
+            // 일치하는 경우 RandomOrderScreen으로 이동
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const CarculatorGameScreen(),
+              ),
+            );
+          } else {
+            // 일치하지 않는 경우 LastScreen으로 이동
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const LastScreen(),
+              ),
+            );
+          }
+        },
+      );
     }
 
     return Scaffold(
@@ -359,8 +345,9 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) =>
-                            const CarculatorGameScreen(), // HomeScreen 위젯으로 이동
+                        builder: (context) => CarculatorGameScreen(
+                          score: widget.score,
+                        ), // HomeScreen 위젯으로 이동
                       ),
                     );
                   },

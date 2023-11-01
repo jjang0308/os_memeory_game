@@ -4,7 +4,8 @@ import 'dart:math';
 import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
 
 class RandomOrderScreen extends StatefulWidget {
-  const RandomOrderScreen({Key? key}) : super(key: key);
+  final int score;
+  const RandomOrderScreen({Key? key, required this.score}) : super(key: key);
 
   @override
   State<RandomOrderScreen> createState() => _RandomOrderScreenState();
@@ -12,7 +13,6 @@ class RandomOrderScreen extends StatefulWidget {
 
 class _RandomOrderScreenState extends State<RandomOrderScreen> {
   final List<String> allImageUrls = [
-  
     'assets/images/pimang.png',
     'assets/images/RHcl.png',
     'assets/images/foods/bacon.png',
@@ -49,6 +49,7 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    int score = 0;
     double screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -100,7 +101,9 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>  const ChiGameScreen(chiIndex: [],),
+                    builder: (context) => const ChiGameScreen(
+                      chiIndex: [],
+                    ),
                   ),
                 );
               },

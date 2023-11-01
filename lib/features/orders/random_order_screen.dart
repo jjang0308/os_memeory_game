@@ -71,7 +71,9 @@ List<Map<String, dynamic>> buttonImages = [
 ];
 
 class RandomOrderScreen extends StatefulWidget {
-  const RandomOrderScreen({Key? key}) : super(key: key);
+  const RandomOrderScreen({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<RandomOrderScreen> createState() => _RandomOrderScreenState();
@@ -81,7 +83,7 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
   final List<String> allImageUrls = [];
 
   List<String> selectedImages = [];
-
+  int score = 0;
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;

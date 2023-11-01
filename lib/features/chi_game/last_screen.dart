@@ -7,7 +7,9 @@ import 'package:os_memory_game/features/rank/rank_screen.dart';
 import '../home/home_screen.dart';
 
 class LastScreen extends StatefulWidget {
-  const LastScreen({super.key});
+  const LastScreen({
+    super.key,
+  });
 
   @override
   State<LastScreen> createState() => _LastScreenState();
