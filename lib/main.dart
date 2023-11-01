@@ -2,9 +2,16 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'dart:math';
 
 String globalName = '';
-int globalPrice = 0;
+
+int getRandomPrice() {
+  var rand = Random();
+  return (rand.nextInt(4) + 3) * 500; // 1000 ~ 2500 사이의 500원 단위 랜덤 값
+}
+
+int globalPrice = getRandomPrice();
 
 void main() {
   runApp(const MyApp());

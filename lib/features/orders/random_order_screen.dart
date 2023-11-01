@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+import 'package:os_memory_game/main.dart';
 
 import '../chi_game/chigame_motion.dart';
 
@@ -169,6 +170,16 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
                 );
               },
               child: const Icon(Icons.arrow_forward),
+            ),
+          ),
+          Positioned(
+            top: screenHeight * 0.18,
+            left: screenWidth * 0.02,
+            child: Text(
+              "가격: $globalPrice원",
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  color: Theme.of(context).primaryColorDark,
+                  fontSize: screenWidth * 0.08),
             ),
           ),
           for (int i = 0; i < chiNum; i++)
