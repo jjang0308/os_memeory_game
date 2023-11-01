@@ -121,6 +121,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
       });
     }
 
+bool isEquals =  selectedChi.equals(widget.chiIndex);
     print(widget.chiIndex);
     print(selectedChi);
     return Scaffold(
@@ -353,17 +354,17 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                     positionTop: 1050 - (i * 150),
                     imageName: selectedImageNames[i],
                   ),
-              // if (selectedChi.length == widget.chiIndex.length)
-              //   Positioned(
-              //     top: screenHeight * 0.25,
-              //     left: screenWidth * 0.1,
-              //     child: Icon(
-              //       selectedChi.equals(widget.chiIndex)
-              //           ? Icons.panorama_fish_eye
-              //           : Icons.close,
-              //       size: screenWidth * 0.8,
-              //     ),
-              //   ),
+              if (selectedChi.length == widget.chiIndex.length)
+                Positioned(
+                  top: screenHeight * 0.25,
+                  left: screenWidth * 0.1,
+                  child: Icon(
+                    selectedChi.(widget.chiIndex)
+                        ? Icons.panorama_fish_eye
+                        : Icons.close,
+                    size: screenWidth * 0.8,
+                  ),
+                ),
             ],
           ),
         ],
