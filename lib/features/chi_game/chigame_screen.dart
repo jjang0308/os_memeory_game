@@ -86,7 +86,7 @@ List<Map<String, dynamic>> buttonImages = [
 //변경
 List<Widget> imageWidgets = [];
 String selectedImageName = '';
-List<String> selectedImageNames = List.filled(5, '');
+List<String> selectedImageNames = [];
 
 String name = '';
 

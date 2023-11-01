@@ -119,42 +119,13 @@ class _LastScreenState extends State<LastScreen> {
               height: 30,
             ),
             ElevatedButton(
-              onPressed: () async {
-                // 사용자의 이름을 입력받는 다이얼로그를 표시합니다.
-                String name = await showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: const Text('사용자 이름 입력'),
-                      content: TextField(
-                        controller:
-                            TextEditingController(), // 사용자 이름을 입력 받는 텍스트 필드
+              onPressed: ()  {
+                Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const HomeScreen(), // HomeScreen 위젯으로 이동
                       ),
-                      actions: <Widget>[
-                        TextButton(
-                          child: const Text('확인'),
-                          onPressed: () {
-                            Navigator.of(context).pop(
-                              (context.widget as AlertDialog).content as String,
-                            );
-                          },
-                        ),
-                      ],
                     );
-                  },
-                );
-
-                if (name.isNotEmpty) {
-                  // 데이터를 파이어베이스에 저장
-                  await fireDBQuery.addData(GameModel(
-                    name: name,
-                    gochiScore: 0,
-                    calScore: 0,
-                  ));
-                  // 이미지를 눌렀을 때 수행할 동작을 여기에 작성
-                  // 데이터를 가져와야 하므로 fetchRankData 함수를 호출합니다.
-                  fireDBQuery.getFirebaseData(ranks);
-                }
               },
               style: ButtonStyle(
                 minimumSize: MaterialStateProperty.all(const Size(850, 100)),
