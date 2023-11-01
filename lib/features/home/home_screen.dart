@@ -1,13 +1,24 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/argument/argument_screen.dart';
-// import 'package:os_memory_game/database/sample.dart';
+
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
-// import 'package:os_memory_game/features/orders/order_screen.dart';
+
 import 'package:os_memory_game/features/rank/rank_screen.dart';
-// import 'package:sqflite/sqflite.dart';
-// import 'package:audioplayers/audioplayers.dart';
 import 'package:audioplayers/audioplayers.dart';
+
+List<Map<String, dynamic>> buttonImages = [
+  {'imageName': 'eggplant.png', 'boxColor': const Color(0xFF60305F)},
+  {'imageName': 'meat.png', 'boxColor': const Color(0xFFCB4144)},
+  {'imageName': 'tomato.png', 'boxColor': const Color(0xFFEC4A4A)},
+  {'imageName': 'potato.png', 'boxColor': const Color(0xffC49C4A)},
+  {'imageName': 'shrimp.png', 'boxColor': const Color(0xffFC5428)},
+  {'imageName': 'bacon.png', 'boxColor': const Color(0xffD85849)},
+  {'imageName': 'broccoli.png', 'boxColor': const Color(0xff8BA442)},
+  {'imageName': 'carrot.png', 'boxColor': const Color(0xffEE771B)},
+  {'imageName': 'cheese.png', 'boxColor': const Color(0xffF7BA00)},
+  {'imageName': 'corn.png', 'boxColor': const Color(0xffFEDF49)},
+];
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

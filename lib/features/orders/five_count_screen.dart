@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/random/random_order_screen.dart';
+import 'package:os_memory_game/features/orders/random_order_screen.dart';
 
 class FiveCountScreen extends StatefulWidget {
   const FiveCountScreen({Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class FiveCountScreen extends StatefulWidget {
 }
 
 class _FiveCountScreenState extends State<FiveCountScreen> {
-  int countdown = 5;
+  int countdown = 4;
 
   @override
   void initState() {
