@@ -5,6 +5,7 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 import 'dart:math';
 
 String globalName = '';
+int gochiScore =0;
 
 int getRandomPrice() {
   var rand = Random();
