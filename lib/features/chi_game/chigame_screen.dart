@@ -86,7 +86,7 @@ List<Map<String, dynamic>> buttonImages = [
 //변경
 List<Widget> imageWidgets = [];
 String selectedImageName = '';
-List<String> selectedImageNames = [];
+List<String> selectedImageNames = [''];
 
 String name = '';
 
@@ -144,6 +144,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
 
     if (isCorrect) {
       globalPrice = getRandomPrice();
+      
       // 일치하는 경우 RandomOrderScreen으로 이동
       Navigator.of(context).push(
         MaterialPageRoute(
