@@ -156,7 +156,7 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
                 padding: const EdgeInsets.only(left: 400),
                 child: Image.asset(
                   'assets/images/ehwkd.png',
-                  width: 550,
+                  width: 650,
                   height: 380,
                   fit: BoxFit.fill,
                 ),

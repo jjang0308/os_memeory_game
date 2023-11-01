@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:os_memory_game/main.dart';
 
 import '../chi_game/chigame_motion.dart';
+import '../chi_game/chigame_screen.dart';
 
 List<Map<String, dynamic>> buttonImages = [
   {
@@ -163,23 +164,23 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
               ),
             ),
           ),
-          // Positioned(
-          //   bottom: 40,
-          //   left: screenWidth * 0.49,
-          //   child: FloatingActionButton(
-          //     onPressed: () {
-          //       Navigator.pushReplacement(
-          //         context,
-          //         MaterialPageRoute(
-          //           builder: (context) => ChiGameScreen(
-          //             chiIndex: chiList,
-          //           ),
-          //         ),
-          //       );
-          //     },
-          //     child: const Icon(Icons.arrow_forward),
-          //   ),
-          // ),
+          Positioned(
+            bottom: 40,
+            left: screenWidth * 0.49,
+            child: FloatingActionButton(
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ChiGameScreen(
+                      chiIndex: chiList,
+                    ),
+                  ),
+                );
+              },
+              child: const Icon(Icons.arrow_forward),
+            ),
+          ),
           Positioned(
             top: screenHeight * 0.18,
             left: screenWidth * 0.25,

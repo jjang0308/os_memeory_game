@@ -97,17 +97,12 @@ class ChiGameScreen extends StatefulWidget {
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
   bool isButtonPressed = false;
-  // String name = '';
+
   List<int> selectedChi = [];
-  List<String> selectedImageNames = [];
+  List<String> selectedImageNames = [''];
   List<Color> selectedColor = [];
   @override
   Widget build(BuildContext context) {
-    // List<Widget> imageWidgets = [];
-    // String selectedImageName = '';
-
-    // String name = '';
-
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 

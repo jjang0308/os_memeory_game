@@ -9,7 +9,7 @@ class FiveCountScreen extends StatefulWidget {
 }
 
 class _FiveCountScreenState extends State<FiveCountScreen> {
-  int countdown = 2;
+  int countdown = 1;
 
   @override
   void initState() {

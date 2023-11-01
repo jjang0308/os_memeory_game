@@ -48,7 +48,10 @@ class _ChiGameMotionState extends State<ChiGameMotion> {
             //   ),
             // ],
           ),
-          child: Image.asset('assets/images/foods/${widget.imageName}'),
+          padding: const EdgeInsets.all(10),
+          child: Image.asset(
+            'assets/images/foods/${widget.imageName}',
+          ),
         ),
       ),
     );
