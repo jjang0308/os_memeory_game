@@ -120,13 +120,9 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     }
 
     void deleteButton() {
-      if (selectedImageNames.isNotEmpty) {
-        int lastIndex = selectedImageNames.lastIndexOf(''); // 마지막 빈 인덱스를 찾습니다.
-        if (lastIndex != -1) {
-          selectedImageNames[lastIndex] = ''; // 마지막 빈 인덱스를 지웁니다.
-          setState(() {});
-        }
-      }
+      setState(() {
+        selectedImageNames = ['', '', '', '', '']; // selectedImageNames 초기화
+      });
     }
 
     print(widget.chiIndex);

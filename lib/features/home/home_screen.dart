@@ -1,11 +1,13 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/argument/argument_screen.dart';
+import 'package:os_memory_game/database/game_db_query.dart';
 
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 
 import 'package:os_memory_game/features/rank/rank_screen.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:os_memory_game/model/game_model.dart';
 
 List<Map<String, dynamic>> buttonImages = [
   {'imageName': 'eggplant.png', 'boxColor': const Color(0xFF60305F)},
@@ -28,20 +30,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  AudioPlayer audioPlayer = AudioPlayer();
-
-  void playMusic() async {
-    int result = await audioPlayer.play(
-      'assetsonlymp3.to - Duggy Happiness In The Sky-zLVockthFuk-192k-1698835451.mp3', // 음악 파일 경로를 설정합니다.
-      isLocal: true, // 로컬 파일임을 표시합니다.
-    );
-    if (result == 1) {
-      // 재생 성공
-    } else {
-      // 재생 실패
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -58,7 +46,13 @@ class _HomeScreenState extends State<HomeScreen> {
       );
     }
 
+    void fetchRankData() async {
+      List<GameModel> ranks = []; // 데이터를 저장할 목록을 생성합니다.
+      await FireDBQuery().getFirebaseData(ranks);
+    }
+
     void onRankPressed() {
+      fetchRankData();
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const RankScreen(),
@@ -81,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
             left: screenWidth * 0.1,
             child: HomeButtonWidget(
               onPressed: () {
-                playMusic(); // 음악 재생 함수 호출
+                // 음악 재생 함수 호출
                 onStartPressed();
               },
               buttonName: '게임시작',
@@ -217,7 +211,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void dispose() {
-    audioPlayer.dispose(); // 페이지를 나갈 때 오디오 플레이어를 정리합니다.
+    // 페이지를 나갈 때 오디오 플레이어를 정리합니다.
     super.dispose();
   }
 }
