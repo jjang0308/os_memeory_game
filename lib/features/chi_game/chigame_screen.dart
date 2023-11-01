@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/calculator_game/calculator_game_screen.dart';
 import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
@@ -121,7 +122,6 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
       });
     }
 
-bool isEquals =  selectedChi.equals(widget.chiIndex);
     print(widget.chiIndex);
     print(selectedChi);
     return Scaffold(
@@ -359,7 +359,8 @@ bool isEquals =  selectedChi.equals(widget.chiIndex);
                   top: screenHeight * 0.25,
                   left: screenWidth * 0.1,
                   child: Icon(
-                    selectedChi.(widget.chiIndex)
+                    // selectedChi.(widget.chiIndex)
+                    listEquals(selectedChi, widget.chiIndex)
                         ? Icons.panorama_fish_eye
                         : Icons.close,
                     size: screenWidth * 0.8,
