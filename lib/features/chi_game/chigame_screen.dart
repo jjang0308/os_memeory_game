@@ -90,7 +90,7 @@ int price = getRandomPrice();
 
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
-  const ChiGameScreen({super.key});
+  const ChiGameScreen({super.key, required List<int> chiIndex});
 
   @override
   State<ChiGameScreen> createState() => _ChiGameScreenState(); //장혁 바보

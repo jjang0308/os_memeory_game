@@ -1,8 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+import 'package:os_memory_game/features/chi_game/last_screen.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
-import 'package:os_memory_game/last_screen/last_screen.dart';
+
 import 'package:os_memory_game/main.dart';
 
 class CarculatorGameScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
           // 일치하는 경우 HomeScreen으로 이동
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const ChiGameScreen(),
+              builder: (context) => const ChiGameScreen(chiIndex: [],),
             ),
           );
         } else {
