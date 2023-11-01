@@ -9,9 +9,6 @@ import 'package:os_memory_game/model/game_model.dart';
 import '../features/rank/rank_screen.dart';
 
 import '../main.dart';
- 
- 
- 
 
 class ArgumentScreen extends StatefulWidget {
   const ArgumentScreen({Key? key}) : super(key: key);
@@ -23,108 +20,13 @@ class ArgumentScreen extends StatefulWidget {
 class _ArgumentScreenState extends State<ArgumentScreen> {
   String name = ''; // 사용자 입력을 저장할 변수
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
-  // Firebase Firestore 데이터를 로컬 데이터베이스에 동기화
-  Future<void> syncDataFromFirestoreToLocal() async {
-    final QuerySnapshot querySnapshot =
-        await firestore.collection('gochiGame').get(); //테이블 명
-
-    if (querySnapshot.docs.isNotEmpty) {
-      await GameDBQuery.clearData();
-      for (final doc in querySnapshot.docs) {
-        final data = doc.data() as Map<String, dynamic>;
-        final rank = Rank(
-          name: data['name'],
-          gochiScore: data['gochiScore'],
-          calScore: data['calScore'],
-        );
-        for (GameModel rank in ranks) {
-          GameDBQuery.insertModelListDB(rank); //로컬 데이터에 저장
-        }
-      }
-    }
-  }
-
-  // 데이터 추가
-  Future<void> addData(Rank rank) async {
-    try {
-      await firestore.collection('gochiGame').add({
-        'name': rank.name,
-        'gochiScore': rank.gochiScore,
-        'calScore': rank.calScore,
-      });
-    } catch (e) {
-      print('오류 발생: $e');
-    }
-  }
-
-// 원격데이터에서 로컬 데이터로 가져오기
-  void getFirebaseData() async {
-    try {
-      QuerySnapshot querySnapshot =
-          await firestore.collection('gochiGame').get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        ranks.clear(); // 현재 목록 지우기
-        for (var doc in querySnapshot.docs) {
-          var data = doc.data() as Map<String, dynamic>;
-          final rank = Rank(
-            name: data['name'],
-            gochiScore: data['gochiScore'],
-            calScore: data['calScore'],
-          );
-          for (GameModel rank in ranks) {
-            ranks.add(rank);
-          }
-          setState(() {});
-          // 가져온 데이터를 ranks 목록에 추가
-        }
-      }
-    } catch (e) {
-      print('데이터 가져오기 중 오류 발생: $e');
-    }
-  }
+  FireDBQuery fireDBQuery = FireDBQuery();
 
   @override
   void initState() {
     super.initState();
     // 데이터베이스에서 랭킹 데이터를 불러오는 부분
-    loadRankData(); //로컬 데이터를 원격 데이터에 저장
-    syncDataFromFirestoreToLocal(); // 원격 데이터를 로컬데이터로 가져오기
-  }
-
-  // 데이터베이스에서 랭킹 데이터를 불러오는 함수
-  void insertData() async {
-    for (GameModel rank in ranks) {
-      GameDBQuery.insertModelListDB(rank);
-    }
-    setState(() {});
-  }
-
-//로컬 데이터를 원격 데이터에 저장
-  Future<void> loadRankData() async {
-    final localData = await GameDBQuery.getModelListDB();
-
-    if (localData.isNotEmpty) {
-      setState(() {
-        ranks = localData;
-      });
-    } else {
-      final querySnapshot = await firestore.collection('gochiGame').get();
-      if (querySnapshot.docs.isNotEmpty) {
-        ranks.clear();
-        for (final doc in querySnapshot.docs) {
-          final data = doc.data();
-          final rank = GameModel(
-            name: data['name'],
-            gochiScore: data['gochiScore'],
-            calScore: data['calScore'],
-          );
-          ranks.add(rank);
-        }
-        setState(() {});
-      }
-    }
+    fireDBQuery.getFirebaseData(ranks);
   }
 
   @override
@@ -224,23 +126,21 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
             ),
             InkWell(
               onTap: () {
-                globalName =name;
                 if (name.isNotEmpty) {
-                  addData(Rank(name: name, gochiScore: 0, calScore: 0));
-                  final rankModel = GameModel(
+                  // 데이터를 파이어베이스에 저장
+                  fireDBQuery.addData(GameModel(
                     name: name,
                     gochiScore: 0,
                     calScore: 0,
+                  ));
+                  globalName = name;
+                  fireDBQuery.getFirebaseData(ranks);
+                  // 이미지를 눌렀을 때 수행할 동작을 여기에 작성
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const ChiGameScreen()),
                   );
-                  GameDBQuery.insertModelListDB(rankModel);
                 }
-                // 이미지를 눌렀을 때 수행할 동작을 여기에 작성
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    
-                      builder: (context) =>  const ChiGameScreen()),
-                      
-                );
               },
               child: Row(
                 children: [
