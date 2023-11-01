@@ -83,11 +83,6 @@ List<Map<String, dynamic>> buttonImages = [
 // }
 
 //변경
-List<Widget> imageWidgets = [];
-String selectedImageName = '';
-List<String> selectedImageNames = [];
-
-String name = '';
 
 // int price = getRandomPrice();
 
@@ -102,10 +97,17 @@ class ChiGameScreen extends StatefulWidget {
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
   bool isButtonPressed = false;
-  String name = '';
+  // String name = '';
   List<int> selectedChi = [];
+  List<String> selectedImageNames = [];
+  List<Color> selectedColor = [];
   @override
   Widget build(BuildContext context) {
+    // List<Widget> imageWidgets = [];
+    // String selectedImageName = '';
+
+    // String name = '';
+
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
@@ -200,6 +202,8 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                                 onFoodSelected(
                                     index, buttonImages[index]['imageName']);
                                 selectedChi.add(index);
+                                selectedColor
+                                    .add(buttonImages[index]['boxColor']);
                               },
                             ),
                           ],
@@ -219,6 +223,8 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                                   buttonImages[index + 5]['imageName'],
                                 );
                                 selectedChi.add(index + 5);
+                                selectedColor
+                                    .add(buttonImages[index + 5]['boxColor']);
                               },
                             ),
                           ],
@@ -381,8 +387,9 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   ChiGameMotion(
                     isSelected: true,
                     positionLeft: 310, // 꼬치에 꽂힌 이미지 간격 조절
-                    positionTop: 800 - (i * 120),
-                    imageName: selectedImageNames[i], boxColor: Colors.white,
+                    positionTop: 800 - (i * 140),
+                    imageName: selectedImageNames[i],
+                    boxColor: selectedColor[i],
                   ),
               if (selectedChi.length == widget.chiIndex.length)
                 Container(

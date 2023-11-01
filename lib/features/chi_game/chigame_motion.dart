@@ -8,6 +8,7 @@ class ChiGameMotion extends StatefulWidget {
   final double positionLeft;
   final double positionTop;
   final String imageName;
+  final Color boxColor;
 
   const ChiGameMotion({
     super.key,
@@ -15,6 +16,7 @@ class ChiGameMotion extends StatefulWidget {
     required this.positionLeft,
     required this.positionTop,
     required this.imageName,
+    required this.boxColor,
   });
 
   @override
@@ -35,7 +37,7 @@ class _ChiGameMotionState extends State<ChiGameMotion> {
           height: 150,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(50),
-            color: Colors.white,
+            color: widget.boxColor,
             // border: Border.all(
             //     color: const Color.fromARGB(255, 246, 236, 225), width: 10),
             // boxShadow: const <BoxShadow>[

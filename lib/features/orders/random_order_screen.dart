@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
 import 'package:os_memory_game/main.dart';
 
 import '../chi_game/chigame_motion.dart';
@@ -147,47 +146,66 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
             ),
           ),
           Positioned(
+            top: screenHeight * 0.37,
             left: screenWidth * 0.49,
             child: Container(
               width: 10,
-              height: screenHeight * 0.7,
-              color: Colors.brown,
-              margin: EdgeInsets.symmetric(vertical: screenHeight * 0.25),
-            ),
-          ),
-          Positioned(
-            bottom: 40,
-            left: screenWidth * 0.49,
-            child: FloatingActionButton(
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ChiGameScreen(
-                      chiIndex: chiList,
-                    ),
+              height: screenHeight * 0.6,
+              decoration: BoxDecoration(
+                color: Theme.of(context).primaryColorDark,
+                boxShadow: const <BoxShadow>[
+                  BoxShadow(
+                    offset: Offset(0, 3),
+                    blurRadius: 5,
+                    color: Colors.grey,
                   ),
-                );
-              },
-              child: const Icon(Icons.arrow_forward),
+                ],
+              ),
             ),
           ),
+          // Positioned(
+          //   bottom: 40,
+          //   left: screenWidth * 0.49,
+          //   child: FloatingActionButton(
+          //     onPressed: () {
+          //       Navigator.pushReplacement(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => ChiGameScreen(
+          //             chiIndex: chiList,
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //     child: const Icon(Icons.arrow_forward),
+          //   ),
+          // ),
           Positioned(
             top: screenHeight * 0.18,
-            left: screenWidth * 0.02,
+            left: screenWidth * 0.25,
             child: Text(
               "가격: $globalPrice원",
-              style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                  color: Theme.of(context).primaryColorDark,
-                  fontSize: screenWidth * 0.08),
+              style: TextStyle(
+                fontSize: screenWidth * 0.08,
+                color: const Color.fromARGB(255, 133, 95, 81),
+                fontFamily: "Maple-Bold",
+                shadows: const <Shadow>[
+                  Shadow(
+                    offset: Offset(0, 3),
+                    blurRadius: 10,
+                    color: Colors.grey,
+                  ),
+                ],
+              ),
             ),
           ),
           for (int i = 0; i < chiNum; i++)
             ChiGameMotion(
               isSelected: true,
-              positionLeft: screenWidth * 0.35, // 꼬치에 꽂힌 이미지 간격 조절
-              positionTop: 730 - (i * 130),
+              positionLeft: screenWidth * 0.39, // 꼬치에 꽂힌 이미지 간격 조절
+              positionTop: 900 - (i * 150),
               imageName: buttonImages[chiList[i]]['imageName'],
+              boxColor: buttonImages[chiList[i]]['boxColor'],
             ),
         ],
       ),
