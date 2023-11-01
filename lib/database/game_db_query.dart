@@ -1,74 +1,75 @@
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:os_memory_game/model/game_model.dart';
 
-import '../model/game_model.dart';
+class FireDBQuery {
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+//파이어베이스에서 데이터를 가져와주는 함수
+  Future<void> getFirebaseData(List<GameModel> ranks) async {
+    try {
+      QuerySnapshot querySnapshot = await firestore
+          .collection('gochiGame')
+          .orderBy('gochiScore', descending: true)
+          .orderBy('calScore', descending: true)
+          .get();
 
-class GameDBQuery {
-  static late Database _database;
-//get은 _database를 외부에서 사용할 수 있도록 하는 메소드임
-  static Future<Database?> get database async {
-    _database = await initDB();
-    return _database;
+      if (querySnapshot.docs.isNotEmpty) {
+        ranks.clear();
+        ranks.addAll(querySnapshot.docs.map((doc) {
+          var data = doc.data() as Map<String, dynamic>;
+          return GameModel(
+            name: data['name'],
+            gochiScore: data['gochiScore'],
+            calScore: data['calScore'],
+          );
+        }).toList());
+      }
+    } catch (e) {
+      print('데이터 가져오기 중 오류 발생: $e');
+    }
   }
 
-  static initDB() async {
-    String path = join(await getDatabasesPath(), 'GameInfo');
-
-    // Delete the database
-    await deleteDatabase(path);
-
-    return await openDatabase(path, version: 1, onCreate: (db, version) async {
-      //테이블 생성
-      await db.execute(
-          "CREATE TABLE GameInfo( name CHAR(10) NOT NULL, gochiScore INT NOT NULL, calScore INT NOT NULL)");
-    }, onUpgrade: (db, oldVersion, newVersion) {});
+//데이터를 파이어베이스에 추가해주는 함수
+  Future<void> addData(GameModel rank) async {
+    try {
+      await firestore.collection('gochiGame').add(rank.toMap());
+    } catch (e) {
+      print('오류 발생: $e');
+    }
   }
 
-//DB에 삽입해줌
-  static void insertModelListDB(GameModel gameInfo) async {
-    final db = await database;
-
-    await db!.insert(
-      'GameInfo',
-      gameInfo.toMap(),
-      conflictAlgorithm: ConflictAlgorithm.replace,
-    );
+  // 다음 함수를 사용하여 Firestore의 'gochiGame' 컬렉션 내의 모든 문서를 삭제할 수 있습니다.
+  Future<void> clearGameData() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await firestore.collection('gochiGame').get();
+      for (QueryDocumentSnapshot document in querySnapshot.docs) {
+        await document.reference.delete();
+      }
+    } catch (e) {
+      print('데이터 삭제 중 오류 발생: $e');
+    }
   }
 
-// 모델을 리스트로 바꿔주고 거기에 DB값을 저장
-  static Future<List<GameModel>> getModelListDB() async {
-    final db = await database;
-    final List<Map<String, dynamic>> maps = await db!.query('GameInfo');
+  Future<void> deleteFirstData() async {
+    try {
+      QuerySnapshot querySnapshot = await firestore
+          .collection('gochiGame')
+          .orderBy(FieldPath.documentId) // 문서 ID 순으로 정렬
+          .limit(1) // 첫 번째 데이터만 가져오기
+          .get();
 
-    return List.generate(maps.length, (index) {
-      return GameModel(
-        name: maps[index]["name"],
-        gochiScore: maps[index]["gochiScore"],
-        calScore: maps[index]["calScore"],
-      );
-    });
-  }
+      if (querySnapshot.docs.isNotEmpty) {
+        // 데이터가 존재하면 첫 번째 데이터의 문서 ID를 가져옵니다.
+        String firstDocumentId = querySnapshot.docs[0].id;
 
-  static Future<List<GameModel>> selectInfo() async {
-    final Database db = _database;
-
-    List<Map<String, dynamic>> data = await db.query(
-      "GameInfo", //테이블 명
-      orderBy: "score ASC", //오름차순으로 정렬
-    );
-
-    return List.generate(data.length, (index) {
-      return GameModel(
-        name: data[index]["name"],
-        gochiScore: data[index]["gochiScore"],
-        calScore: data[index]["calScore"],
-      );
-    });
-  }
-
-  static Future<void> clearData() async {
-    final db = await database;
-    await db!
-        .delete('GameInfo'); // 'GameInfo'를 해당 데이터를 지우려는 테이블의 실제 이름으로 바꿔주세요.
+        // 해당 문서 ID를 사용하여 데이터 삭제
+        await firestore.collection('gochiGame').doc(firstDocumentId).delete();
+        print('첫 번째 데이터 삭제 완료');
+      } else {
+        print('데이터가 없어 삭제할 수 없습니다.');
+      }
+    } catch (e) {
+      print('데이터 삭제 중 오류 발생: $e');
+    }
   }
 }

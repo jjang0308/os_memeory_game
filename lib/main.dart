@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
+
 import 'package:os_memory_game/features/home/home_screen.dart';
+
 String globalName = '';
 void main() {
   runApp(const MyApp());

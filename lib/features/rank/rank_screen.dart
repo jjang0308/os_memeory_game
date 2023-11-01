@@ -4,13 +4,7 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/model/game_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-List<GameModel> ranks = [
-  // GameModel(name: '김태우', gochiScore: 1560, calScore: 1300),
-  // GameModel(name: '이태우', gochiScore: 1460, calScore: 100),
-  // GameModel(name: '박태우', gochiScore: 1360, calScore: 400),
-  // GameModel(name: '최태우', gochiScore: 1260, calScore: 1700),
-  // GameModel(name: '노태우', gochiScore: 1160, calScore: 1090),
-];
+List<GameModel> ranks = [];
 
 class RankScreen extends StatefulWidget {
   const RankScreen({Key? key}) : super(key: key);
@@ -35,107 +29,15 @@ class _RankScreenState extends State<RankScreen> {
   bool isSoundOn = true; // 소리 상태 (켜짐: true, 꺼짐: false)
   // Firestore 변수로 가져오기
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
-  // Firebase Firestore 데이터를 로컬 데이터베이스에 동기화
-  Future<void> syncDataFromFirestoreToLocal() async {
-    final QuerySnapshot querySnapshot =
-        await firestore.collection('gochiGame').get(); //테이블 명
-
-    if (querySnapshot.docs.isNotEmpty) {
-      await GameDBQuery.clearData();
-      for (final doc in querySnapshot.docs) {
-        final data = doc.data() as Map<String, dynamic>;
-        final rank = Rank(
-          name: data['name'],
-          gochiScore: data['gochiScore'],
-          calScore: data['calScore'],
-        );
-        for (GameModel rank in ranks) {
-          GameDBQuery.insertModelListDB(rank); //로컬 데이터에 저장
-        }
-      }
-    }
-  }
-
-  // 데이터 추가
-  Future<void> addData(Rank rank) async {
-    try {
-      await firestore.collection('gochiGame').add({
-        'name': rank.name,
-        'gochiScore': rank.gochiScore,
-        'calScore': rank.calScore,
-      });
-    } catch (e) {
-      print('오류 발생: $e');
-    }
-  }
-
-// 원격데이터에서 로컬 데이터로 가져오기
-  void getFirebaseData() async {
-    try {
-      QuerySnapshot querySnapshot =
-          await firestore.collection('gochiGame').get();
-
-      if (querySnapshot.docs.isNotEmpty) {
-        ranks.clear(); // 현재 목록 지우기
-        for (var doc in querySnapshot.docs) {
-          var data = doc.data() as Map<String, dynamic>;
-          final rank = Rank(
-            name: data['name'],
-            gochiScore: data['gochiScore'],
-            calScore: data['calScore'],
-          );
-          for (GameModel rank in ranks) {
-            ranks.add(rank);
-          }
-          setState(() {});
-          // 가져온 데이터를 ranks 목록에 추가
-        }
-      }
-    } catch (e) {
-      print('데이터 가져오기 중 오류 발생: $e');
-    }
-  }
+  //fireDBQuery파일에서 사용할 함수를 위한 변수 선언
+  FireDBQuery fireDBQuery = FireDBQuery();
 
   @override
   void initState() {
     super.initState();
     // 데이터베이스에서 랭킹 데이터를 불러오는 부분
-    loadRankData(); //로컬 데이터를 원격 데이터에 저장
-    syncDataFromFirestoreToLocal(); // 원격 데이터를 로컬데이터로 가져오기
-  }
 
-  // 데이터베이스에서 랭킹 데이터를 불러오는 함수
-  void insertData() async {
-    for (GameModel rank in ranks) {
-      GameDBQuery.insertModelListDB(rank);
-    }
-    setState(() {});
-  }
-
-//로컬 데이터를 원격 데이터에 저장
-  Future<void> loadRankData() async {
-    final localData = await GameDBQuery.getModelListDB();
-
-    if (localData.isNotEmpty) {
-      setState(() {
-        ranks = localData;
-      });
-    } else {
-      final querySnapshot = await firestore.collection('gochiGame').get();
-      if (querySnapshot.docs.isNotEmpty) {
-        ranks.clear();
-        for (final doc in querySnapshot.docs) {
-          final data = doc.data();
-          final rank = GameModel(
-            name: data['name'],
-            gochiScore: data['gochiScore'],
-            calScore: data['calScore'],
-          );
-          ranks.add(rank);
-        }
-        setState(() {});
-      }
-    }
+    fireDBQuery.getFirebaseData(ranks);
   }
 
   @override
@@ -212,7 +114,7 @@ class _RankScreenState extends State<RankScreen> {
             return Padding(
               padding: const EdgeInsets.only(top: 100),
               child: Text(
-                'Rank$Rank Name: ${gameModel.name}, gochiScore: ${gameModel.gochiScore}, calScore: ${gameModel.calScore}',
+                'Rank$Rank Name: ${gameModel.name}, gochiScore: ${gameModel.gochiScore + gameModel.calScore}',
                 style:
                     const TextStyle(fontSize: 30, fontWeight: FontWeight.w900),
               ),
