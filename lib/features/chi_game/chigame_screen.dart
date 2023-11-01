@@ -240,6 +240,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             ),
           ),
           Positioned(
+            //ypdate
             top: 1500, // 원하는 상단 위치 (상단 여백)
             left: 500, // 원하는 우측 위치 (우측 여백)
             child: ElevatedButton(
