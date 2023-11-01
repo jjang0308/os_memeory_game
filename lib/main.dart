@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+
+import 'package:os_memory_game/last_screen/last_screen.dart';
 
 String globalName = '';
+int globalPrice = 0;
+
 void main() {
   runApp(const MyApp());
   // // 네이티브 코드를 사용하는 경우, 플랫폼간의 통신을 함->비동기적이벤트를 사용하는 경우 사용
@@ -20,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const ChiGameScreen(),
+      home: const LastScreen(),
       theme: FlexThemeData.light(
         scheme: usedScheme,
         textTheme: const TextTheme(

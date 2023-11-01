@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/features/calculator_game/calculator_game_screen.dart';
 import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
 import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
-
+import 'dart:math';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/main.dart';
 
@@ -71,12 +72,20 @@ List<Map<String, dynamic>> leftButtonImages = [
     'boxColor': const Color(0xffFC5428)
   },
 ];
+
+int getRandomPrice() {
+  var rand = Random();
+  return rand.nextInt(10000) +
+      8000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
+}
+
 //변경
 List<Widget> imageWidgets = [];
 String selectedImageName = '';
 List<String> selectedImageNames = List.filled(5, '');
 
 String name = '';
+int price = getRandomPrice();
 
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
@@ -241,7 +250,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 child: IconButton(
                   onPressed: () {
                     selectedImageNames = List.filled(5, '');
-                    print("dasdasdaSD");
+                    // print(selectedImageNames.size);
                     // 버튼을 눌렀을 때 HomeScreen으로 이동
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -273,6 +282,26 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 ),
               ),
               Positioned(
+                top: 1500,
+                left: 500,
+                child: IconButton(
+                  // 이미지 버튼을 만듭니다.
+                  onPressed: () {
+                    globalPrice = price;
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const CarculatorGameScreen(), // HomeScreen 위젯으로 이동
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.next_plan, // 이미지 아이콘을 여기에 추가
+                    size: 100, // 이미지 아이콘 크기 설정
+                  ),
+                ),
+              ),
+              Positioned(
                 top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
                 left: screenWidth * 0.5 - 290, // 텍스트의 좌측 위치 조절
                 child: const Text(
@@ -288,7 +317,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   ChiGameMotion(
                     isSelected: true,
                     positionLeft: 470, // 꼬치에 꽂힌 이미지 간격 조절
-                    positionTop: 1000 - (i * 150),
+                    positionTop: 1050 - (i * 150),
                     imageName: selectedImageNames[i],
                   ),
             ],
