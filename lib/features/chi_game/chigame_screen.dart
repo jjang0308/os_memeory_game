@@ -6,72 +6,73 @@ import 'dart:math';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/main.dart';
 
-List<Map<String, dynamic>> rightButtonImages = [
+List<Map<String, dynamic>> buttonImages = [
   {
     'index': 0,
+    'imageName': 'eggplant.png',
+    'text': 'Left Button 1',
+    'boxColor': const Color(0xFF60305F)
+  },
+  {
+    'index': 1,
+    'imageName': 'meat.png',
+    'text': 'Left Button 2',
+    'boxColor': const Color(0xFFCB4144)
+  },
+  {
+    'index': 2,
+    'imageName': 'tomato.png',
+    'text': 'Left Button 3',
+    'boxColor': const Color(0xFFEC4A4A)
+  },
+  {
+    'index': 3,
+    'imageName': 'potato.png',
+    'text': 'Left Button 4',
+    'boxColor': const Color(0xffC49C4A)
+  },
+  {
+    'index': 4,
+    'imageName': 'shrimp.png',
+    'text': 'Left Button 5',
+    'boxColor': const Color(0xffFC5428)
+  },
+  {
+    'index': 5,
     'imageName': 'bacon.png',
     'text': 'Left Button 1',
     'boxColor': const Color(0xffD85849)
   },
   {
-    'index': 1,
+    'index': 6,
     'imageName': 'broccoli.png',
     'text': 'Left Button 2',
     'boxColor': const Color(0xff8BA442)
   },
   {
-    'index': 2,
+    'index': 7,
     'imageName': 'carrot.png',
     'text': 'Left Button 3',
     'boxColor': const Color(0xffEE771B)
   },
   {
-    'index': 3,
+    'index': 8,
     'imageName': 'cheese.png',
     'text': 'Left Button 4',
     'boxColor': const Color(0xffF7BA00)
   },
   {
-    'index': 4,
+    'index': 9,
     'imageName': 'corn.png',
     'text': 'Left Button 5',
     'boxColor': const Color(0xffFEDF49)
   },
 ];
 
-// 왼쪽 버튼 속성 리스트
-List<Map<String, dynamic>> leftButtonImages = [
-  {
-    'index': 5,
-    'imageName': 'eggplant.png',
-    'text': 'Left Button 1',
-    'boxColor': const Color(0xFF60305F)
-  },
-  {
-    'index': 6,
-    'imageName': 'meat.png',
-    'text': 'Left Button 2',
-    'boxColor': const Color(0xFFCB4144)
-  },
-  {
-    'index': 7,
-    'imageName': 'tomato.png',
-    'text': 'Left Button 3',
-    'boxColor': const Color(0xFFEC4A4A)
-  },
-  {
-    'index': 8,
-    'imageName': 'potato.png',
-    'text': 'Left Button 4',
-    'boxColor': const Color(0xffC49C4A)
-  },
-  {
-    'index': 9,
-    'imageName': 'shrimp.png',
-    'text': 'Left Button 5',
-    'boxColor': const Color(0xffFC5428)
-  },
-];
+// // 왼쪽 버튼 속성 리스트
+// List<Map<String, dynamic>> leftButtonImages = [
+
+// ];
 
 int getRandomPrice() {
   var rand = Random();
@@ -146,7 +147,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   bool isSelected = selectedImageNames
-                      .contains(leftButtonImages[index]['imageName']);
+                      .contains(buttonImages[index]['imageName']);
                   return Row(
                     children: [
                       Expanded(
@@ -155,12 +156,12 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ChiGameButton(
-                              boxColor: leftButtonImages[index]['boxColor'],
-                              imageName: leftButtonImages[index]['imageName'],
+                              boxColor: buttonImages[index]['boxColor'],
+                              imageName: buttonImages[index]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
-                                onFoodSelected(index,
-                                    leftButtonImages[index]['imageName']);
+                                onFoodSelected(
+                                    index, buttonImages[index]['imageName']);
                               },
                             ),
                           ],
@@ -171,12 +172,12 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             ChiGameButton(
-                              boxColor: rightButtonImages[index]['boxColor'],
-                              imageName: rightButtonImages[index]['imageName'],
+                              boxColor: buttonImages[index + 5]['boxColor'],
+                              imageName: buttonImages[index + 5]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
                                 onFoodSelected(index,
-                                    rightButtonImages[index]['imageName']);
+                                    buttonImages[index + 5]['imageName']);
                               },
                             ),
                           ],
