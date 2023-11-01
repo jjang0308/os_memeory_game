@@ -1,32 +1,92 @@
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/features/calculator_game/calculator_game_screen.dart';
 import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
 import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
-
+import 'dart:math';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/main.dart';
 
-List<Map<String, dynamic>> rightButtonImages = [
-  {'index': 0, 'imageName': 'bacon.png', 'text': 'Left Button 1'},
-  {'index': 1, 'imageName': 'broccoli.png', 'text': 'Left Button 2'},
-  {'index': 2, 'imageName': 'carrot.png', 'text': 'Left Button 3'},
-  {'index': 3, 'imageName': 'cheese.png', 'text': 'Left Button 4'},
-  {'index': 4, 'imageName': 'corn.png', 'text': 'Left Button 5'},
+List<Map<String, dynamic>> buttonImages = [
+  {
+    'index': 0,
+    'imageName': 'eggplant.png',
+    'text': 'Left Button 1',
+    'boxColor': const Color(0xFF60305F)
+  },
+  {
+    'index': 1,
+    'imageName': 'meat.png',
+    'text': 'Left Button 2',
+    'boxColor': const Color(0xFFCB4144)
+  },
+  {
+    'index': 2,
+    'imageName': 'tomato.png',
+    'text': 'Left Button 3',
+    'boxColor': const Color(0xFFEC4A4A)
+  },
+  {
+    'index': 3,
+    'imageName': 'potato.png',
+    'text': 'Left Button 4',
+    'boxColor': const Color(0xffC49C4A)
+  },
+  {
+    'index': 4,
+    'imageName': 'shrimp.png',
+    'text': 'Left Button 5',
+    'boxColor': const Color(0xffFC5428)
+  },
+  {
+    'index': 5,
+    'imageName': 'bacon.png',
+    'text': 'Left Button 1',
+    'boxColor': const Color(0xffD85849)
+  },
+  {
+    'index': 6,
+    'imageName': 'broccoli.png',
+    'text': 'Left Button 2',
+    'boxColor': const Color(0xff8BA442)
+  },
+  {
+    'index': 7,
+    'imageName': 'carrot.png',
+    'text': 'Left Button 3',
+    'boxColor': const Color(0xffEE771B)
+  },
+  {
+    'index': 8,
+    'imageName': 'cheese.png',
+    'text': 'Left Button 4',
+    'boxColor': const Color(0xffF7BA00)
+  },
+  {
+    'index': 9,
+    'imageName': 'corn.png',
+    'text': 'Left Button 5',
+    'boxColor': const Color(0xffFEDF49)
+  },
 ];
 
-// 왼쪽 버튼 속성 리스트
-List<Map<String, dynamic>> leftButtonImages = [
-  {'index': 5, 'imageName': 'eggplant.png', 'text': 'Left Button 1'},
-  {'index': 6, 'imageName': 'meat.png', 'text': 'Left Button 2'},
-  {'index': 7, 'imageName': 'tomato.png', 'text': 'Left Button 3'},
-  {'index': 8, 'imageName': 'potato.png', 'text': 'Left Button 4'},
-  {'index': 9, 'imageName': 'shrimp.png', 'text': 'Left Button 5'},
-];
+// // 왼쪽 버튼 속성 리스트
+// List<Map<String, dynamic>> leftButtonImages = [
+
+// ];
+
+int getRandomPrice() {
+  var rand = Random();
+  return rand.nextInt(10000) +
+      8000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
+}
+
 //변경
 List<Widget> imageWidgets = [];
 String selectedImageName = '';
 List<String> selectedImageNames = List.filled(5, '');
 
 String name = '';
+int price = getRandomPrice();
 
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
@@ -69,7 +129,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF2C18C),
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Stack(
         children: [
           Positioned(
@@ -94,7 +154,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 itemCount: 5,
                 itemBuilder: (context, index) {
                   bool isSelected = selectedImageNames
-                      .contains(leftButtonImages[index]['imageName']);
+                      .contains(buttonImages[index]['imageName']);
                   return Row(
                     children: [
                       Expanded(
@@ -103,11 +163,12 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ChiGameButton(
-                              imageName: leftButtonImages[index]['imageName'],
+                              boxColor: buttonImages[index]['boxColor'],
+                              imageName: buttonImages[index]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
-                                onFoodSelected(index,
-                                    leftButtonImages[index]['imageName']);
+                                onFoodSelected(
+                                    index, buttonImages[index]['imageName']);
                               },
                             ),
                           ],
@@ -118,11 +179,12 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             ChiGameButton(
-                              imageName: rightButtonImages[index]['imageName'],
+                              boxColor: buttonImages[index + 5]['boxColor'],
+                              imageName: buttonImages[index + 5]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
                                 onFoodSelected(index,
-                                    rightButtonImages[index]['imageName']);
+                                    buttonImages[index + 5]['imageName']);
                               },
                             ),
                           ],
@@ -221,7 +283,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 child: IconButton(
                   onPressed: () {
                     selectedImageNames = List.filled(5, '');
-                    print("dasdasdaSD");
+                    // print(selectedImageNames.size);
                     // 버튼을 눌렀을 때 HomeScreen으로 이동
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -253,6 +315,26 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 ),
               ),
               Positioned(
+                top: 1500,
+                left: 500,
+                child: IconButton(
+                  // 이미지 버튼을 만듭니다.
+                  onPressed: () {
+                    globalPrice = price;
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const CarculatorGameScreen(), // HomeScreen 위젯으로 이동
+                      ),
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.next_plan, // 이미지 아이콘을 여기에 추가
+                    size: 100, // 이미지 아이콘 크기 설정
+                  ),
+                ),
+              ),
+              Positioned(
                 top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
                 left: screenWidth * 0.5 - 290, // 텍스트의 좌측 위치 조절
                 child: const Text(
@@ -268,7 +350,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   ChiGameMotion(
                     isSelected: true,
                     positionLeft: 470, // 꼬치에 꽂힌 이미지 간격 조절
-                    positionTop: 1000 - (i * 150),
+                    positionTop: 1050 - (i * 150),
                     imageName: selectedImageNames[i],
                   ),
             ],
