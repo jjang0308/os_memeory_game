@@ -5,6 +5,7 @@ import 'package:os_memory_game/argument/argument_screen.dart';
 import 'package:os_memory_game/features/home/widgets/home_button._wiget.dart';
 
 import 'package:os_memory_game/features/rank/rank_screen.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 List<Map<String, dynamic>> buttonImages = [
   {'imageName': 'eggplant.png', 'boxColor': const Color(0xFF60305F)},
@@ -27,6 +28,20 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  AudioPlayer audioPlayer = AudioPlayer();
+
+  void playMusic() async {
+    int result = await audioPlayer.play(
+      'assetsonlymp3.to - Duggy Happiness In The Sky-zLVockthFuk-192k-1698835451.mp3', // 음악 파일 경로를 설정합니다.
+      isLocal: true, // 로컬 파일임을 표시합니다.
+    );
+    if (result == 1) {
+      // 재생 성공
+    } else {
+      // 재생 실패
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -60,6 +75,19 @@ class _HomeScreenState extends State<HomeScreen> {
             size: screenWidth,
             color: Theme.of(context).colorScheme.secondary.withOpacity(0.2),
           ),
+          // 재생 버튼을 추가합니다.
+          Positioned(
+            bottom: screenHeight * 0.22,
+            left: screenWidth * 0.1,
+            child: HomeButtonWidget(
+              onPressed: () {
+                playMusic(); // 음악 재생 함수 호출
+                onStartPressed();
+              },
+              buttonName: '게임시작',
+            ),
+          ),
+
           Stack(
             children: [
               Positioned(
@@ -185,5 +213,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    audioPlayer.dispose(); // 페이지를 나갈 때 오디오 플레이어를 정리합니다.
+    super.dispose();
   }
 }
