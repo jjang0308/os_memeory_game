@@ -36,8 +36,8 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const GradientText(
-              text: '00네',
+             GradientText(
+              text: '$name네',
               fontSize: 80,
             ),
             Row(

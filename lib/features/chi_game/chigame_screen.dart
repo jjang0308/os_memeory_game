@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/database/game_db_query.dart';
 import 'package:os_memory_game/features/calculator_game/calculator_game_screen.dart';
 import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
 import 'package:os_memory_game/features/chi_game/last_screen.dart';
@@ -7,7 +8,9 @@ import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 import 'dart:math';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/features/orders/random_order_screen.dart';
+import 'package:os_memory_game/features/rank/rank_screen.dart';
 import 'package:os_memory_game/main.dart';
+import 'package:os_memory_game/model/game_model.dart';
 
 List<Map<String, dynamic>> buttonImages = [
   {
@@ -144,7 +147,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
 
     if (isCorrect) {
       globalPrice = getRandomPrice();
-      
+      globalScore += 10;
       // 일치하는 경우 RandomOrderScreen으로 이동
       Navigator.of(context).push(
         MaterialPageRoute(
@@ -152,6 +155,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
         ),
       );
     } else {
+    
       // 일치하지 않는 경우 LastScreen으로 이동
       Navigator.of(context).push(
             MaterialPageRoute(

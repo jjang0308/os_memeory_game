@@ -87,6 +87,7 @@ class _LastScreenState extends State<LastScreen> {
                 const SizedBox(width: 50), // 버튼 사이의 간격 조절
                 ElevatedButton(
                   onPressed: () {
+                    globalName = '';
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) => const OrderScreen(),
@@ -120,6 +121,7 @@ class _LastScreenState extends State<LastScreen> {
             ),
             ElevatedButton(
               onPressed: ()  {
+                globalName = '';
                 Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) =>
