@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
 import 'package:os_memory_game/features/chi_game/last_screen.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'package:os_memory_game/features/orders/random_order_screen.dart';
 
 import 'package:os_memory_game/main.dart';
 
@@ -15,7 +16,7 @@ class CarculatorGameScreen extends StatefulWidget {
 
 class CarculatorGameScreenState extends State<CarculatorGameScreen> {
   int calcul = 0;
-  int price = 0;
+  
 
   List<Widget> buttons = [];
 
@@ -24,10 +25,10 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
     super.initState();
 
     buttons = [
+      createButton('${globalPrice+500}원'),
       createButton('$globalPrice원'),
-      createButton('$globalPrice원'),
-      createButton('${globalPrice + 2000}원'),
-      createButton('${globalPrice + 2030}원'),
+      createButton('${globalPrice + 1000}원'),
+      createButton('${globalPrice + 300}원'),
     ];
 
     buttons.shuffle(Random());
@@ -35,15 +36,16 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
 
  Widget createButton(String label) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 300, vertical: 20), // 각 버튼 사이에 수직 간격 추가
+    padding: const EdgeInsets.symmetric(horizontal: 300, vertical: 20), 
     child: ElevatedButton(
       onPressed: () {
         // 라벨 텍스트와 globalPrice를 비교
         if (label == '$globalPrice원') {
-          // 일치하는 경우 HomeScreen으로 이동
+          // 일치하는 경우 globalPrice 값을 변경하고 RandomOrderScreen으로 이동
+          globalPrice = getRandomPrice(); // 예시로 0 ~ 999 사이의 랜덤 값
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => const ChiGameScreen(chiIndex: [],),
+              builder: (context) => const RandomOrderScreen(),
             ),
           );
         } else {

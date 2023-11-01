@@ -2,9 +2,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/calculator_game/calculator_game_screen.dart';
 import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
+import 'package:os_memory_game/features/chi_game/last_screen.dart';
 import 'package:os_memory_game/features/chi_game/widget/chi_game_button.dart';
 import 'dart:math';
 import 'package:os_memory_game/features/home/home_screen.dart';
+import 'package:os_memory_game/features/orders/random_order_screen.dart';
 import 'package:os_memory_game/main.dart';
 
 List<Map<String, dynamic>> buttonImages = [
@@ -75,11 +77,11 @@ List<Map<String, dynamic>> buttonImages = [
 
 // ];
 
-int getRandomPrice() {
-  var rand = Random();
-  return rand.nextInt(6000)+
-      3000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
-}
+// int getRandomPrice() {
+//   var rand = Random();
+//   return rand.nextInt(6000)+
+//       3000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
+// }
 
 //변경
 List<Widget> imageWidgets = [];
@@ -87,7 +89,10 @@ String selectedImageName = '';
 List<String> selectedImageNames = List.filled(5, '');
 
 String name = '';
-int price = getRandomPrice();
+
+
+
+// int price = getRandomPrice();
 
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
@@ -120,17 +125,48 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     }
 
     void deleteButton() {
-      if (selectedImageNames.isNotEmpty) {
-        int lastIndex = selectedImageNames.lastIndexOf(''); // 마지막 빈 인덱스를 찾습니다.
-        if (lastIndex != -1) {
-          selectedImageNames[lastIndex] = ''; // 마지막 빈 인덱스를 지웁니다.
-          setState(() {});
-        }
-      }
+  if (selectedImageNames.isNotEmpty) {
+    int lastIndex = selectedImageNames.lastIndexWhere((element) => element != '');
+    if (lastIndex != -1) {
+      selectedImageNames[lastIndex] = '';
+      selectedChi.removeAt(lastIndex);
+      setState(() {});
     }
+  }
+}
+
+    if (selectedChi.length == widget.chiIndex.length) {
+  bool isCorrect = listEquals(selectedChi, widget.chiIndex);
+  Future.delayed(const Duration(seconds: 1), () {
+    // 이미지 선택 상태 초기화
+    selectedImageNames = List.filled(5, '');
+    selectedChi.clear();
+
+    if (isCorrect) {
+      globalPrice = getRandomPrice();
+      // 일치하는 경우 RandomOrderScreen으로 이동
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const RandomOrderScreen(),
+        ),
+      );
+    } else {
+      // 일치하지 않는 경우 LastScreen으로 이동
+      Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const LastScreen(),
+            ),
+          );
+        }
+      });
+    }
+
 
     print(widget.chiIndex);
     print(selectedChi);
+    
+    
+    
     return Scaffold(
       backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Stack(
@@ -327,7 +363,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 child: IconButton(
                   // 이미지 버튼을 만듭니다.
                   onPressed: () {
-                    globalPrice = price;
+                    
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>

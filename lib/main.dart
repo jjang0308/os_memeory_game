@@ -5,13 +5,13 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 import 'dart:math';
 
 String globalName = '';
-int globalPrice = getRandomPrice();
 
 int getRandomPrice() {
   var rand = Random();
-  return rand.nextInt(6000)+
-      3000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
+  return (rand.nextInt(4) + 3) * 500; // 1000 ~ 2500 사이의 500원 단위 랜덤 값
 }
+
+int globalPrice = getRandomPrice();
 
 void main() {
   runApp(const MyApp());

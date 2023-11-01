@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/features/orders/order_screen.dart';
 import 'package:os_memory_game/features/rank/rank_screen.dart';
+import 'package:os_memory_game/main.dart';
 
 class LastScreen extends StatefulWidget {
   const LastScreen({super.key});
@@ -83,6 +84,7 @@ class _LastScreenState extends State<LastScreen> {
                   const SizedBox(width: 50), // 버튼 사이의 간격 조절
                   ElevatedButton(
                     onPressed: () {
+                      globalPrice = getRandomPrice();
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (context) => const OrderScreen(),
