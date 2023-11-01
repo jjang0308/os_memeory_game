@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/features/calculator_game/calculator_game_screen.dart';
 import 'package:os_memory_game/features/chi_game/chigame_motion.dart';
@@ -90,7 +91,8 @@ int price = getRandomPrice();
 
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
-  const ChiGameScreen({super.key, required List<int> chiIndex});
+  final List chiIndex;
+  const ChiGameScreen({super.key, required this.chiIndex});
 
   @override
   State<ChiGameScreen> createState() => _ChiGameScreenState(); //장혁 바보
@@ -98,9 +100,8 @@ class ChiGameScreen extends StatefulWidget {
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
   bool isButtonPressed = false;
-
   String name = '';
-
+  List<int> selectedChi = [];
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -128,6 +129,8 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
       }
     }
 
+    print(widget.chiIndex);
+    print(selectedChi);
     return Scaffold(
       backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Stack(
@@ -169,6 +172,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                               onFoodSelected: (selectedImageNames) {
                                 onFoodSelected(
                                     index, buttonImages[index]['imageName']);
+                                selectedChi.add(index);
                               },
                             ),
                           ],
@@ -183,8 +187,11 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                               imageName: buttonImages[index + 5]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
-                                onFoodSelected(index,
-                                    buttonImages[index + 5]['imageName']);
+                                onFoodSelected(
+                                  index,
+                                  buttonImages[index + 5]['imageName'],
+                                );
+                                selectedChi.add(index + 5);
                               },
                             ),
                           ],
@@ -285,7 +292,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                     selectedImageNames = List.filled(5, '');
                     // print(selectedImageNames.size);
                     // 버튼을 눌렀을 때 HomeScreen으로 이동
-                    Navigator.of(context).push(
+                    Navigator.of(context).pushReplacement(
                       MaterialPageRoute(
                         builder: (context) =>
                             const HomeScreen(), // HomeScreen 위젯으로 이동
@@ -353,6 +360,18 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                     positionTop: 1050 - (i * 150),
                     imageName: selectedImageNames[i],
                   ),
+              if (selectedChi.length == widget.chiIndex.length)
+                Positioned(
+                  top: screenHeight * 0.25,
+                  left: screenWidth * 0.1,
+                  child: Icon(
+                    // selectedChi.(widget.chiIndex)
+                    listEquals(selectedChi, widget.chiIndex)
+                        ? Icons.panorama_fish_eye
+                        : Icons.close,
+                    size: screenWidth * 0.8,
+                  ),
+                ),
             ],
           ),
         ],
