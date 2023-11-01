@@ -7,7 +7,6 @@ import 'dart:math';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/main.dart';
 
-//전체 버튼 정보
 List<Map<String, dynamic>> buttonImages = [
   {
     'index': 0,
@@ -71,17 +70,21 @@ List<Map<String, dynamic>> buttonImages = [
   },
 ];
 
+// // 왼쪽 버튼 속성 리스트
+// List<Map<String, dynamic>> leftButtonImages = [
+
+// ];
+
 int getRandomPrice() {
   var rand = Random();
-  return rand.nextInt(10000) +
+  return rand.nextInt(10000)+
       8000; // 10000은 원하는 최대값을 의미합니다. 필요에 따라 변경하실 수 있습니다.
 }
 
 //변경
 List<Widget> imageWidgets = [];
 String selectedImageName = '';
-
-List<String> selectedImageNames = ['', '', '', '', ''];
+List<String> selectedImageNames = List.filled(5, '');
 
 String name = '';
 int price = getRandomPrice();
@@ -103,11 +106,11 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-//List<String> selectedImageNames = ['', '', '', '', ''];
+
     void onFoodSelected(int index, String imageName) {
       setState(() {
-        if (!selectedImageNames.contains(imageName)) {
-          // 이미 선택된 이미지가 아닐 경우에만 추가
+        {
+          // 선택되지 않은 이미지일 경우, 선택합니다.
           int emptyIndex = selectedImageNames.indexOf(''); // 빈 인덱스를 찾습니다.
           if (emptyIndex != -1) {
             selectedImageNames[emptyIndex] = imageName; // 빈 인덱스에 이미지 이름을 저장합니다.
@@ -117,9 +120,13 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     }
 
     void deleteButton() {
-      setState(() {
-        selectedImageNames = ['', '', '', '', '']; // selectedImageNames 초기화
-      });
+      if (selectedImageNames.isNotEmpty) {
+        int lastIndex = selectedImageNames.lastIndexOf(''); // 마지막 빈 인덱스를 찾습니다.
+        if (lastIndex != -1) {
+          selectedImageNames[lastIndex] = ''; // 마지막 빈 인덱스를 지웁니다.
+          setState(() {});
+        }
+      }
     }
 
     print(widget.chiIndex);
@@ -133,8 +140,11 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             left: 550,
             child: Container(
               width: 10, // 막대기의 너비
+
               height: screenHeight * 0.5, // 막대기의 높이
+
               color: Colors.brown, // 나무 색상
+
               margin: EdgeInsets.symmetric(
                   vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
             ),
@@ -194,14 +204,10 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             ),
           ),
           Positioned(
-            top: 1400,
-            left: 480,
+            top: 1500, // 원하는 상단 위치 (상단 여백)
+            left: 500, // 원하는 우측 위치 (우측 여백)
             child: ElevatedButton(
-              onPressed: deleteButton,
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Theme.of(context).secondaryHeaderColor, // 배경색 바꿔줘요 ㅠㅠ
-              ),
+              onPressed: deleteButton, // "수정" 버튼을 눌렀을 때 deleteButton 함수 실행
               child: Text(
                 "수정",
                 style: TextStyle(
@@ -284,7 +290,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 child: IconButton(
                   onPressed: () {
                     selectedImageNames = List.filled(5, '');
-
+                    // print(selectedImageNames.size);
                     // 버튼을 눌렀을 때 HomeScreen으로 이동
                     Navigator.of(context).pushReplacement(
                       MaterialPageRoute(

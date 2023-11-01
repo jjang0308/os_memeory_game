@@ -1,6 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+import 'package:os_memory_game/features/chi_game/last_screen.dart';
 import 'package:os_memory_game/features/home/home_screen.dart';
+
 import 'package:os_memory_game/main.dart';
 
 class CarculatorGameScreen extends StatefulWidget {
@@ -22,7 +25,7 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
 
     buttons = [
       createButton('$globalPrice원'),
-      createButton('${globalPrice + 500}원'),
+      createButton('$globalPrice원'),
       createButton('${globalPrice + 2000}원'),
       createButton('${globalPrice + 2030}원'),
     ];
@@ -35,8 +38,23 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 300),
       child: ElevatedButton(
         onPressed: () {
-          // 버튼을 눌렀을 때 수행할 작업을 여기에 추가
-        },
+        // 라벨 텍스트와 globalPrice를 비교
+        if (label == '$globalPrice원') {
+          // 일치하는 경우 HomeScreen으로 이동
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const ChiGameScreen(chiIndex: [],),
+            ),
+          );
+        } else {
+          // 일치하지 않는 경우 LastScreen으로 이동
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const LastScreen(),
+            ),
+          );
+        }
+      },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.deepOrange,
           minimumSize: const Size(600, 200),
@@ -59,10 +77,10 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        backgroundColor: Theme.of(context).secondaryHeaderColor,
         appBar: AppBar(
           elevation: 2,
-          backgroundColor:  Theme.of(context).colorScheme.errorContainer,
+          backgroundColor:  Theme.of(context).secondaryHeaderColor,
           foregroundColor: Colors.black,
           title: const Text( 
             '깜짝게임 : 방금 주문한 꼬치의 가격을 맞춰봐~!',
@@ -72,7 +90,7 @@ class CarculatorGameScreenState extends State<CarculatorGameScreen> {
         body: ListView(  // Column 대신 ListView를 사용
           children: [
             const SizedBox(
-              height: 100,
+              height: 150,
             ),
             ...buttons,
           ],
