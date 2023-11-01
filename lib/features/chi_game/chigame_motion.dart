@@ -31,6 +31,15 @@ class _ChiGameMotionState extends State<ChiGameMotion> {
         child: SizedBox(
           height: 200,
           width: 200,
+          // decoration: const BoxDecoration(
+          //   boxShadow: <BoxShadow>[
+          //     BoxShadow(
+          //       offset: Offset(0, 5),
+          //       blurRadius: 10,
+          //       color: Colors.grey,
+          //     ),
+          //   ],
+          // ),
           child: Image.asset('assets/images/foods/${widget.imageName}'),
         ),
       ),

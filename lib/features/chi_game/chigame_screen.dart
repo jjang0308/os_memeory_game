@@ -6,20 +6,70 @@ import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/main.dart';
 
 List<Map<String, dynamic>> rightButtonImages = [
-  {'index': 0, 'imageName': 'bacon.png', 'text': 'Left Button 1'},
-  {'index': 1, 'imageName': 'broccoli.png', 'text': 'Left Button 2'},
-  {'index': 2, 'imageName': 'carrot.png', 'text': 'Left Button 3'},
-  {'index': 3, 'imageName': 'cheese.png', 'text': 'Left Button 4'},
-  {'index': 4, 'imageName': 'corn.png', 'text': 'Left Button 5'},
+  {
+    'index': 0,
+    'imageName': 'bacon.png',
+    'text': 'Left Button 1',
+    'boxColor': const Color(0xffD85849)
+  },
+  {
+    'index': 1,
+    'imageName': 'broccoli.png',
+    'text': 'Left Button 2',
+    'boxColor': const Color(0xff8BA442)
+  },
+  {
+    'index': 2,
+    'imageName': 'carrot.png',
+    'text': 'Left Button 3',
+    'boxColor': const Color(0xffEE771B)
+  },
+  {
+    'index': 3,
+    'imageName': 'cheese.png',
+    'text': 'Left Button 4',
+    'boxColor': const Color(0xffF7BA00)
+  },
+  {
+    'index': 4,
+    'imageName': 'corn.png',
+    'text': 'Left Button 5',
+    'boxColor': const Color(0xffFEDF49)
+  },
 ];
 
 // 왼쪽 버튼 속성 리스트
 List<Map<String, dynamic>> leftButtonImages = [
-  {'index': 5, 'imageName': 'eggplant.png', 'text': 'Left Button 1'},
-  {'index': 6, 'imageName': 'meat.png', 'text': 'Left Button 2'},
-  {'index': 7, 'imageName': 'tomato.png', 'text': 'Left Button 3'},
-  {'index': 8, 'imageName': 'potato.png', 'text': 'Left Button 4'},
-  {'index': 9, 'imageName': 'shrimp.png', 'text': 'Left Button 5'},
+  {
+    'index': 5,
+    'imageName': 'eggplant.png',
+    'text': 'Left Button 1',
+    'boxColor': const Color(0xFF60305F)
+  },
+  {
+    'index': 6,
+    'imageName': 'meat.png',
+    'text': 'Left Button 2',
+    'boxColor': const Color(0xFFCB4144)
+  },
+  {
+    'index': 7,
+    'imageName': 'tomato.png',
+    'text': 'Left Button 3',
+    'boxColor': const Color(0xFFEC4A4A)
+  },
+  {
+    'index': 8,
+    'imageName': 'potato.png',
+    'text': 'Left Button 4',
+    'boxColor': const Color(0xffC49C4A)
+  },
+  {
+    'index': 9,
+    'imageName': 'shrimp.png',
+    'text': 'Left Button 5',
+    'boxColor': const Color(0xffFC5428)
+  },
 ];
 //변경
 List<Widget> imageWidgets = [];
@@ -28,12 +78,8 @@ List<String> selectedImageNames = List.filled(5, '');
 
 String name = '';
 
-
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
-
-
-
   const ChiGameScreen({super.key});
 
   @override
@@ -42,8 +88,8 @@ class ChiGameScreen extends StatefulWidget {
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
   bool isButtonPressed = false;
- 
-   String name = '';
+
+  String name = '';
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +112,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
     }
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF2C18C),
+      backgroundColor: Theme.of(context).secondaryHeaderColor,
       body: Stack(
         children: [
           Positioned(
@@ -100,6 +146,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ChiGameButton(
+                              boxColor: leftButtonImages[index]['boxColor'],
                               imageName: leftButtonImages[index]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
@@ -115,6 +162,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             ChiGameButton(
+                              boxColor: rightButtonImages[index]['boxColor'],
                               imageName: rightButtonImages[index]['imageName'],
                               isSelected: isSelected,
                               onFoodSelected: (selectedImageNames) {
@@ -146,7 +194,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
               ),
             ),
           ),
-           Positioned(
+          Positioned(
             top: 80,
             left: 440,
             child: Text(
