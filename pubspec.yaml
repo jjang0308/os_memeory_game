@@ -32,6 +32,7 @@ dependencies:
     sdk: flutter
    
   sqflite: ^2.2.8
+  audioplayers: ^0.20.1
  
   
   # mysql_client: ^0.0.27
@@ -78,6 +79,7 @@ flutter:
     - assets/images/pa.png
     - assets/images/sausage.png
     - assets/images/foods/
+    - assets/onlymp3.to - Duggy Happiness In The Sky-zLVockthFuk-192k-1698835451.mp3
   # To add assets to your application, add an assets section, like this:
   #   - images/a_dot_ham.jpeg
 
