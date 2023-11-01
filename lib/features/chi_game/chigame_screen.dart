@@ -193,7 +193,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                 child: IconButton(
                   onPressed: () {
                     selectedImageNames = List.filled(5, '');
-                    print("dasdasdaSD");
+                    print(selectedImageNames.length);
                     // 버튼을 눌렀을 때 HomeScreen으로 이동
                     Navigator.of(context).push(
                       MaterialPageRoute(
@@ -224,6 +224,20 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   ),
                 ),
               ),
+           Positioned(
+                top: 1500,
+                left: 500,
+                child: IconButton(
+                  // 이미지 버튼을 만듭니다.
+                  onPressed: () {
+                    // if(selectedImageNames== )
+                  },
+                  icon: const Icon(
+                    Icons.next_plan, // 이미지 아이콘을 여기에 추가
+                    size: 100, // 이미지 아이콘 크기 설정
+                  ),
+                ),
+              ),    
               Positioned(
                 top: screenHeight * 0.5 - 450, // 텍스트의 상단 위치 조절
                 left: screenWidth * 0.5 - 290, // 텍스트의 좌측 위치 조절
@@ -240,7 +254,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   ChiGameMotion(
                     isSelected: true,
                     positionLeft: 470, // 꼬치에 꽂힌 이미지 간격 조절
-                    positionTop: 1000 - (i * 150),
+                    positionTop: 1050 - (i * 150),
                     imageName: selectedImageNames[i],
                   ),
             ],

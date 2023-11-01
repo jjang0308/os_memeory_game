@@ -224,7 +224,7 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
             ),
             InkWell(
               onTap: () {
-                globalName =name;
+                globalName = name;
                 if (name.isNotEmpty) {
                   addData(Rank(name: name, gochiScore: 0, calScore: 0));
                   final rankModel = GameModel(

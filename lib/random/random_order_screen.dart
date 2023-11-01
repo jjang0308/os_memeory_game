@@ -12,16 +12,16 @@ class RandomOrderScreen extends StatefulWidget {
 
 class _RandomOrderScreenState extends State<RandomOrderScreen> {
   final List<String> allImageUrls = [
-    'assets/fonts/images/ehwkd.png',
-    'assets/fonts/images/pimang.png',
-    'assets/fonts/images/RHcl.png',
-    'assets/fonts/images/steak.png',
-    'assets/fonts/images/ehwkd.png',
-    'assets/fonts/images/pimang.png',
-    'assets/fonts/images/RHcl.png',
-    'assets/fonts/images/steak.png',
-    'assets/fonts/images/ehwkd.png',
-    'assets/fonts/images/pimang.png',
+    'assets/images/foods/ehwkd.png',
+    'assets/images/foods/pimang.png',
+    'assets/images/RHcl.png',
+    'assets/images/foods/bacon.png',
+    'assets/images/ehwkd.png',
+    'assets/images/foods/cheese.png',
+    'assets/images/RHcl.png',
+    'assets/images/steak.png',
+    'assets/images/ehwkd.png',
+    'assets/images/pimang.png',
   ];
 
   List<String> selectedImages = [];
@@ -100,7 +100,7 @@ class _RandomOrderScreenState extends State<RandomOrderScreen> {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>  ChiGameScreen(),
+                    builder: (context) =>  const ChiGameScreen(),
                   ),
                 );
               },
