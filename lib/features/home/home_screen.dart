@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:os_memory_game/argument/argument_screen.dart';
 import 'package:os_memory_game/database/game_db_query.dart';
@@ -38,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     // print(GameDBQuery.getModelListDB());
 
     void onStartPressed() {
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(
           builder: (context) => const ArgumentScreen(),

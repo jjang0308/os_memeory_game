@@ -88,7 +88,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    int score = widget.score;
+
     void onFoodSelected(int index, String imageName) {
       setState(() {
         {
@@ -124,7 +124,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
 
           if (isCorrect) {
             globalPrice = getRandomPrice();
-            score++;
+
             // 일치하는 경우 RandomOrderScreen으로 이동
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -345,9 +345,8 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => CarculatorGameScreen(
-                          score: widget.score,
-                        ), // HomeScreen 위젯으로 이동
+                        builder: (context) =>
+                            const CarculatorGameScreen(), // HomeScreen 위젯으로 이동
                       ),
                     );
                   },
