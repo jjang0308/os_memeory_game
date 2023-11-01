@@ -1,10 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
-import 'package:os_memory_game/features/calculator_game/calculator_game_screen.dart';
-import 'package:os_memory_game/features/home/home_screen.dart';
-import 'dart:math';
 
+import 'package:os_memory_game/last_screen/last_screen.dart';
 
 String globalName = '';
 int globalPrice = 0;
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const HomeScreen(),
+      home: const LastScreen(),
       theme: FlexThemeData.light(
         scheme: usedScheme,
         textTheme: const TextTheme(
