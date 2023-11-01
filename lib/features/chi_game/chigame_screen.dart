@@ -28,12 +28,8 @@ List<String> selectedImageNames = List.filled(5, '');
 
 String name = '';
 
-
 //스크린 폴더 생성
 class ChiGameScreen extends StatefulWidget {
-
-
-
   const ChiGameScreen({super.key});
 
   @override
@@ -42,8 +38,8 @@ class ChiGameScreen extends StatefulWidget {
 
 class _ChiGameScreenState extends State<ChiGameScreen> {
   bool isButtonPressed = false;
- 
-   String name = '';
+
+  String name = '';
 
   @override
   Widget build(BuildContext context) {
@@ -52,10 +48,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
 
     void onFoodSelected(int index, String imageName) {
       setState(() {
-        if (selectedImageNames.contains(imageName)) {
-          // 이미 선택된 이미지일 경우, 선택을 취소합니다.
-          selectedImageNames[index] = ''; // 이미지 이름 초기화
-        } else {
+        {
           // 선택되지 않은 이미지일 경우, 선택합니다.
           int emptyIndex = selectedImageNames.indexOf(''); // 빈 인덱스를 찾습니다.
           if (emptyIndex != -1) {
@@ -63,6 +56,16 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
           }
         }
       });
+    }
+
+    void deleteButton() {
+      if (selectedImageNames.isNotEmpty) {
+        int lastIndex = selectedImageNames.lastIndexOf(''); // 마지막 빈 인덱스를 찾습니다.
+        if (lastIndex != -1) {
+          selectedImageNames[lastIndex] = ''; // 마지막 빈 인덱스를 지웁니다.
+          setState(() {});
+        }
+      }
     }
 
     return Scaffold(
@@ -132,6 +135,31 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             ),
           ),
           Positioned(
+            top: 1500, // 원하는 상단 위치 (상단 여백)
+            left: 500, // 원하는 우측 위치 (우측 여백)
+            child: ElevatedButton(
+              onPressed: deleteButton, // "수정" 버튼을 눌렀을 때 deleteButton 함수 실행
+              child: Text(
+                "수정",
+                style: TextStyle(
+                  fontFamily: "Maple-Bold",
+                  fontSize: 60,
+                  foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 5
+                    ..color = Colors.white,
+                  shadows: const <Shadow>[
+                    Shadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 10,
+                      color: Colors.grey,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Positioned(
             top: 80,
             left: 440,
             child: Text(
@@ -146,7 +174,7 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
               ),
             ),
           ),
-           Positioned(
+          Positioned(
             top: 80,
             left: 440,
             child: Text(
