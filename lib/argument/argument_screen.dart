@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:os_memory_game/argument/widget/Animated_widget.dart';
 import 'package:os_memory_game/argument/gradation/gradation_widget.dart';
 import 'package:os_memory_game/database/game_db_query.dart';
-import 'package:os_memory_game/features/chi_game/chigame_screen.dart';
+import 'package:os_memory_game/features/orders/five_count_screen.dart';
 import 'package:os_memory_game/model/game_model.dart';
 
 import '../features/rank/rank_screen.dart';
@@ -138,7 +138,7 @@ class _ArgumentScreenState extends State<ArgumentScreen> {
                   // 이미지를 눌렀을 때 수행할 동작을 여기에 작성
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => const ChiGameScreen()),
+                        builder: (context) => const FiveCountScreen()),
                   );
                 }
               },

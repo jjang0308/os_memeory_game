@@ -6,6 +6,7 @@ import 'dart:math';
 import 'package:os_memory_game/features/home/home_screen.dart';
 import 'package:os_memory_game/main.dart';
 
+//전체 버튼 정보
 List<Map<String, dynamic>> buttonImages = [
   {
     'index': 0,
@@ -69,11 +70,6 @@ List<Map<String, dynamic>> buttonImages = [
   },
 ];
 
-// // 왼쪽 버튼 속성 리스트
-// List<Map<String, dynamic>> leftButtonImages = [
-
-// ];
-
 int getRandomPrice() {
   var rand = Random();
   return rand.nextInt(10000) +
@@ -134,11 +130,8 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
             left: 550,
             child: Container(
               width: 10, // 막대기의 너비
-
               height: screenHeight * 0.5, // 막대기의 높이
-
               color: Colors.brown, // 나무 색상
-
               margin: EdgeInsets.symmetric(
                   vertical: screenHeight * 0.25), // 수직으로 가운데 정렬
             ),
