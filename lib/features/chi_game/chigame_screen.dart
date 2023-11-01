@@ -361,15 +361,19 @@ class _ChiGameScreenState extends State<ChiGameScreen> {
                     imageName: selectedImageNames[i],
                   ),
               if (selectedChi.length == widget.chiIndex.length)
-                Positioned(
-                  top: screenHeight * 0.25,
-                  left: screenWidth * 0.1,
+                Container(
+                  width: screenWidth,
+                  height: screenHeight,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).canvasColor.withOpacity(0.7),
+                  ),
+                  padding: const EdgeInsets.only(top: 200),
                   child: Icon(
-                    // selectedChi.(widget.chiIndex)
                     listEquals(selectedChi, widget.chiIndex)
                         ? Icons.panorama_fish_eye
                         : Icons.close,
-                    size: screenWidth * 0.8,
+                    size: screenWidth,
+                    color: Colors.red,
                   ),
                 ),
             ],
